@@ -1,0 +1,21 @@
+
+.nav{
+       height:80px;
+       line-height:80px;
+       background:#ededed;
+       border-radius:0 0 15px 15px;   
+}
+.nav li{
+         float:left;
+         width:70px;
+         text-align:center;
+}
+.nav a{
+         display:block;
+         color:black;
+}
+.nav a:hover{
+          color:white;
+          background:blue;
+}
+

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>运行监控</title>
+    <link href="../static/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="../static/css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+    <link href="../static/css/style.css?v=4.1.0" rel="stylesheet">
+    <style>
+        #log-viewer {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            font-family: 'Courier New', Consolas, monospace;
+            font-size: 13px;
+            padding: 15px;
+            border-radius: 4px;
+            max-height: 600px;
+            min-height: 400px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            line-height: 1.6;
+        }
+        .log-info { margin-bottom: 10px; }
+        .log-info .label { font-size: 13px; }
+    </style>
+</head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="wrapper wrapper-content">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5><i class="fa fa-dashboard"></i> 运行监控 - VLLM日志</h5>
+                        <div class="ibox-tools">
+                            <button class="btn btn-white btn-xs" onclick="refreshLog()">
+                                <i class="fa fa-refresh"></i> 刷新
+                            </button>
+                            <a href="{{ url_for('index_bp.index_route') }}" class="btn btn-white btn-xs">
+                                <i class="fa fa-arrow-left"></i> 返回
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+
+                        <!-- 日志文件信息 -->
+                        {% if log_info %}
+                        <div class="log-info">
+                            <span class="label label-info"><i class="fa fa-file-text-o"></i> {{ log_info.path }}</span>
+                            {% if log_info.exists %}
+                            <span class="label label-primary">大小: {{ log_info.size_human }}</span>
+                            <span class="label label-primary">显示: 最近 {{ log_info.lines }} 行</span>
+                            {% else %}
+                            <span class="label label-danger">文件不存在</span>
+                            {% endif %}
+                        </div>
+                        {% endif %}
+
+                        <!-- 设置表单 -->
+                        <form method="get" action="/runtime_monitor" class="form-inline" style="margin-bottom: 15px;">
+                            <div class="form-group">
+                                <label for="log_file">日志文件路径</label>
+                                <input type="text" id="log_file" name="log_file" class="form-control input-sm"
+                                       value="{{ log_file }}" style="width: 400px;">
+                            </div>
+                            <div class="form-group">
+                                <label for="lines" style="margin-left: 10px;">行数</label>
+                                <input type="number" id="lines" name="lines" class="form-control input-sm"
+                                       value="{{ num_lines }}" min="1" max="2000" style="width: 100px; margin-left: 5px;">
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-sm" style="margin-left: 10px;">
+                                <i class="fa fa-search"></i> 查看
+                            </button>
+                            <input type="hidden" name="CONNECTION_TIMEOUT_MS" value="600000">
+                        </form>
+
+                        {% if error_msg %}
+                        <div class="alert alert-danger">
+                            <i class="fa fa-exclamation-triangle"></i> {{ error_msg }}
+                        </div>
+                        {% endif %}
+
+                        <!-- 日志内容显示区 -->
+                        <div id="log-viewer">{{ log_content or '(暂无日志内容)' }}</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="../static/js/jquery.min.js?v=2.1.4"></script>
+<script>
+function refreshLog() {
+    var form = document.querySelector('form[method="get"]');
+    if (form) form.submit();
+}
+// Auto-refresh every 30 seconds
+setInterval(function() {
+    refreshLog();
+}, 30000);
+</script>
+</body>
+</html>

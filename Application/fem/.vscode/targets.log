@@ -1,0 +1,720 @@
+make all --print-data-base --no-builtin-variables --no-builtin-rules --question
+make: *** No rule to make target 'all'.  Stop.
+
+# GNU Make 4.3
+# Built for x86_64-pc-linux-gnu
+# Copyright (C) 1988-2020 Free Software Foundation, Inc.
+# License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+# This is free software: you are free to change and redistribute it.
+# There is NO WARRANTY, to the extent permitted by law.
+
+# Make data base, printed on Mon Jun 23 15:45:53 2025
+
+# Variables
+
+# environment
+CONDA_BACKUP_CONDA_TOOLCHAIN_HOST = x86_64-conda-linux-gnu
+# environment
+CONDA_BACKUP_host_alias = x86_64-conda-linux-gnu
+# environment
+GDK_BACKEND = x11
+# environment
+AS = /home/mich/anaconda3/envs/lubanos2/bin/x86_64-conda-linux-gnu-as
+# environment
+MEMORY_PRESSURE_WRITE = c29tZSAyMDAwMDAgMjAwMDAwMAA=
+# environment
+LC_ALL = C
+# environment
+GNOME_SHELL_SESSION_MODE = ubuntu
+# environment
+CONDA_BACKUP_CXX = /home/mich/anaconda3/envs/lubanos2/bin/x86_64-conda-linux-gnu-c++
+# environment
+AR = /home/mich/anaconda3/envs/lubanos2/bin/x86_64-conda-linux-gnu-ar
+# environment
+CONDA_BACKUP_build_alias = x86_64-conda-linux-gnu
+# environment
+APPIMAGE = /home/mich/Desktop/Cursor-0.50.5-x86_64.AppImage
+# environment
+CMAKE_PREFIX_PATH = /home/mich/anaconda3/envs/lubanos2:/home/mich/anaconda3/envs/lubanos2/x86_64-conda-linux-gnu/sysroot/usr
+# environment
+CONDA_BACKUP_GCC = /home/mich/anaconda3/envs/lubanos2/bin/x86_64-conda-linux-gnu-gcc
+# environment
+GCC_NM = /home/mich/anaconda3/envs/lubanos2/bin/x86_64-conda-linux-gnu-gcc-nm
+# environment
+CONDA_BACKUP_OBJCOPY = /home/mich/anaconda3/envs/lubanos2/bin/x86_64-conda-linux-gnu-objcopy
+# environment
+GJS_DEBUG_OUTPUT = stderr
+# environment
+GXX = /home/mich/anaconda3/envs/lubanos2/bin/x86_64-conda-linux-gnu-g++
+# environment
+CONDA_BACKUP_SIZE = /home/mich/anaconda3/envs/lubanos2/bin/x86_64-conda-linux-gnu-size
+# environment
+CONDA_BACKUP_CXXFILT = /home/mich/anaconda3/envs/lubanos2/bin/x86_64-conda-linux-gnu-c++filt
+# environment
+LC_NAME = en_CA.UTF-8
+# environment
+QT_PLUGIN_PATH = /tmp/.mount_CursormJlrdm/usr/lib/qt4/plugins/:/tmp/.mount_CursormJlrdm/usr/lib/i386-linux-gnu/qt4/plugins/:/tmp/.mount_CursormJlrdm/usr/lib/x86_64-linux-gnu/qt4/plugins/:/tmp/.mount_CursormJlrdm/usr/lib/aarch64-linux-gnu/qt4/plugins/:/tmp/.mount_CursormJlrdm/usr/lib32/qt4/plugins/:/tmp/.mount_CursormJlrdm/usr/lib64/qt4/plugins/:/tmp/.mount_CursormJlrdm/usr/lib/qt5/plugins/:/tmp/.mount_CursormJlrdm/usr/lib/i386-linux-gnu/qt5/plugins/:/tmp/.mount_CursormJlrdm/usr/lib/x86_64-linux-gnu/qt5/plugins/:/tmp/.mount_CursormJlrdm/usr/lib/aarch64-linux-gnu/qt5/plugins/:/tmp/.mount_CursormJlrdm/usr/lib32/qt5/plugins/:/tmp/.mount_CursormJlrdm/usr/lib64/qt5/plugins/:
+# environment
+LC_NUMERIC = en_CA.UTF-8
+# environment
+VSCODE_CRASH_REPORTER_PROCESS_TYPE = extensionHost
+# environment
+VSCODE_CWD = /home/mich/Desktop
+# environment
+CONDA_BACKUP_STRIP = /home/mich/anaconda3/envs/lubanos2/bin/x86_64-conda-linux-gnu-strip
+# environment
+WINDOWPATH = 2
+# environment
+LC_ADDRESS = en_CA.UTF-8
+# default
+MAKE_COMMAND := make
+# environment
+CONDA_BACKUP_BUILD = x86_64-conda-linux-gnu
+# environment
+QT_ACCESSIBILITY = 1
+# environment
+CXX_FOR_BUILD = /home/mich/anaconda3/envs/lubanos2/bin/x86_64-conda-linux-gnu-c++
+# automatic
+@D = $(patsubst %/,%,$(dir $@))
+# environment
+CONDA_BACKUP_AS = /home/mich/anaconda3/envs/lubanos2/bin/x86_64-conda-linux-gnu-as
+# environment
+VSCODE_HANDLES_UNCAUGHT_ERRORS = true
+# default
+.VARIABLES := 
+# environment
+HOST = x86_64-conda-linux-gnu
+# environment
+PWD = /home/mich/apps/BladeAI/Application/fem
+# automatic
+%D = $(patsubst %/,%,$(dir $%))
+# environment
+XDG_DATA_DIRS = /tmp/.mount_CursormJlrdm/usr/share/:/usr/local/share:/usr/share:/usr/share/ubuntu:/usr/share/gnome:/home/mich/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop
+# environment
+OLDPWD = /home/mich/apps/blacframework/Application/Struct_test
+# automatic
+^D = $(patsubst %/,%,$(dir $^))
+# automatic
+%F = $(notdir $%)
+# environment
+CONDA_BACKUP_ADDR2LINE = /home/mich/anaconda3/envs/lubanos2/bin/x86_64-conda-linux-gnu-addr2line
+# environment
+CONDA_BACKUP_CXX_FOR_BUILD = /home/mich/anaconda3/envs/lubanos2/bin/x86_64-conda-linux-gnu-c++
+# environment
+CONDA_PROMPT_MODIFIER = (base) 
+# environment
+VSCODE_CODE_CACHE_PATH = /home/mich/.config/Cursor/CachedData/96e5b01ca25f8fbd4c4c10bc69b15f6228c80770
+# environment
+OWD = /home/mich/Desktop
+# environment
+LANG = C
+# makefile (from 'makefile', line 21)
+T = temp_b3ps_portable
+# environment
+XAUTHORITY = /run/user/1000/gdm/Xauthority
+# default
+.LOADED := 
+# environment
+CONDA_BACKUP_GCC_NM = /home/mich/anaconda3/envs/lubanos2/bin/x86_64-conda-linux-gnu-gcc-nm
+# default
+.INCLUDE_DIRS = /usr/local/include /usr/include /usr/include
+# environment
+MEMORY_PRESSURE_WATCH = /sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/session.slice/org.gnome.Shell@x11.service/memory.pressure
+# makefile
+MAKEFLAGS = pqrR
+# environment
+CONDA_BACKUP_CXXFLAGS = -fvisibility-inlines-hidden -std=c++17 -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/mich/anaconda3/envs/lubanos2/include -fvisibility-inlines-hidden -std=c++17 -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/mich/anaconda3/envs/lubanos2/include
+# environment
+CONDA_TOOLCHAIN_BUILD = x86_64-conda-linux-gnu
+# makefile
+CURDIR := /home/mich/apps/BladeAI/Application/fem
+# environment
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
+# environment
+LESSOPEN = | /usr/bin/lesspipe %s
+# automatic
+*D = $(patsubst %/,%,$(dir $*))
+# environment
+CONDA_BACKUP_RANLIB = /home/mich/anaconda3/envs/lubanos2/bin/x86_64-conda-linux-gnu-ranlib
+# environment
+CONDA_BACKUP_STRINGS = /home/mich/anaconda3/envs/lubanos2/bin/x86_64-conda-linux-gnu-strings
+# environment
+MFLAGS = -pqrR
+# environment
+SSH_AUTH_SOCK = /run/user/1000/keyring/ssh
+# default
+.SHELLFLAGS := -c
+# environment
+XDG_CONFIG_DIRS = /etc/xdg/xdg-ubuntu:/etc/xdg
+# automatic
++D = $(patsubst %/,%,$(dir $+))
+# environment
+CONDA_BACKUP_CC = /home/mich/anaconda3/envs/lubanos2/bin/x86_64-conda-linux-gnu-cc
+# environment
+XDG_SESSION_DESKTOP = ubuntu
+# makefile (from 'makefile', line 1)
+MAKEFILE_LIST := makefile
+# environment
+CONDA_SHLVL = 3
+# automatic
+@F = $(notdir $@)
+# environment
+CONDA_BACKUP_DEBUG_CXXFLAGS = -fvisibility-inlines-hidden -std=c++17 -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-all -fno-plt -Og -g -Wall -Wextra -fvar-tracking-assignments -ffunction-sections -pipe -isystem /home/mich/anaconda3/envs/lubanos2/include -fvisibility-inlines-hidden -std=c++17 -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-all -fno-plt -Og -g -Wall -Wextra -fvar-tracking-assignments -ffunction-sections -pipe -isystem /home/mich/anaconda3/envs/lubanos2/include
+# environment
+VSCODE_PID = 7632
+# environment
+XDG_SESSION_TYPE = x11
+# automatic
+?D = $(patsubst %/,%,$(dir $?))
+# environment
+RANLIB = /home/mich/anaconda3/envs/lubanos2/bin/x86_64-conda-linux-gnu-ranlib
+# environment
+host_alias = x86_64-conda-linux-gnu
+# environment
+CONDA_PYTHON_EXE = /home/mich/anaconda3/bin/python
+# environment
+GCC_AR = /home/mich/anaconda3/envs/lubanos2/bin/x86_64-conda-linux-gnu-gcc-ar
+# environment
+build_alias = x86_64-conda-linux-gnu
+# environment
+SESSION_MANAGER = local/mich-TM1703:@/tmp/.ICE-unix/3126,unix/mich-TM1703:/tmp/.ICE-unix/3126
+# automatic
+*F = $(notdir $*)
+# environment
+CONDA_BACKUP_READELF = /home/mich/anaconda3/envs/lubanos2/bin/x86_64-conda-linux-gnu-readelf
+# environment
+CHROME_DESKTOP = cursor.desktop
+# environment
+DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus
+# automatic
+<D = $(patsubst %/,%,$(dir $<))
+# environment
+VSCODE_NLS_CONFIG = {"userLocale":"en-gb","osLocale":"en-ca","resolvedLanguage":"en","defaultMessagesFile":"/tmp/.mount_CursormJlrdm/usr/share/cursor/resources/app/out/nls.messages.json","locale":"en-gb","availableLanguages":{}}
+# environment
+GPROF = /home/mich/anaconda3/envs/lubanos2/bin/x86_64-conda-linux-gnu-gprof
+# default
+MAKE_HOST := x86_64-pc-linux-gnu
+# environment
+SDL_IM_MODULE = fcitx
+# environment
+GNOME_DESKTOP_SESSION_ID = this-is-deprecated
+# environment
+CONDA_PREFIX = /home/mich/anaconda3
+# makefile
+SHELL = /bin/sh
+# default
+MAKECMDGOALS := all
+# environment
+XMODIFIERS = @im=fcitx
+# environment
+LD_LIBRARY_PATH = /tmp/.mount_CursormJlrdm/usr/lib/:/tmp/.mount_CursormJlrdm/usr/lib32/:/tmp/.mount_CursormJlrdm/usr/lib64/:/tmp/.mount_CursormJlrdm/lib/:/tmp/.mount_CursormJlrdm/lib/i386-linux-gnu/:/tmp/.mount_CursormJlrdm/lib/x86_64-linux-gnu/:/tmp/.mount_CursormJlrdm/lib/aarch64-linux-gnu/:/tmp/.mount_CursormJlrdm/lib32/:/tmp/.mount_CursormJlrdm/lib64/:
+# environment
+CONDA_TOOLCHAIN_HOST = x86_64-conda-linux-gnu
+# environment
+GJS_DEBUG_TOPICS = JS ERROR;JS LOG
+# environment
+SHLVL = 1
+# environment
+STRINGS = /home/mich/anaconda3/envs/lubanos2/bin/x86_64-conda-linux-gnu-strings
+# environment
+MAKELEVEL := 0
+# environment
+APPDIR = /tmp/.mount_CursormJlrdm
+# environment
+_CONDA_PYTHON_SYSCONFIGDATA_NAME = _sysconfigdata_x86_64_conda_cos6_linux_gnu
+# environment
+OBJDUMP = /home/mich/anaconda3/envs/lubanos2/bin/x86_64-conda-linux-gnu-objdump
+# default
+MAKE = $(MAKE_COMMAND)
+# environment
+PATH = /tmp/.mount_CursormJlrdm/usr/bin:/tmp/.mount_CursormJlrdm/usr/sbin:/tmp/.mount_CursormJlrdm/usr/games:/tmp/.mount_CursormJlrdm/bin:/tmp/.mount_CursormJlrdm/sbin:/home/mich/anaconda3/bin:/home/mich/anaconda3/condabin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin
+# default
+MAKEFILES := 
+ 
+# environment
+LANGUAGE = en_CA:en
+# environment
+CMAKE_ARGS = -DCMAKE_AR=/home/mich/anaconda3/envs/lubanos2/bin/x86_64-conda-linux-gnu-ar -DCMAKE_CXX_COMPILER_AR=/home/mich/anaconda3/envs/lubanos2/bin/x86_64-conda-linux-gnu-gcc-ar -DCMAKE_C_COMPILER_AR=/home/mich/anaconda3/envs/lubanos2/bin/x86_64-conda-linux-gnu-gcc-ar -DCMAKE_RANLIB=/home/mich/anaconda3/envs/lubanos2/bin/x86_64-conda-linux-gnu-ranlib -DCMAKE_CXX_COMPILER_RANLIB=/home/mich/anaconda3/envs/lubanos2/bin/x86_64-conda-linux-gnu-gcc-ranlib -DCMAKE_C_COMPILER_RANLIB=/home/mich/anaconda3/envs/lubanos2/bin/x86_64-conda-linux-gnu-gcc-ranlib -DCMAKE_LINKER=/home/mich/anaconda3/envs/lubanos2/bin/x86_64-conda-linux-gnu-ld -DCMAKE_STRIP=/home/mich/anaconda3/envs/lubanos2/bin/x86_64-conda-linux-gnu-strip
+# environment
+CONDA_BACKUP_LDFLAGS = -Wl,-O2 -Wl,--sort-common -Wl,--as-needed -Wl,-z,relro -Wl,-z,now -Wl,--disable-new-dtags -Wl,--gc-sections -Wl,--allow-shlib-undefined -Wl,-rpath,/home/mich/anaconda3/envs/lubanos2/lib -Wl,-rpath-link,/home/mich/anaconda3/envs/lubanos2/lib -L/home/mich/anaconda3/envs/lubanos2/lib -Wl,-O2 -Wl,--sort-common -Wl,--as-needed -Wl,-z,relro -Wl,-z,now -Wl,--disable-new-dtags -Wl,--gc-sections -Wl,--allow-shlib-undefined -Wl,-rpath,/home/mich/anaconda3/envs/lubanos2/lib -Wl,-rpath-link,/home/mich/anaconda3/envs/lubanos2/lib -L/home/mich/anaconda3/envs/lubanos2/lib
+# environment
+LC_MONETARY = en_CA.UTF-8
+# automatic
+^F = $(notdir $^)
+# environment
+GCC_RANLIB = /home/mich/anaconda3/envs/lubanos2/bin/x86_64-conda-linux-gnu-gcc-ranlib
+# environment
+CONDA_PREFIX_2 = /home/mich/anaconda3/envs/lubanos2
+# environment
+CONDA_BACKUP_CPP = /home/mich/anaconda3/envs/lubanos2/bin/x86_64-conda-linux-gnu-cpp
+# environment
+LC_TIME = en_CA.UTF-8
+# environment
+CONDA_BACKUP_CMAKE_PREFIX_PATH = /home/mich/anaconda3/envs/lubanos2:/home/mich/anaconda3/envs/lubanos2/x86_64-conda-linux-gnu/sysroot/usr
+# environment
+INVOCATION_ID = daec8d3bdf294c8392850fdaa35ec286
+# environment
+CPP = /home/mich/anaconda3/envs/lubanos2/bin/x86_64-conda-linux-gnu-cpp
+# environment
+DEBUG_CFLAGS = -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-all -fno-plt -Og -g -Wall -Wextra -fvar-tracking-assignments -ffunction-sections -pipe -isystem /home/mich/anaconda3/envs/lubanos2/include
+# environment
+USERNAME = mich
+# makefile (from 'makefile', line 5)
+PY = python
+# environment
+SIZE = /home/mich/anaconda3/envs/lubanos2/bin/x86_64-conda-linux-gnu-size
+# environment
+CXXFILT = /home/mich/anaconda3/envs/lubanos2/bin/x86_64-conda-linux-gnu-c++filt
+# environment
+ARGV0 = ./Cursor-0.50.5-x86_64.AppImage
+# environment
+ELFEDIT = /home/mich/anaconda3/envs/lubanos2/bin/x86_64-conda-linux-gnu-elfedit
+# environment
+LC_TELEPHONE = en_CA.UTF-8
+# environment
+LESSCLOSE = /usr/bin/lesspipe %s %s
+# automatic
+?F = $(notdir $?)
+# environment
+GTK_IM_MODULE = fcitx
+# environment
+XDG_CURRENT_DESKTOP = Unity
+# environment
+READELF = /home/mich/anaconda3/envs/lubanos2/bin/x86_64-conda-linux-gnu-readelf
+# environment
+CURSOR_TRACE_ID = a66d13ab514744368b4b9a38404492a0
+# environment
+LS_COLORS = rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.crdownload=00;90:*.dpkg-dist=00;90:*.dpkg-new=00;90:*.dpkg-old=00;90:*.dpkg-tmp=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:*.swp=00;90:*.tmp=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:
+# automatic
++F = $(notdir $+)
+# environment
+DESKTOP_SESSION = ubuntu
+# environment
+ORIGINAL_XDG_CURRENT_DESKTOP = ubuntu:GNOME
+# 'override' directive
+GNUMAKEFLAGS := 
+# environment
+CONDA_DEFAULT_ENV = base
+# environment
+CLUTTER_IM_MODULE = fcitx
+# environment
+CONDA_BACKUP_GPROF = /home/mich/anaconda3/envs/lubanos2/bin/x86_64-conda-linux-gnu-gprof
+# environment
+LOGNAME = mich
+# environment
+CPPFLAGS = -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/mich/anaconda3/envs/lubanos2/include
+# environment
+GIO_LAUNCHED_DESKTOP_FILE = /usr/share/applications/lxterminal.desktop
+# makefile
+.DEFAULT_GOAL := help
+# environment
+SYSTEMD_EXEC_PID = 3158
+# environment
+CONDA_BACKUP_DEBUG_CPPFLAGS = -D_DEBUG -D_FORTIFY_SOURCE=2 -Og -isystem /home/mich/anaconda3/envs/lubanos2/include -D_DEBUG -D_FORTIFY_SOURCE=2 -Og -isystem /home/mich/anaconda3/envs/lubanos2/include
+# makefile (from 'makefile', line 6)
+B3PPATH = /home/mich/b3p
+# environment
+DISPLAY = :1
+# environment
+USER = mich
+# environment
+GTK_MODULES = gail:atk-bridge
+# default
+MAKE_VERSION := 4.3
+# 'override' directive
+.SHELLSTATUS := 0
+# environment
+CONDA_BACKUP_NM = /home/mich/anaconda3/envs/lubanos2/bin/x86_64-conda-linux-gnu-nm
+# environment
+CONDA_BACKUP_LD_GOLD = /home/mich/anaconda3/envs/lubanos2/bin/x86_64-conda-linux-gnu-ld.gold
+# environment
+BUILD = x86_64-conda-linux-gnu
+# environment
+GSETTINGS_SCHEMA_DIR_CONDA_BACKUP = /tmp/.mount_CursormJlrdm/usr/share/glib-2.0/schemas/:
+# environment
+LDFLAGS = -Wl,-O2 -Wl,--sort-common -Wl,--as-needed -Wl,-z,relro -Wl,-z,now -Wl,--disable-new-dtags -Wl,--gc-sections -Wl,--allow-shlib-undefined -Wl,-rpath,/home/mich/anaconda3/envs/lubanos2/lib -Wl,-rpath-link,/home/mich/anaconda3/envs/lubanos2/lib -L/home/mich/anaconda3/envs/lubanos2/lib
+# environment
+MANAGERPID = 2693
+# environment
+CONDA_BACKUP_CFLAGS = -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/mich/anaconda3/envs/lubanos2/include -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/mich/anaconda3/envs/lubanos2/include
+# environment
+CONDA_BUILD_SYSROOT = /home/mich/anaconda3/envs/lubanos2/x86_64-conda-linux-gnu/sysroot
+# environment
+CONDA_BACKUP_CPPFLAGS = -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/mich/anaconda3/envs/lubanos2/include -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/mich/anaconda3/envs/lubanos2/include
+# environment
+DEBUGINFOD_URLS = https://debuginfod.ubuntu.com 
+# environment
+LC_MEASUREMENT = en_CA.UTF-8
+# environment
+GIO_LAUNCHED_DESKTOP_FILE_PID = 7120
+# environment
+_ = /tmp/.mount_CursormJlrdm/usr/share/cursor/cursor
+# environment
+CONDA_BACKUP_LD = /home/mich/anaconda3/envs/lubanos2/bin/x86_64-conda-linux-gnu-ld
+# environment
+LC_PAPER = en_CA.UTF-8
+# environment
+XDG_RUNTIME_DIR = /run/user/1000
+# environment
+CFLAGS = -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/mich/anaconda3/envs/lubanos2/include
+# environment
+CONDA_BACKUP_HOST = x86_64-conda-linux-gnu
+# environment
+CONDA_BACKUP_GXX = /home/mich/anaconda3/envs/lubanos2/bin/x86_64-conda-linux-gnu-g++
+# environment
+GCC = /home/mich/anaconda3/envs/lubanos2/bin/x86_64-conda-linux-gnu-gcc
+# environment
+GPG_AGENT_INFO = /run/user/1000/gnupg/S.gpg-agent:0:1
+# environment
+COLORTERM = truecolor
+# environment
+DEBUG_CPPFLAGS = -D_DEBUG -D_FORTIFY_SOURCE=2 -Og -isystem /home/mich/anaconda3/envs/lubanos2/include
+# environment
+VSCODE_PROCESS_TITLE = extension-host [1-2]
+# environment
+JOURNAL_STREAM = 9:23615
+# environment
+CONDA_BACKUP_CONDA_TOOLCHAIN_BUILD = x86_64-conda-linux-gnu
+# environment
+XDG_SESSION_CLASS = user
+# environment
+CONDA_BACKUP_CC_FOR_BUILD = /home/mich/anaconda3/envs/lubanos2/bin/x86_64-conda-linux-gnu-cc
+# environment
+GSM_SKIP_SSH_AGENT_WORKAROUND = true
+# environment
+HOME = /home/mich
+# environment
+QT_IM_MODULE = fcitx
+# environment
+CONDA_BACKUP_OBJDUMP = /home/mich/anaconda3/envs/lubanos2/bin/x86_64-conda-linux-gnu-objdump
+# environment
+CONDA_PREFIX_1 = /home/mich/anaconda3
+# environment
+DEBUG_CXXFLAGS = -fvisibility-inlines-hidden -std=c++17 -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-all -fno-plt -Og -g -Wall -Wextra -fvar-tracking-assignments -ffunction-sections -pipe -isystem /home/mich/anaconda3/envs/lubanos2/include
+# environment
+ELECTRON_RUN_AS_NODE = 1
+# environment
+VSCODE_IPC_HOOK = /run/user/1000/vscode-5b8af5c7-0.50-main.sock
+# environment
+CONDA_BACKUP_DEBUG_CFLAGS = -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-all -fno-plt -Og -g -Wall -Wextra -fvar-tracking-assignments -ffunction-sections -pipe -isystem /home/mich/anaconda3/envs/lubanos2/include -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-all -fno-plt -Og -g -Wall -Wextra -fvar-tracking-assignments -ffunction-sections -pipe -isystem /home/mich/anaconda3/envs/lubanos2/include
+# environment
+TERM = xterm-256color
+# environment
+CONDA_BACKUP_AR = /home/mich/anaconda3/envs/lubanos2/bin/x86_64-conda-linux-gnu-ar
+# environment
+GSETTINGS_SCHEMA_DIR = /home/mich/anaconda3/share/glib-2.0/schemas
+# environment
+NM = /home/mich/anaconda3/envs/lubanos2/bin/x86_64-conda-linux-gnu-nm
+# environment
+IM_CONFIG_PHASE = 1
+# environment
+PAPERSIZE = letter
+# environment
+CONDA_BACKUP_CONDA_BUILD_SYSROOT = /home/mich/anaconda3/envs/lubanos2/x86_64-conda-linux-gnu/sysroot
+# environment
+CONDA_BACKUP_GCC_RANLIB = /home/mich/anaconda3/envs/lubanos2/bin/x86_64-conda-linux-gnu-gcc-ranlib
+# default
+.RECIPEPREFIX := 
+# environment
+CC_FOR_BUILD = /home/mich/anaconda3/envs/lubanos2/bin/x86_64-conda-linux-gnu-cc
+# automatic
+<F = $(notdir $<)
+# makefile (from 'makefile', line 7)
+OUT = s123_lam.yml
+# default
+SUFFIXES := 
+# environment
+LD = /home/mich/anaconda3/envs/lubanos2/bin/x86_64-conda-linux-gnu-ld
+# environment
+VTE_VERSION = 7600
+ 
+# environment
+CXXFLAGS = -fvisibility-inlines-hidden -std=c++17 -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/mich/anaconda3/envs/lubanos2/include
+# environment
+LD_GOLD = /home/mich/anaconda3/envs/lubanos2/bin/x86_64-conda-linux-gnu-ld.gold
+# environment
+STRIP = /home/mich/anaconda3/envs/lubanos2/bin/x86_64-conda-linux-gnu-strip
+# default
+.FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell nocomment grouped-target extra-prereqs archives jobserver output-sync check-symlink load
+# environment
+CXX = /home/mich/anaconda3/envs/lubanos2/bin/x86_64-conda-linux-gnu-c++
+# environment
+ADDR2LINE = /home/mich/anaconda3/envs/lubanos2/bin/x86_64-conda-linux-gnu-addr2line
+# environment
+CC = /home/mich/anaconda3/envs/lubanos2/bin/x86_64-conda-linux-gnu-cc
+# environment
+OBJCOPY = /home/mich/anaconda3/envs/lubanos2/bin/x86_64-conda-linux-gnu-objcopy
+# environment
+PERLLIB = /tmp/.mount_CursormJlrdm/usr/share/perl5/:/tmp/.mount_CursormJlrdm/usr/lib/perl5/:
+# environment
+XDG_MENU_PREFIX = gnome-
+# environment
+CONDA_BACKUP_GCC_AR = /home/mich/anaconda3/envs/lubanos2/bin/x86_64-conda-linux-gnu-gcc-ar
+# environment
+CONDA_BACKUP_ELFEDIT = /home/mich/anaconda3/envs/lubanos2/bin/x86_64-conda-linux-gnu-elfedit
+# environment
+VSCODE_ESM_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
+# environment
+CONDA_EXE = /home/mich/anaconda3/bin/conda
+# makefile (from 'makefile', line 25)
+I = s123_lam.yml
+# environment
+GDMSESSION = ubuntu
+# environment
+LC_IDENTIFICATION = en_CA.UTF-8
+# variable set hash-table stats:
+# Load=224/1024=22%, Rehash=0, Collisions=34/259=13%
+
+# Pattern-specific Variable Values
+
+# No pattern-specific variable values.
+
+# Directories
+
+# . (device 66306, inode 14719727): 40 files, no impossibilities.
+
+# 40 files, no impossibilities in 1 directories.
+
+# Implicit Rules
+
+# No implicit rules.
+
+# Files
+
+prepanbadocker:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'makefile', line 53):
+	sudo docker build -t anba -f anba_docker .
+
+geomimport:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'makefile', line 12):
+	python cfg2yml.py --cfg S123_test_1.cfg --baseyaml $(B3PPATH)/examples/blade_test.yml --out s123_geom.yaml
+
+plot2d:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'makefile', line 47):
+	python ./plot_2d_mesh.py $(T)/msec_*vtp
+
+anbasolve:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'makefile', line 56):
+	docker run  -v $(HOME):/home/fenics/shared -w /home/fenics/shared/blac_3p/input/becas/ anba "python3 ../../../blac/eic-b3p/b3p/anba4_solve.py temp_b3ps/msec_*.xdmf temp_b3ps/material_map.json --debug"
+
+step02: build
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+matdb:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'makefile', line 15):
+	python matdb_translate.py	
+
+step021: ccx
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+lamplan:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'makefile', line 9):
+	python csv2yml.py --csv_input lamplan_S123_600_2.csv --yaml_template s123_geom.yaml --matdb materials_v9.yml --output  $(OUT)
+
+geom:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'makefile', line 27):
+	$(PY) $(B3PPATH)/b3p/build_blade_geometry.py  $(OUT)
+
+ccx:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'makefile', line 75):
+	b3p --yml=$I ccxsolve max_0
+	b3p --yml=$I ccxpost max_0
+
+anba_only:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'makefile', line 81):
+	sudo docker run  -v $HOME:/home/mich -w /home/fenics/shared/projects/blac_3p/input/becas/ anba "python3 /home/mich/b3p/b3p/anba4_solve.py  $T/msec_*.xdmf $T/material_map.json --debug"
+
+p_anba:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'makefile', line 67):
+	python anba4_solve.py $T/msec_*.xdmf $(T)/material_map.json   
+
+s6x6: prep build mesh2d anbaprep panba
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+anbaprep:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'makefile', line 50):
+	python $(B3PPATH)/b3p/anba4_prep.py $(T)/msec_*.vtp
+
+structure:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'makefile', line 29):
+	$(PY) $(B3PPATH)/b3p/build_blade_structure.py  $(OUT)
+
+step03: mesh2d
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+plybook:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'makefile', line 31):
+	$(B3PPATH)/b3p/build_plybook.py $(OUT) --out $(T)/plybook.pck
+
+# Not a target:
+.DEFAULT:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+all:
+#  Command line target.
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has not been updated.
+
+help:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  recipe to execute (from 'makefile', line 4):
+	@egrep -h '\s##\s' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-20s\033[0m %s\n", $$1, $$2}'
+
+prep: matdb geomimport lamplan
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+step04: anbaprep panba anba2hawc2
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+build:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'makefile', line 72):
+	b3p --yml=$I clean build ccxprep
+
+step01: prep
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+makefile:
+#  Implicit rule search has been done.
+ 
+#  Last modified 2025-06-23 15:31:53.692997173
+#  File has been updated.
+#  Successfully updated.
+
+anba2hawc2:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'makefile', line 59):
+	python anba2hawc2.py --files $(T)/msec_*.json --out $(T)/hawc2_input.st
+
+pbuild: geom structure plybook drape combine
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+
+drape:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'makefile', line 33):
+	$(B3PPATH)/b3p/drape_mesh.py $(T)/plybook.pck $(T)/test_blade_web.vtp --key blade  --out $(T)/test_blade_shell1.vtu
+	$(B3PPATH)/b3p/drape_mesh.py  $(T)/plybook.pck $(T)/test_blade_w1.vtp --key w1  --out $(T)/test_blade_w1.vtu 
+	$(B3PPATH)/b3p/drape_mesh.py  $(T)/plybook.pck $(T)/test_blade_w2.vtp --key w2  --out $(T)/test_blade_w2.vtu
+
+panba:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'makefile', line 65):
+	python anba4_solve.py $(T)/msec_*.xdmf $(T)/material_map.json --debug  
+
+combine:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'makefile', line 37):
+	$(B3PPATH)/b3p/combine_meshes.py $(T)/test_blade_shell1.vtu   $(T)/test_blade_w1.vtu $(T)/test_blade_w2.vtu --out $(T)/joinedup_mesh.vtu
+
+mesh2d:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'makefile', line 43):
+	#b3p --yml=$(I) mesh2d
+	python	$(B3PPATH)/b3p/mesh_2d.py --vtu $(T)/test_blade_joined.vtu --r "[.1,1,2,5,10,20,30,40,50,60,70,80,90,100,110,115]" --var $(T)/test_blade.var --verbose 
+	
+
+.PHONY: help pbuild
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+anbaplot:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'makefile', line 62):
+	./compare_st_files.py S123_E_Blade.st temp_b3ps_portable/hawc2_input.st 
+
+# files hash-table stats:
+# Load=34/1024=3%, Rehash=0, Collisions=0/68=0%
+# VPATH Search Paths
+
+# No 'vpath' search paths.
+
+# No general ('VPATH' variable) search path.
+
+# strcache buffers: 1 (0) / strings = 75 / storage = 841 B / avg = 11 B
+# current buf: size = 8162 B / used = 841 B / count = 75 / avg = 11 B
+
+# strcache performance: lookups = 131 / hit rate = 42%
+# hash-table stats:
+# Load=75/8192=1%, Rehash=0, Collisions=0/131=0%
+# Finished Make data base on Mon Jun 23 15:45:53 2025
+
+ 

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2. Installation &mdash; BladeAI 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
+      <link rel="stylesheet" type="text/css" href="_static/bladeai_theme.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="1. Introduction" href="introduction.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            BladeAI
+              <img src="_static/ai4science.jpeg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                0.1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">1. Introduction</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">2. Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#create-developing-env">2.1 Create Developing env</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#install-streamlit-env">2.2 Install streamlit env</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#get-repo">2.3 Get repo:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id1">2.4 Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#how-to-run-and-script">2.5 how to run and script</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#web-portal-start">2.5 web portal start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#deplorment-status">2.6 开发状态 deplorment status</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">BladeAI</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">2. Installation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/installation.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="installation">
+<h1>2. Installation<a class="headerlink" href="#installation" title="Permalink to this heading">¶</a></h1>
+<p>now the system only can install on Linux, my labtop is Ubuntu24.04 but i test OK also on Ubuntu22.04. becasue i use Fenics which now only work on Linux system and also for prepare to Slurm cluster also. you have to be patient on python packeages installation also, but i left requirement.txt on base dir which is the all packages i installed.</p>
+<p>现在系统只能安装在 Linux 上，我的笔记本电脑是 Ubuntu24.04，但我在 Ubuntu22.04 上也测试成功。因为我使用 Fenics，它现在只能在 Linux 系统上运行，也为 Slurm 集群做准备。您还必须耐心等待 python 包的安装，但我将 requirement.txt 留在了基础目录中，这是我安装的所有包。</p>
+<section id="create-developing-env">
+<h2>2.1 Create Developing env<a class="headerlink" href="#create-developing-env" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>-<span class="w"> </span>conda<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>py3712<span class="w"> </span><span class="nv">python</span><span class="o">=</span><span class="m">3</span>.7<span class="w">      </span><span class="c1">#which i run ther FEM sover</span>
+-<span class="w"> </span>conda<span class="w"> </span>activate<span class="w"> </span>py3712
+-<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirement.txt<span class="w">    </span><span class="c1"># fix your pkgs conflict if that happened</span>
+</pre></div>
+</div>
+</section>
+<section id="install-streamlit-env">
+<h2>2.2 Install streamlit env<a class="headerlink" href="#install-streamlit-env" title="Permalink to this heading">¶</a></h2>
+<blockquote>
+<div><p>becasue of i used stpyvista for web 3D, so the new version is needed</p>
+</div></blockquote>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>-<span class="w"> </span>conda<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>py312<span class="w"> </span><span class="nv">python</span><span class="o">=</span><span class="m">3</span>.12<span class="w">      </span><span class="c1">#which i run for stpyvista and streamlit new version</span>
+-<span class="w"> </span>conda<span class="w"> </span>activate<span class="w"> </span>py312
+</pre></div>
+</div>
+</section>
+<section id="get-repo">
+<h2>2.3 Get repo:<a class="headerlink" href="#get-repo" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>git@gitee.com:michaelxdzhang/blade-ai.git<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>blade-ai
+</pre></div>
+</div>
+</section>
+<section id="id1">
+<h2>2.4 Installation<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>b3p<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>pip<span class="w"> </span>install-r<span class="w"> </span>.<span class="w">   </span><span class="c1">#install opensource code which i did a significant changes</span>
+<span class="nb">cd</span><span class="w"> </span>..<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>equirement_py312.txt
+
+./fl.sh<span class="w">                    </span><span class="c1">#install scrit will start flask and streamlit , the user name is test, passwork is test</span>
+</pre></div>
+</div>
+</section>
+<section id="how-to-run-and-script">
+<h2>2.5 how to run and script<a class="headerlink" href="#how-to-run-and-script" title="Permalink to this heading">¶</a></h2>
+<blockquote>
+<div><p>./fl.sh         #at base dir (blade-ai)</p>
+</div></blockquote>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>#if run webased Paraview should uncomm belo 2 lines
+#cd /home/mich/apps/BladeBuilderStability/ParaView-5.10.0-MPI-Linux-Python3.9-x86_64
+#./start.sh
+cd ~/apps/blade-ri/Application/aero_shape/
+f8551=`ps aux|grep 8551|grep -v grep`
+f8552=`ps aux|grep 8552|grep -v grep`
+f8181=`ps aux|grep 8181|grep -v grep`
+#at py312 env which in .bashrc 
+if  [ &quot;${f8551}&quot; = &quot;&quot; ]; then
+  echo &quot;start port 8551 at dir path&quot; `pwd`
+  source activate py312
+  streamlit run bbs.py --server.enableXsrfProtection=false --server.port 8551 &amp; 
+fi
+
+cd ../../
+
+if  [ &quot;${f8181}&quot; = &quot;&quot; ]; then
+  source activate as1
+  echo &quot;start port 8181 at path &quot; `pwd`
+  nohup python app.py runserver -h 0.0.0.0 -p 8181 &gt;/dev/null 2&gt;&amp;1 &amp;
+fi
+</pre></div>
+</div>
+</section>
+<section id="web-portal-start">
+<h2>2.5 web portal start<a class="headerlink" href="#web-portal-start" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>http://localhost:8181<span class="w">      </span><span class="c1"># the flask web page you could see</span>
+</pre></div>
+</div>
+</section>
+<section id="deplorment-status">
+<h2>2.6 开发状态 deplorment status<a class="headerlink" href="#deplorment-status" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>-<span class="w"> </span>AI<span class="w"> </span>report<span class="w"> </span>now<span class="w"> </span>is<span class="w"> </span>menualy,<span class="w"> </span>so<span class="w"> </span>create<span class="w"> </span>report<span class="w"> </span><span class="k">function</span><span class="w"> </span>has<span class="w"> </span>to<span class="w"> </span>be<span class="w"> </span>used<span class="w"> </span>by<span class="w"> </span>human,<span class="w"> </span>later<span class="w"> </span>will<span class="w"> </span>apply<span class="w"> </span>API<span class="w"> </span>Agent<span class="w"> </span>to<span class="w"> </span>replace
+-<span class="w"> </span>hawcstab2<span class="w"> </span>running<span class="w"> </span>is<span class="w"> </span>manually,<span class="w"> </span>you<span class="w"> </span>could<span class="w"> </span>find<span class="w"> </span>the<span class="w"> </span><span class="nb">source</span><span class="w"> </span>code<span class="w"> </span>on<span class="w"> </span>my<span class="w"> </span>gitee<span class="w"> </span>which<span class="w"> </span>name<span class="w"> </span>is<span class="w"> </span>Casetoobox
+-<span class="w"> </span>converg<span class="w"> </span>env<span class="w"> </span>is<span class="w"> </span>a<span class="w"> </span>option<span class="w"> </span><span class="k">if</span><span class="w"> </span>needed<span class="w"> </span>but<span class="w"> </span>i<span class="w"> </span>use<span class="w"> </span>shell<span class="w"> </span>script<span class="w"> </span>to<span class="w"> </span>activate<span class="w"> </span>different<span class="w"> </span>envs
+-<span class="w"> </span>more<span class="w"> </span>training<span class="w"> </span>data<span class="w"> </span>actually<span class="w"> </span>is<span class="w"> </span>needed<span class="w"> </span>but<span class="w"> </span>i<span class="w"> </span>am<span class="w"> </span>collecting<span class="w"> </span>now,<span class="w"> </span><span class="k">if</span><span class="w"> </span>you<span class="w"> </span>have<span class="w"> </span><span class="nb">let</span><span class="w"> </span>me<span class="w"> </span>know
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="introduction.html" class="btn btn-neutral float-left" title="1. Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

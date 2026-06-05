@@ -1,0 +1,14 @@
+{
+    "include": [
+        "Application",
+        "."
+    ],
+    "extraPaths": [
+        "${env:HOME}/apps/beaver-framework",
+        "${env:HOME}/apps/beaver-framework/BeaverFramework",
+        "${env:HOME}/apps/beaver-framework/BeaverFramework/Framework"    
+    ],
+    "typeCheckingMode": "basic",
+    "autoImportCompletions": true,
+    "useLibraryCodeForTypes": true
+} 

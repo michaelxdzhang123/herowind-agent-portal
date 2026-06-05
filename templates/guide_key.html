@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>密钥获得 - HeroWind</title>
+    <link href="../static/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="../static/css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+    <link href="../static/css/style.css?v=4.1.0" rel="stylesheet">
+    <style>
+        .key-card { border-left: 3px solid #337ab7; }
+    </style>
+</head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="wrapper wrapper-content">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5><i class="fa fa-key"></i> 密钥获得</h5>
+                        <div class="ibox-tools">
+                            <a href="{{ url_for('index_bp.index_route') }}" class="btn btn-white btn-xs">
+                                <i class="fa fa-arrow-left"></i> 返回主页
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+
+                        <div class="alert alert-info">
+                            <i class="fa fa-info-circle"></i> 在此页面为您的账号申请/查看API密钥。输入您的用户名，点击"生成密钥"即可获得。
+                        </div>
+
+                        {% if message %}
+                        <div class="alert alert-success alert-dismissible" style="white-space: pre-wrap;">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            {{ message }}
+                        </div>
+                        {% endif %}
+
+                        {% if error %}
+                        <div class="alert alert-danger alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            {{ error }}
+                        </div>
+                        {% endif %}
+
+                        {% if new_key %}
+                        <div class="alert alert-success alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <strong>密钥生成成功!</strong> 用户 <strong>{{ new_user }}</strong> 的API密钥:<br>
+                            <div style="margin-top: 10px;">
+                                <code id="new-api-key" style="font-size: 16px; padding: 4px 8px; background: #f0f0f0; border: 1px solid #ddd;">{{ new_key }}</code>
+                                <button type="button" onclick="copyKey()" class="btn btn-xs btn-primary" style="margin-left: 8px;">
+                                    <i class="fa fa-copy"></i> 复制
+                                </button>
+                            </div>
+                            <p style="margin-top: 10px; color: #8a6d3b;">
+                                <small><strong>注意:</strong> 这是唯一一次显示完整API密钥, 请立即复制保存。</small>
+                            </p>
+                        </div>
+                        {% endif %}
+
+                        <!-- 申请密钥表单 -->
+                        <div class="panel panel-default key-card">
+                            <div class="panel-heading">
+                                <h3 class="panel-title"><i class="fa fa-plus-circle"></i> 申请API密钥</h3>
+                            </div>
+                            <div class="panel-body">
+                                <form action="{{ url_for('guide_key_bp.create_user') }}" method="post" class="form-inline">
+                                    <div class="form-group">
+                                        <label for="username">用户名 *</label>
+                                        <input type="text" id="username" name="username" class="form-control"
+                                               placeholder="请输入您的用户名" required pattern="[a-zA-Z0-9_\-\.]+"
+                                               title="仅支持字母、数字、连字符、下划线或点号">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="display_name">显示名称/邮箱</label>
+                                        <input type="text" id="display_name" name="display_name" class="form-control"
+                                               placeholder="可选">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary"><i class="fa fa-key"></i> 生成密钥</button>
+                                </form>
+                            </div>
+                        </div>
+
+                        <!-- 已分配的密钥列表 -->
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title"><i class="fa fa-list"></i> 我的API密钥 (共 {{ users|length }} 个用户)</h3>
+                            </div>
+                            <div class="panel-body table-responsive">
+                                <table class="table table-striped table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>用户名</th>
+                                            <th>显示名称</th>
+                                            <th>API Key</th>
+                                            <th>状态</th>
+                                            <th>操作</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for user in users %}
+                                        <tr>
+                                            <td>{{ user.name }}</td>
+                                            <td>{{ user.display_name or '-' }}</td>
+                                            <td><code>{{ user.api_key_masked }}</code></td>
+                                            <td>
+                                                {% if user.enabled %}
+                                                <span class="label label-primary">已启用</span>
+                                                {% else %}
+                                                <span class="label label-default">未分配</span>
+                                                {% endif %}
+                                            </td>
+                                            <td>
+                                                {% if user.get('api-key') %}
+                                                <form action="{{ url_for('guide_key_bp.delete_key', name=user.name) }}"
+                                                      method="post" style="display:inline;"
+                                                      onsubmit="return confirm('确定要删除用户 {{ user.name }} 的API密钥吗?');">
+                                                    <button type="submit" class="btn btn-danger btn-xs">
+                                                        <i class="fa fa-trash"></i> 删除
+                                                    </button>
+                                                </form>
+                                                {% endif %}
+                                            </td>
+                                        </tr>
+                                        {% else %}
+                                        <tr>
+                                            <td colspan="5" class="text-center text-muted">暂无用户</td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="../static/js/jquery.min.js?v=2.1.4"></script>
+<script>
+function copyKey() {
+    var key = document.getElementById('new-api-key').innerText;
+    navigator.clipboard.writeText(key).then(function() {
+        alert('API密钥已复制到剪贴板!');
+    }, function() {
+        var ta = document.createElement('textarea');
+        ta.value = key;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        alert('API密钥已复制到剪贴板!');
+    });
+}
+</script>
+</body>
+</html>

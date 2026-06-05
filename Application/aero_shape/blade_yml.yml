@@ -1,0 +1,26 @@
+general:
+  # prefix for output files
+  prefix: test_blade
+  # workdirectory for all variants
+  workdir : temp_b50
+
+planform:
+  npchord: 100
+  npspan : 70 
+  # offset in prebend direction, negative is upwind
+  dx    : [[0.0,0.0],[0.2,0.0],[0.4,0.0],[1.0,-5.0]]
+  # offset in chord direction
+  dy    : [[0,0],[1,0]]
+  z     : [[0,3],[1,126]]
+  chord : [[0.0,5],[0.03,5.06],[0.2,6.5],[.4,4.4],[.6,2.8],[.75,2.1],[0.94,1.5],[.985,.8],[1,.1]]
+  thickness:  [[0.0, 1.0],[.05,.97], [0.2, 0.53], [0.31, 0.39],  [1.0, 0.17]]
+  twist :   [[0.0,17],[0.6,0],[1.,0]]
+  offset_clamp_points : [ .2, .5,.8, .9]
+
+aero:
+  airfoils: {1.  : 'airfoils/circ_m32.dat',
+  .25         : 'airfoils/du_91_w2_250_smoothed_dero_0.250.dat',
+  0.21        : 'airfoils/DU93-W-210_smoothed_dero_0.210.dat',
+  0.179928    : 'airfoils/naca633418_te.dat',
+  0.17        : 'airfoils/naca0017.dat'}
+

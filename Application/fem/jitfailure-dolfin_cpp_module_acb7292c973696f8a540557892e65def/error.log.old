@@ -1,0 +1,9 @@
+In file included from /home/mich/anaconda3/envs/py3712/include/pybind11/detail/common.h:274,
+                 from /home/mich/anaconda3/envs/py3712/include/pybind11/attr.h:13,
+                 from /home/mich/anaconda3/envs/py3712/include/pybind11/detail/class.h:12,
+                 from /home/mich/anaconda3/envs/py3712/include/pybind11/pybind11.h:12,
+                 from /tmp/tmpshhij9nf/dolfin_cpp_module_acb7292c973696f8a540557892e65def.cpp:25:
+/home/mich/anaconda3/envs/lubanos2/include/python3.7m/Python.h:44:10: fatal error: crypt.h: No such file or directory
+   44 | #include <crypt.h>
+      |          ^~~~~~~~~
+compilation terminated.

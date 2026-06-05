@@ -1,0 +1,3286 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>1. Introduction &mdash; BladeAI 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
+      <link rel="stylesheet" type="text/css" href="_static/bladeai_theme.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="2. Installation" href="installation.html" />
+    <link rel="prev" title="Welcome to BladeAI’s documentation(sphinx)!" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            BladeAI
+              <img src="_static/ai4science.jpeg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                0.1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">1. Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#bladeai-work-flow">BladeAI Work Flow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#general-description">1.1 General Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#bladeai-quick-view-include-video-demo">1.2  BladeAI Quick View include Video demo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#idea-draft">1.2.1 Idea Draft</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#function-systemiter">1.2.2 Function SystemIter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#function-shapes">1.2.3 Function Shapes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#function-airfoils">1.2.4 Function Airfoils</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#function-makegeo">1.2.5 Function MakeGeo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#function-lamplan">1.2.6 Function Lamplan</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#function-materials">1.2.7 Function Materials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#function-stiffness">1.2.8 Function Stiffness</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#function-stability">1.2.9 Function Stability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#function-aireport">1.2.10 Function AIReport</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#development-source-tree">1.3 Development source tree</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#deliveries-location">1.4 Deliveries location</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#codes-work-on">1.4.1 Codes work on:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#demo-video-location">1.4.3 demo video location</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#main-manu">1.5 Main Manu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#appendix">1.6 Appendix</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">2. Installation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">BladeAI</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">1. Introduction</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/introduction.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="introduction">
+<h1>1. Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h1>
+<blockquote>
+<div><p>BladeAI is a Wind Turbine Preliminary Design tools integrated with aero,structure,hawcstab2 simulation and try to use AI agent to do Stability Analysis.</p>
+</div></blockquote>
+<section id="bladeai-work-flow">
+<h2>BladeAI Work Flow<a class="headerlink" href="#bladeai-work-flow" title="Permalink to this heading">¶</a></h2>
+<img alt="_images/StabAnalysis.jpg" class="align-center" src="_images/StabAnalysis.jpg" />
+</section>
+<section id="general-description">
+<h2>1.1 General Description<a class="headerlink" href="#general-description" title="Permalink to this heading">¶</a></h2>
+<p>introduction:</p>
+<blockquote>
+<div><p>BladeAI tool takes input from sys module to aerodynamic,structure AI analysis on structure frequency domain and damping domain. all functionality are web based conversation on parameter settings and run individuly， the codes is opensource so you are free to download and even contribute,if you have any question let me know, and I’d like to discuss with you.</p>
+<p>BladeAI 工具从风机系统模块（叶片Airfoils,shapes and then make geometry lamplain, stiffness,finally hawstab2 and AIReport）开始，然后是气动、结构模块（有限元FEM）最后用AI产生专业分析报告，这个是一个使用AI的尝试，希望感兴趣的朋友使用病提出宝贵意见。该代码是开源的，欢迎下载和贡献，谢谢！</p>
+</div></blockquote>
+<p>Main Functions</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>sys module take input of system variables which  all input variables, detail see Appendix A</p></li>
+<li><p>shape_analys shows different shapes compare as options: Chord, rel_Thickness, abs_Thinkness and Twist</p></li>
+<li><p>bem modules will take a shape to calculate  stiffness matrics</p></li>
+<li><p>hawcstab2 will calculate and get a tranditional Compell draw</p></li>
+<li><p>AI  moduels will create markdown file which could download to look at any web browser</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="bladeai-quick-view-include-video-demo">
+<h2>1.2  BladeAI Quick View include Video demo<a class="headerlink" href="#bladeai-quick-view-include-video-demo" title="Permalink to this heading">¶</a></h2>
+<blockquote>
+<div><ul class="simple">
+<li><p>BladeAI/docs/demoVideo                – all demo video here which show the main functionality</p></li>
+<li><p>BladeAI/docs/sphinx/build/html/index.html   – open the sphinx documentation portal to see detail</p></li>
+</ul>
+</div></blockquote>
+<dl class="simple">
+<dt>工具说明</dt><dd><ol class="arabic simple">
+<li><p>v0.1 是调试版本，目前开通2个用户,避免多人同时使用一个用户</p></li>
+<li><p>说明书正在写，可以通过视频演示部分了解系统功能和开发</p></li>
+</ol>
+</dd>
+</dl>
+<p>BladeAI v0.1工具开发状态</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>后台求解器并行已经解决，4核求解有限元约17分钟</p></li>
+<li><p>部署到云（Linux Slurm）script 调试成功</p></li>
+<li><p>后台从翼型到求刚度矩阵-稳定性分析基本调好</p></li>
+<li><p>AI自动出报告初步成功但需要人工，后续连接API变全自动</p></li>
+<li><p>AI功能还需要深度开发，尝试grok4收费功能</p></li>
+</ol>
+</div></blockquote>
+<img alt="_images/workflow.jpg" class="align-center" src="_images/workflow.jpg" />
+</section>
+<section id="idea-draft">
+<h2>1.2.1 Idea Draft<a class="headerlink" href="#idea-draft" title="Permalink to this heading">¶</a></h2>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<img alt="_images/portal.png" class="align-center" src="_images/portal.png" />
+</section>
+<section id="function-systemiter">
+<h2>1.2.2 Function SystemIter<a class="headerlink" href="#function-systemiter" title="Permalink to this heading">¶</a></h2>
+<img alt="_images/SystemIter.png" class="align-center" src="_images/SystemIter.png" />
+</section>
+<section id="function-shapes">
+<h2>1.2.3 Function Shapes<a class="headerlink" href="#function-shapes" title="Permalink to this heading">¶</a></h2>
+<img alt="_images/Shapes.png" class="align-center" src="_images/Shapes.png" />
+</section>
+<section id="function-airfoils">
+<h2>1.2.4 Function Airfoils<a class="headerlink" href="#function-airfoils" title="Permalink to this heading">¶</a></h2>
+<img alt="_images/Airfoils.png" class="align-center" src="_images/Airfoils.png" />
+</section>
+<section id="function-makegeo">
+<h2>1.2.5 Function MakeGeo<a class="headerlink" href="#function-makegeo" title="Permalink to this heading">¶</a></h2>
+<img alt="_images/MakeGeo.png" class="align-center" src="_images/MakeGeo.png" />
+</section>
+<section id="function-lamplan">
+<h2>1.2.6 Function Lamplan<a class="headerlink" href="#function-lamplan" title="Permalink to this heading">¶</a></h2>
+<img alt="_images/Lamplan.png" class="align-center" src="_images/Lamplan.png" />
+</section>
+<section id="function-materials">
+<h2>1.2.7 Function Materials<a class="headerlink" href="#function-materials" title="Permalink to this heading">¶</a></h2>
+<img alt="_images/Materials.png" class="align-center" src="_images/Materials.png" />
+</section>
+<section id="function-stiffness">
+<h2>1.2.8 Function Stiffness<a class="headerlink" href="#function-stiffness" title="Permalink to this heading">¶</a></h2>
+<img alt="_images/Stiffness.png" class="align-center" src="_images/Stiffness.png" />
+</section>
+<section id="function-stability">
+<h2>1.2.9 Function Stability<a class="headerlink" href="#function-stability" title="Permalink to this heading">¶</a></h2>
+<img alt="_images/Stability.png" class="align-center" src="_images/Stability.png" />
+</section>
+<section id="function-aireport">
+<h2>1.2.10 Function AIReport<a class="headerlink" href="#function-aireport" title="Permalink to this heading">¶</a></h2>
+<img alt="_images/AIReport.png" class="align-center" src="_images/AIReport.png" />
+</section>
+<section id="development-source-tree">
+<h2>1.3 Development source tree<a class="headerlink" href="#development-source-tree" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>../../../Application
+├── aero_shape
+│   ├── :00.bl
+│   ├── 1.png
+│   ├── airfoils
+│   ├── aoa0.log
+│   ├── aoa.log
+│   ├── bbs.log
+│   ├── bbs.py
+│   ├── blade_test.yml
+│   ├── blade_yml.yml
+│   ├── inputs
+│   ├── log
+│   ├── NickBarlow
+│   ├── outputs
+│   ├── plot.ps
+│   ├── ps2png
+│   ├── __pycache__
+│   ├── read_json_df.csv
+│   ├── run_stiffness.sh
+│   ├── run_zip.sh
+│   ├── start_bbs.sh
+│   ├── this.run
+│   ├── utils.py
+│   ├── vtk_plot_stl.py
+│   └── xfoil_shell.sh
+├── b3p
+│   ├── add_load_to_mesh.py
+│   ├── anba4_prep.py
+│   ├── anba4_solve.py
+│   ├── blade.py
+│   ├── blade_section.py
+│   ├── build_blade_geometry.py
+│   ├── build_blade_structure.py
+│   ├── build_plybook.py
+│   ├── combine_meshes.py
+│   ├── drape_mesh.py
+│   ├── frd2vtu.py
+│   ├── geometry_blade_shape.py
+│   ├── geometry_section.py
+│   ├── geometry_web.py
+│   ├── geom_utils.py
+│   ├── __init__.py
+│   ├── loft_utils.py
+│   ├── mesh2ccx.py
+│   ├── mesh_2d.py
+│   ├── mesh_from_loft.py
+│   ├── __pycache__
+│   ├── splining.py
+│   └── webs.py
+├── data_test
+│   ├── cdb
+│   └── NickBarlow
+├── fem
+│   ├── anba2hawc2.py
+│   ├── anba4_solve.py
+│   ├── bladerun.py
+│   ├── cal_total_smass.py
+│   ├── cfg2yml.py
+│   ├── check_area_mass.py
+│   ├── check_planform.py
+│   ├── check_status.log
+│   ├── coarsen_loads.py
+│   ├── compare_blades.py
+│   ├── compare_lamplans.py
+│   ├── compare_st_files.py
+│   ├── csv2yml.py
+│   ├── data
+│   ├── jitfailure-dolfin_cpp_module_acb7292c973696f8a540557892e65def
+│   ├── json2yml.py
+│   ├── lamplan_123.csv
+│   ├── LoadRose_ItA.txt
+│   ├── loads.png
+│   ├── makefile
+│   ├── matdb_translate.py
+│   ├── materials_v9.yml
+│   ├── mesh_2d.py
+│   ├── multloads.py
+│   ├── open_airfoil.py
+│   ├── ploads2yml.py
+│   ├── plot_2d_mesh.py
+│   ├── __pycache__
+│   ├── s123_lam.yml
+│   ├── stiffness
+│   ├── temp_b3ps
+│   ├── test_msec.py
+│   ├── unimat.py
+│   ├── uniorient.py
+│   ├── vtu2cdb.py
+│   └── yml2csv.py
+├── stab2
+│   ├── AIReport_dumping.markdown
+│   ├── AIReport_stab.markdown
+│   ├── campbell_analysis.png
+│   ├── campbell_structural.png
+│   ├── damping_structural.png
+│   ├── data
+│   ├── _loads_utils.py
+│   ├── plot
+│   ├── plot_campbell.py
+│   ├── run_stab2_htc.sh
+│   └── Run_stab2_linux_path.sh
+└── sys
+    └── system.cfg
+
+23 directories, 81 files
+</pre></div>
+</div>
+</section>
+<section id="deliveries-location">
+<h2>1.4 Deliveries location<a class="headerlink" href="#deliveries-location" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="codes-work-on">
+<h2>1.4.1 Codes work on:<a class="headerlink" href="#codes-work-on" title="Permalink to this heading">¶</a></h2>
+<blockquote>
+<div><ul class="simple">
+<li><p>git clone <a class="reference external" href="mailto:git&#37;&#52;&#48;gitee&#46;com">git<span>&#64;</span>gitee<span>&#46;</span>com</a>:michaelxdzhang/blade-ai.git</p></li>
+</ul>
+</div></blockquote>
+<p>1.4.2 Docs location (Sphinx Style)</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>BladeAI/docs/sphinx/build/html/index.html   —just open the file use any browser to scan Introduction which has general explain and web images</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="demo-video-location">
+<h2>1.4.3 demo video location<a class="headerlink" href="#demo-video-location" title="Permalink to this heading">¶</a></h2>
+<blockquote>
+<div><ul class="simple">
+<li><p>/BladeAI/docs/video             —-this directory has the demo screen shuts</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="main-manu">
+<h2>1.5 Main Manu<a class="headerlink" href="#main-manu" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="appendix">
+<h2>1.6 Appendix<a class="headerlink" href="#appendix" title="Permalink to this heading">¶</a></h2>
+<p>appendix A system variables– system.cfg</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span># all variables should be define here so could use same or with little extension
+# variable string for parametric blade mainly,other sub-system has basic variables needed for simulation process
+#  and also convenient  for running parametric studies/optimization,
+# look at tools/test/ex130/test_parametric.py for an example
+
+[general]
+# prefix for output dir top based on running dir
+prefix = test-res
+# variant directory, below the prefix dir which using for each iter
+case_number = 10
+
+[objectives]
+#AEP [GWh]
+min_aep_hours = 3800
+#Aero CPmax [-] e.g. &gt;0.47
+cp_max = 0.47
+#Blade mass [ton] e.g. 50
+blade_mass_total = 50
+#Blade cost [RMB] e.g. 8 mil for 3 blades
+blade_cost = 8
+#Blade load [MNm] e.g. 90
+max_loads =
+#Blade thrust [MN] e.g. xx
+max_tip_speed = 95
+#load envelope max , unit
+load_evlop = [(&#39;xxx_Mxy&#39;,1500),(xxxx_Mxy&quot;,130)]
+[environment]
+#Average wind speed at hub height for Design [m/s] e.g. 10
+wind_speed_avg = 10.0
+#Weibull shape facor, k [-] e.g. 2.3
+a_value = 8.0
+k_value = 2.0
+#Vref [m/s] e.g. 57
+Vref = 57.0
+#Reference TI [%] e.g. 10
+TI = 0.1
+#Average air density [kg/m3] e.g. 1.2
+air_density = 1.2
+#Minimum air density [kg/m3] e.g. 0.9
+air_density_min = 0.9
+
+[turbine]
+#Rated power, P [MW] e.g. 16
+Turbine_power_rated = 16
+#Rotor diameter range, RD [m] e.g. 250-253
+rotor_diameter = 252
+#Hub diameter, HD [m] e.g. 7.0
+hub_diameter = 6.0
+#Hub height, HH [m] e.g. 150
+hub_height = 150
+#Tip speed limit [m/s] e.g. 99
+max_tip_speed = 95
+#Cut-in wind speed [m/s] e.g. 4
+start_speed = 3
+#Cut-out wind speed [m/s] e.g. 25
+last_speed = 24
+#turbine rated speed
+rated_wind_speed = 10
+#Loss model [%] e.g. 10% or loss model in hawc2/bladed format
+
+
+[rotor]
+#Number of Blades [-] e.g. 3
+blade_number = 3
+#Tilt angle [deg] e.g. 6
+tilt_angle = 6.0
+#Cone angle [deg] e.g. -4
+cone_angle = -4.0
+#Hub Overhang [m] e.g. 7.62
+hub_overhang = 7.62
+
+[blade]
+# blade length (i.e. from r_root to r_tip)
+root_radius = 3.0
+# root radius, distance between hub center and root bearing center 结圆 +v[0]
+blade_length = 123.0
+rel_thickness = []
+
+general:
+  prefix: test_blade
+  workdir: temp_b3ps
+planform:
+  npchord: 50
+  npspan: 72
+  n_sections: 50
+  blade_lgn: 121
+  dx:
+  - - 0
+    - 0
+  - - 0.005
+    - -0.01
+  - - 0.01
+    - -0.013
+  - - 0.025
+    - -0.025
+  - - 0.05
+    - -0.038
+  - - 0.06
+    - -0.04
+  - - 0.07
+    - -0.041
+  - - 0.08
+    - -0.041
+  - - 0.09
+    - -0.04
+  - - 0.1
+    - -0.038
+  - - 0.11
+    - -0.036
+  - - 0.12
+    - -0.035
+  - - 0.13
+    - -0.036
+  - - 0.14
+    - -0.038
+  - - 0.15000001
+    - -0.041
+  - - 0.175
+    - -0.056
+  - - 0.2
+    - -0.082
+  - - 0.22499999
+    - -0.117
+  - - 0.25
+    - -0.162
+  - - 0.30000001
+    - -0.273
+  - - 0.40000001
+    - -0.56
+  - - 0.60000002
+    - -1.362
+  - - 0.80000001
+    - -2.726
+  - - 0.89999998
+    - -3.746
+  - - 0.94999999
+    - -4.339
+  - - 0.97500002
+    - -4.661
+  - - 0.99000001
+    - -4.865
+  - - 1
+    - -5.006
+  dy:
+  - - 0.0
+    - 0.0
+  - - 0.01
+    - 0.0
+  - - 0.3
+    - 1.2847920485195055
+  - - 0.43
+    - 1.05612884152284
+  - - 0.5599999999999999
+    - 0.7372261242530547
+  - - 0.6900000000000001
+    - 0.5260722687201442
+  - - 0.8199999999999998
+    - 0.3739086064883998
+  - - 0.95
+    - 0.22893207266219948
+  z:
+  - - 0
+    - 3
+  - - 1
+    - 126
+  chord:
+  - - 0
+    - 5.2958
+  - - 0.01061856
+    - 5.2887
+  - - 0.02123711
+    - 5.2854
+  - - 0.03185567
+    - 5.2898
+  - - 0.04247423
+    - 5.3054
+  - - 0.05309278
+    - 5.3352
+  - - 0.06371134
+    - 5.38
+  - - 0.0943299
+    - 5.5682
+  - - 0.12494845
+    - 5.7913
+  - - 0.16556701
+    - 6.0321
+  - - 0.20618557
+    - 6.1502
+  - - 0.22680412
+    - 6.1602
+  - - 0.24742268
+    - 6.1374
+  - - 0.26804124
+    - 6.0839
+  - - 0.28865979
+    - 6.0016
+  - - 0.30927835
+    - 5.8924
+  - - 0.32989691
+    - 5.7586
+  - - 0.35051546
+    - 5.6014
+  - - 0.37113402
+    - 5.425
+  - - 0.39175258
+    - 5.2346
+  - - 0.41237113
+    - 5.0357
+  - - 0.43298969
+    - 4.8318
+  - - 0.45360825
+    - 4.6261
+  - - 0.4742268
+    - 4.4211
+  - - 0.49484536
+    - 4.2189
+  - - 0.51546392
+    - 4.0214
+  - - 0.53608247
+    - 3.83
+  - - 0.55670103
+    - 3.6461
+  - - 0.57731959
+    - 3.4705
+  - - 0.59793814
+    - 3.3033
+  - - 0.6185567
+    - 3.1439
+  - - 0.63917526
+    - 2.9912
+  - - 0.65979381
+    - 2.8443
+  - - 0.68041237
+    - 2.7028
+  - - 0.70103093
+    - 2.5665
+  - - 0.72164948
+    - 2.4347
+  - - 0.74226804
+    - 2.3071
+  - - 0.7628866
+    - 2.1835
+  - - 0.78350515
+    - 2.0639
+  - - 0.80412371
+    - 1.9478
+  - - 0.82474227
+    - 1.8351
+  - - 0.84536082
+    - 1.7258
+  - - 0.86597938
+    - 1.6191
+  - - 0.88659794
+    - 1.5136
+  - - 0.90721649
+    - 1.4072
+  - - 0.92783505
+    - 1.2959
+  - - 0.94845361
+    - 1.1716
+  - - 0.96907216
+    - 1.0136
+  - - 0.98969072
+    - 0.7286
+  - - 1
+    - 0.1962
+  thickness:
+  - - 0
+    - 1
+  - - 0.01061856
+    - 1
+  - - 0.02123711
+    - 0.9998
+  - - 0.03185567
+    - 0.9989
+  - - 0.04247423
+    - 0.9917
+  - - 0.05309278
+    - 0.9673
+  - - 0.06371134
+    - 0.9319
+  - - 0.0943299
+    - 0.8214
+  - - 0.12494845
+    - 0.7164
+  - - 0.16556701
+    - 0.6019
+  - - 0.20618557
+    - 0.521
+  - - 0.22680412
+    - 0.4886
+  - - 0.24742268
+    - 0.4596
+  - - 0.26804124
+    - 0.4331
+  - - 0.28865979
+    - 0.4085
+  - - 0.30927835
+    - 0.3862
+  - - 0.32989691
+    - 0.367
+  - - 0.35051546
+    - 0.351
+  - - 0.37113402
+    - 0.3379
+  - - 0.39175258
+    - 0.3269
+  - - 0.41237113
+    - 0.3176
+  - - 0.43298969
+    - 0.3095
+  - - 0.45360825
+    - 0.3023
+  - - 0.4742268
+    - 0.2958
+  - - 0.49484536
+    - 0.29
+  - - 0.51546392
+    - 0.2848
+  - - 0.53608247
+    - 0.2802
+  - - 0.55670103
+    - 0.276
+  - - 0.57731959
+    - 0.2723
+  - - 0.59793814
+    - 0.269
+  - - 0.6185567
+    - 0.266
+  - - 0.63917526
+    - 0.2632
+  - - 0.65979381
+    - 0.2605
+  - - 0.68041237
+    - 0.2578
+  - - 0.70103093
+    - 0.255
+  - - 0.72164948
+    - 0.2521
+  - - 0.74226804
+    - 0.2488
+  - - 0.7628866
+    - 0.2454
+  - - 0.78350515
+    - 0.2417
+  - - 0.80412371
+    - 0.2379
+  - - 0.82474227
+    - 0.234
+  - - 0.84536082
+    - 0.2301
+  - - 0.86597938
+    - 0.2263
+  - - 0.88659794
+    - 0.2226
+  - - 0.90721649
+    - 0.2192
+  - - 0.92783505
+    - 0.2161
+  - - 0.94845361
+    - 0.2137
+  - - 0.96907216
+    - 0.2118
+  - - 0.98969072
+    - 0.2107
+  - - 1
+    - 0.2103
+  twist:
+  - - 0
+    - 4.5198
+  - - 0.01061856
+    - 5.1326
+  - - 0.02123711
+    - 5.7386
+  - - 0.03185567
+    - 6.3317
+  - - 0.04247423
+    - 6.9055
+  - - 0.05309278
+    - 7.4518
+  - - 0.06371134
+    - 7.9647
+  - - 0.0943299
+    - 9.1965
+  - - 0.12494845
+    - 9.9263
+  - - 0.16556701
+    - 9.8344
+  - - 0.20618557
+    - 8.6582
+  - - 0.22680412
+    - 7.8254
+  - - 0.24742268
+    - 6.9387
+  - - 0.26804124
+    - 6.0786
+  - - 0.28865979
+    - 5.322
+  - - 0.30927835
+    - 4.7155
+  - - 0.32989691
+    - 4.2327
+  - - 0.35051546
+    - 3.8394
+  - - 0.37113402
+    - 3.5036
+  - - 0.39175258
+    - 3.1983
+  - - 0.41237113
+    - 2.904
+  - - 0.43298969
+    - 2.6079
+  - - 0.45360825
+    - 2.3016
+  - - 0.4742268
+    - 1.981
+  - - 0.49484536
+    - 1.6492
+  - - 0.51546392
+    - 1.309
+  - - 0.53608247
+    - 0.9625
+  - - 0.55670103
+    - 0.6114
+  - - 0.57731959
+    - 0.2571
+  - - 0.59793814
+    - -0.0993
+  - - 0.6185567
+    - -0.4569
+  - - 0.63917526
+    - -0.8149
+  - - 0.65979381
+    - -1.1725
+  - - 0.68041237
+    - -1.5291
+  - - 0.70103093
+    - -1.884
+  - - 0.72164948
+    - -2.2366
+  - - 0.74226804
+    - -2.5861
+  - - 0.7628866
+    - -2.9326
+  - - 0.78350515
+    - -3.2757
+  - - 0.80412371
+    - -3.6163
+  - - 0.82474227
+    - -3.9541
+  - - 0.84536082
+    - -4.2896
+  - - 0.86597938
+    - -4.6229
+  - - 0.88659794
+    - -4.9542
+  - - 0.90721649
+    - -5.2839
+  - - 0.92783505
+    - -5.6121
+  - - 0.94845361
+    - -5.939
+  - - 0.96907216
+    - -6.2648
+  - - 0.98969072
+    - -6.5898
+  - - 1
+    - -6.752
+  offset_clamp_points:
+  - 0.2
+  - 0.5
+  - 0.8
+  - 0.9
+aero:
+  airfoils:
+    0.21: ../data_test/NickBarlow/02 Airfoil/NickBarlow-021.dat
+    0.27: ../data_test/NickBarlow/02 Airfoil/NickBarlow-027.dat
+    0.36: ../data_test/NickBarlow/02 Airfoil/NickBarlow-036.dat
+    0.47: ../data_test/NickBarlow/02 Airfoil/NickBarlow-047.dat
+    0.57: ../data_test/NickBarlow/02 Airfoil/NickBarlow-057.dat
+    1.0: ../data_test/NickBarlow/02 Airfoil/NickBarlow-100.dat
+  bem:
+    polars:
+      1.0: polars/Cylinder1.dat
+      0.21: polars/DU21_A17.dat
+      0.25: polars/DU25_A17.dat
+      0.3: polars/DU30_A17.dat
+      0.35: polars/DU35_A17.dat
+      0.4: polars/DU40_A17.dat
+      0.17: polars/NACA64_A17.dat
+mesh:
+  radii: np.linspace(0,7,20).tolist() + np.linspace(7.4,121, 120).tolist()
+  webs:
+    w0:
+      origin:
+      - 0
+      - -0.3
+      - 0
+      orientation:
+      - 0
+      - 1
+      - 0
+      z_start: 0
+      z_follow_blade: 100
+      z_end: 105
+    w1:
+      origin:
+      - 0
+      - -0.22
+      - 0
+      orientation:
+      - 0
+      - 1
+      - 0
+      z_start: 0
+      z_follow_blade: 100
+      z_end: 105
+    center:
+      origin:
+      - 0
+      - 0
+      - 0
+      orientation:
+      - 0
+      - 1
+      - 0
+      z_start: 0
+      z_follow_blade: 100
+      z_end: 105
+    w2:
+      origin:
+      - 0
+      - 0.22
+      - 0
+      orientation:
+      - 0
+      - 1
+      - 0
+      z_start: 0
+      z_follow_blade: 100
+      z_end: 105
+    w3:
+      origin:
+      - 0
+      - 0.3
+      - 0
+      orientation:
+      - 0
+      - 1
+      - 0
+      z_start: 0
+      z_follow_blade: 100
+      z_end: 105
+    w4:
+      origin:
+      - 0
+      - 1.4
+      - 0
+      orientation:
+      - 0
+      - 1
+      - -0.05
+      z_start: 0
+      z_follow_blade: 25
+      z_end: 100
+  n_web_points: 10
+  n_chordwise_points: 60
+  coordinates:
+    d_te_ud_ps:
+      base: d_abs_dist_from_bte
+      points:
+      - - 0.0
+        - -0.0
+      - - 0.2
+        - -0.01
+      - - 0.4
+        - -0.05
+      - - 1.0
+        - -0.07
+    d_te_ud_ss:
+      base: d_abs_dist_from_te
+      points:
+      - - 0.0
+        - 0.0
+      - - 0.2
+        - -0.01
+      - - 0.4
+        - -0.04
+      - - 1.0
+        - -0.04
+materials: materials_v9.yml
+
+loads:
+  max:
+    z:
+    - 0
+    - 2
+    - 4
+    - 6
+    - 8
+    - 10
+    - 12
+    - 14
+    - 16
+    - 18
+    - 20
+    - 22
+    - 24
+    - 26
+    - 28
+    - 30
+    - 32
+    - 34
+    - 36
+    - 38
+    - 40
+    - 42
+    - 44
+    - 46
+    - 48
+    - 50
+    - 52
+    - 54
+    - 56
+    - 58
+    - 60
+    - 62
+    - 64
+    - 66
+    - 68
+    - 70
+    - 72
+    - 74
+    - 76
+    - 78
+    - 80
+    - 82
+    - 84
+    - 86
+    - 88
+    - 90
+    - 92
+    - 94
+    - 96
+    - 98
+    - 100
+    - 102
+    - 104
+    - 106
+    - 108
+    - 110
+    - 112
+    - 114
+    - 116
+    - 118
+    - 120
+    - 122
+    my:
+    - -96510.0
+    - -93470.0
+    - -90440.0
+    - -87510.0
+    - -84560.0
+    - -81630.0
+    - -78740.0
+    - -75840.0
+    - -72990.0
+    - -70220.0
+    - -67430.0
+    - -64640.0
+    - -61990.0
+    - -59320.0
+    - -56650.0
+    - -54130.0
+    - -51590.0
+    - -49080.0
+    - -46700.0
+    - -44320.0
+    - -41980.0
+    - -39760.0
+    - -37550.0
+    - -35400.0
+    - -33360.0
+    - -31350.0
+    - -29410.0
+    - -27590.0
+    - -25790.0
+    - -24050.0
+    - -22410.0
+    - -20790.0
+    - -19210.0
+    - -17770.0
+    - -16350.0
+    - -15000.0
+    - -13780.0
+    - -12620.0
+    - -11500.0
+    - -10470.0
+    - -9481.0
+    - -8540.0
+    - -7694.0
+    - -6863.0
+    - -6072.0
+    - -5362.0
+    - -4681.0
+    - -4037.0
+    - -3472.0
+    - -2935.0
+    - -2439.0
+    - -2011.0
+    - -1621.0
+    - -1271.0
+    - -975.0
+    - -720.5
+    - -502.4
+    - -323.3
+    - -186.5
+    - -0.0
+    - -0.0
+    - -0.0
+    mx:
+    - -44890.0
+    - -42830.0
+    - -40850.0
+    - -39190.0
+    - -37710.0
+    - -36260.0
+    - -34840.0
+    - -33470.0
+    - -32120.0
+    - -30810.0
+    - -29540.0
+    - -28310.0
+    - -27100.0
+    - -25940.0
+    - -24800.0
+    - -23690.0
+    - -22630.0
+    - -21590.0
+    - -20580.0
+    - -19590.0
+    - -18630.0
+    - -17690.0
+    - -16780.0
+    - -15890.0
+    - -15020.0
+    - -14170.0
+    - -13350.0
+    - -12550.0
+    - -11780.0
+    - -11030.0
+    - -10310.0
+    - -9602.0
+    - -8922.0
+    - -8269.0
+    - -7637.0
+    - -7028.0
+    - -6445.0
+    - -5886.0
+    - -5352.0
+    - -4842.0
+    - -4358.0
+    - -3901.0
+    - -3468.0
+    - -3064.0
+    - -2711.0
+    - -2397.0
+    - -2094.0
+    - -1807.0
+    - -1545.0
+    - -1298.0
+    - -1068.0
+    - -863.3
+    - -678.4
+    - -516.6
+    - -393.5
+    - -299.5
+    - -216.4
+    - -143.1
+    - -83.81
+    - -0.0
+    - -0.0
+    - -0.0
+    twist:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    apply:
+      d_w0:
+      - -0.5
+      - 0.1
+  max_0:
+    z:
+    - 0
+    - 2
+    - 4
+    - 6
+    - 8
+    - 10
+    - 12
+    - 14
+    - 16
+    - 18
+    - 20
+    - 22
+    - 24
+    - 26
+    - 28
+    - 30
+    - 32
+    - 34
+    - 36
+    - 38
+    - 40
+    - 42
+    - 44
+    - 46
+    - 48
+    - 50
+    - 52
+    - 54
+    - 56
+    - 58
+    - 60
+    - 62
+    - 64
+    - 66
+    - 68
+    - 70
+    - 72
+    - 74
+    - 76
+    - 78
+    - 80
+    - 82
+    - 84
+    - 86
+    - 88
+    - 90
+    - 92
+    - 94
+    - 96
+    - 98
+    - 100
+    - 102
+    - 104
+    - 106
+    - 108
+    - 110
+    - 112
+    - 114
+    - 116
+    - 118
+    - 120
+    - 122
+    my:
+    - 96510.0
+    - 93470.0
+    - 90440.0
+    - 87510.0
+    - 84560.0
+    - 81630.0
+    - 78740.0
+    - 75840.0
+    - 72990.0
+    - 70220.0
+    - 67430.0
+    - 64640.0
+    - 61990.0
+    - 59320.0
+    - 56650.0
+    - 54130.0
+    - 51590.0
+    - 49080.0
+    - 46700.0
+    - 44320.0
+    - 41980.0
+    - 39760.0
+    - 37550.0
+    - 35400.0
+    - 33360.0
+    - 31350.0
+    - 29410.0
+    - 27590.0
+    - 25790.0
+    - 24050.0
+    - 22410.0
+    - 20790.0
+    - 19210.0
+    - 17770.0
+    - 16350.0
+    - 15000.0
+    - 13780.0
+    - 12620.0
+    - 11500.0
+    - 10470.0
+    - 9481.0
+    - 8540.0
+    - 7694.0
+    - 6863.0
+    - 6072.0
+    - 5362.0
+    - 4681.0
+    - 4037.0
+    - 3472.0
+    - 2935.0
+    - 2439.0
+    - 2011.0
+    - 1621.0
+    - 1271.0
+    - 975.0
+    - 720.5
+    - 502.4
+    - 323.3
+    - 186.5
+    - 0.0
+    - 0.0
+    - 0.0
+    mx:
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    twist:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    apply:
+      d_w0:
+      - -0.5
+      - 0.1
+  max_45:
+    z:
+    - 0
+    - 2
+    - 4
+    - 6
+    - 8
+    - 10
+    - 12
+    - 14
+    - 16
+    - 18
+    - 20
+    - 22
+    - 24
+    - 26
+    - 28
+    - 30
+    - 32
+    - 34
+    - 36
+    - 38
+    - 40
+    - 42
+    - 44
+    - 46
+    - 48
+    - 50
+    - 52
+    - 54
+    - 56
+    - 58
+    - 60
+    - 62
+    - 64
+    - 66
+    - 68
+    - 70
+    - 72
+    - 74
+    - 76
+    - 78
+    - 80
+    - 82
+    - 84
+    - 86
+    - 88
+    - 90
+    - 92
+    - 94
+    - 96
+    - 98
+    - 100
+    - 102
+    - 104
+    - 106
+    - 108
+    - 110
+    - 112
+    - 114
+    - 116
+    - 118
+    - 120
+    - 122
+    my:
+    - 64919.474
+    - 62522.382
+    - 60181.858
+    - 57912.045
+    - 55663.446
+    - 53436.059
+    - 51258.171
+    - 49073.211
+    - 46937.748
+    - 44872.996
+    - 42843.6
+    - 40835.417
+    - 38912.086
+    - 37024.111
+    - 35171.491
+    - 33403.724
+    - 31664.242
+    - 29974.256
+    - 28432.764
+    - 26926.626
+    - 25469.986
+    - 24062.844
+    - 22683.986
+    - 21368.767
+    - 20110.117
+    - 18900.964
+    - 17727.167
+    - 16609.938
+    - 15520.994
+    - 14460.334
+    - 13505.74
+    - 12537.003
+    - 11596.551
+    - 10748.023
+    - 9878.282
+    - 9043.896
+    - 8301.434
+    - 7566.043
+    - 6858.936
+    - 6223.954
+    - 5598.871
+    - 5004.902
+    - 4470.329
+    - 3946.363
+    - 3475.43
+    - 3066.015
+    - 2669.328
+    - 2300.218
+    - 1983.435
+    - 1677.964
+    - 1395.829
+    - 1155.412
+    - 930.553
+    - 729.734
+    - 565.332
+    - 416.274
+    - 289.702
+    - 186.676
+    - 108.329
+    - 0.0
+    - 0.0
+    - 0.0
+    mx:
+    - 64919.474
+    - 62522.382
+    - 60181.858
+    - 57912.045
+    - 55663.446
+    - 53436.059
+    - 51258.171
+    - 49073.211
+    - 46937.748
+    - 44872.996
+    - 42843.6
+    - 40835.417
+    - 38912.086
+    - 37024.111
+    - 35171.491
+    - 33403.724
+    - 31664.242
+    - 29974.256
+    - 28432.764
+    - 26926.626
+    - 25469.986
+    - 24062.844
+    - 22683.986
+    - 21368.767
+    - 20110.117
+    - 18900.964
+    - 17727.167
+    - 16609.938
+    - 15520.994
+    - 14460.334
+    - 13505.74
+    - 12537.003
+    - 11596.551
+    - 10748.023
+    - 9878.282
+    - 9043.896
+    - 8301.434
+    - 7566.043
+    - 6858.936
+    - 6223.954
+    - 5598.871
+    - 5004.902
+    - 4470.329
+    - 3946.363
+    - 3475.43
+    - 3066.015
+    - 2669.328
+    - 2300.218
+    - 1983.435
+    - 1677.964
+    - 1395.829
+    - 1155.412
+    - 930.553
+    - 729.734
+    - 565.332
+    - 416.274
+    - 289.702
+    - 186.676
+    - 108.329
+    - 0.0
+    - 0.0
+    - 0.0
+    twist:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    apply:
+      d_w0:
+      - -0.5
+      - 0.1
+  max_90:
+    z:
+    - 0
+    - 2
+    - 4
+    - 6
+    - 8
+    - 10
+    - 12
+    - 14
+    - 16
+    - 18
+    - 20
+    - 22
+    - 24
+    - 26
+    - 28
+    - 30
+    - 32
+    - 34
+    - 36
+    - 38
+    - 40
+    - 42
+    - 44
+    - 46
+    - 48
+    - 50
+    - 52
+    - 54
+    - 56
+    - 58
+    - 60
+    - 62
+    - 64
+    - 66
+    - 68
+    - 70
+    - 72
+    - 74
+    - 76
+    - 78
+    - 80
+    - 82
+    - 84
+    - 86
+    - 88
+    - 90
+    - 92
+    - 94
+    - 96
+    - 98
+    - 100
+    - 102
+    - 104
+    - 106
+    - 108
+    - 110
+    - 112
+    - 114
+    - 116
+    - 118
+    - 120
+    - 122
+    my:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    mx:
+    - 44890.0
+    - 42830.0
+    - 40850.0
+    - 39190.0
+    - 37710.0
+    - 36260.0
+    - 34840.0
+    - 33470.0
+    - 32120.0
+    - 30810.0
+    - 29540.0
+    - 28310.0
+    - 27100.0
+    - 25940.0
+    - 24800.0
+    - 23690.0
+    - 22630.0
+    - 21590.0
+    - 20580.0
+    - 19590.0
+    - 18630.0
+    - 17690.0
+    - 16780.0
+    - 15890.0
+    - 15020.0
+    - 14170.0
+    - 13350.0
+    - 12550.0
+    - 11780.0
+    - 11030.0
+    - 10310.0
+    - 9602.0
+    - 8922.0
+    - 8269.0
+    - 7637.0
+    - 7028.0
+    - 6445.0
+    - 5886.0
+    - 5352.0
+    - 4842.0
+    - 4358.0
+    - 3901.0
+    - 3468.0
+    - 3064.0
+    - 2711.0
+    - 2397.0
+    - 2094.0
+    - 1807.0
+    - 1545.0
+    - 1298.0
+    - 1068.0
+    - 863.3
+    - 678.4
+    - 516.6
+    - 393.5
+    - 299.5
+    - 216.4
+    - 143.1
+    - 83.81
+    - 0.0
+    - 0.0
+    - 0.0
+    twist:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    apply:
+      d_w0:
+      - -0.5
+      - 0.1
+  max_135:
+    z:
+    - 0
+    - 2
+    - 4
+    - 6
+    - 8
+    - 10
+    - 12
+    - 14
+    - 16
+    - 18
+    - 20
+    - 22
+    - 24
+    - 26
+    - 28
+    - 30
+    - 32
+    - 34
+    - 36
+    - 38
+    - 40
+    - 42
+    - 44
+    - 46
+    - 48
+    - 50
+    - 52
+    - 54
+    - 56
+    - 58
+    - 60
+    - 62
+    - 64
+    - 66
+    - 68
+    - 70
+    - 72
+    - 74
+    - 76
+    - 78
+    - 80
+    - 82
+    - 84
+    - 86
+    - 88
+    - 90
+    - 92
+    - 94
+    - 96
+    - 98
+    - 100
+    - 102
+    - 104
+    - 106
+    - 108
+    - 110
+    - 112
+    - 114
+    - 116
+    - 118
+    - 120
+    - 122
+    my:
+    - -39548.482
+    - -38487.822
+    - -37398.878
+    - -36260.436
+    - -35129.065
+    - -33983.552
+    - -32852.181
+    - -31713.739
+    - -30547.013
+    - -29394.429
+    - -28284.271
+    - -27181.185
+    - -26063.956
+    - -24975.012
+    - -23942.636
+    - -22881.975
+    - -21842.528
+    - -20838.437
+    - -19848.487
+    - -18837.325
+    - -17868.588
+    - -16921.065
+    - -15966.471
+    - -15026.019
+    - -14135.065
+    - -13251.181
+    - -12381.44
+    - -11582.409
+    - -10790.449
+    - -10019.703
+    - -9319.667
+    - -8612.561
+    - -7940.809
+    - -7318.555
+    - -6703.372
+    - -6114.352
+    - -5580.487
+    - -5052.278
+    - -4553.061
+    - -4108.998
+    - -3676.248
+    - -3266.126
+    - -2905.502
+    - -2562.555
+    - -2242.236
+    - -1963.636
+    - -1699.885
+    - -1458.761
+    - -1249.458
+    - -1055.71
+    - -880.348
+    - -736.805
+    - -611.718
+    - -494.268
+    - -393.505
+    - -298.399
+    - -212.768
+    - -139.159
+    - -80.681
+    - -0.0
+    - -0.0
+    - -0.0
+    mx:
+    - 39548.482
+    - 38487.822
+    - 37398.878
+    - 36260.436
+    - 35129.065
+    - 33983.552
+    - 32852.181
+    - 31713.739
+    - 30547.013
+    - 29394.429
+    - 28284.271
+    - 27181.185
+    - 26063.956
+    - 24975.012
+    - 23942.636
+    - 22881.975
+    - 21842.528
+    - 20838.437
+    - 19848.487
+    - 18837.325
+    - 17868.588
+    - 16921.065
+    - 15966.471
+    - 15026.019
+    - 14135.065
+    - 13251.181
+    - 12381.44
+    - 11582.409
+    - 10790.449
+    - 10019.703
+    - 9319.667
+    - 8612.561
+    - 7940.809
+    - 7318.555
+    - 6703.372
+    - 6114.352
+    - 5580.487
+    - 5052.278
+    - 4553.061
+    - 4108.998
+    - 3676.248
+    - 3266.126
+    - 2905.502
+    - 2562.555
+    - 2242.236
+    - 1963.636
+    - 1699.885
+    - 1458.761
+    - 1249.458
+    - 1055.71
+    - 880.348
+    - 736.805
+    - 611.718
+    - 494.268
+    - 393.505
+    - 298.399
+    - 212.768
+    - 139.159
+    - 80.681
+    - 0.0
+    - 0.0
+    - 0.0
+    twist:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    apply:
+      d_w0:
+      - -0.5
+      - 0.1
+  max_180:
+    z:
+    - 0
+    - 2
+    - 4
+    - 6
+    - 8
+    - 10
+    - 12
+    - 14
+    - 16
+    - 18
+    - 20
+    - 22
+    - 24
+    - 26
+    - 28
+    - 30
+    - 32
+    - 34
+    - 36
+    - 38
+    - 40
+    - 42
+    - 44
+    - 46
+    - 48
+    - 50
+    - 52
+    - 54
+    - 56
+    - 58
+    - 60
+    - 62
+    - 64
+    - 66
+    - 68
+    - 70
+    - 72
+    - 74
+    - 76
+    - 78
+    - 80
+    - 82
+    - 84
+    - 86
+    - 88
+    - 90
+    - 92
+    - 94
+    - 96
+    - 98
+    - 100
+    - 102
+    - 104
+    - 106
+    - 108
+    - 110
+    - 112
+    - 114
+    - 116
+    - 118
+    - 120
+    - 122
+    my:
+    - -68040.0
+    - -65490.0
+    - -63070.0
+    - -60670.0
+    - -58300.0
+    - -55950.0
+    - -53620.0
+    - -51310.0
+    - -49060.0
+    - -46830.0
+    - -44650.0
+    - -42520.0
+    - -40460.0
+    - -38440.0
+    - -36470.0
+    - -34560.0
+    - -32700.0
+    - -30880.0
+    - -29110.0
+    - -27390.0
+    - -25730.0
+    - -24120.0
+    - -22660.0
+    - -21230.0
+    - -19890.0
+    - -18560.0
+    - -17270.0
+    - -16080.0
+    - -14900.0
+    - -13770.0
+    - -12760.0
+    - -11810.0
+    - -10910.0
+    - -10040.0
+    - -9234.0
+    - -8465.0
+    - -7729.0
+    - -7040.0
+    - -6388.0
+    - -5763.0
+    - -5182.0
+    - -4644.0
+    - -4140.0
+    - -3671.0
+    - -3237.0
+    - -2832.0
+    - -2462.0
+    - -2122.0
+    - -1808.0
+    - -1524.0
+    - -1266.0
+    - -1035.0
+    - -866.9
+    - -706.1
+    - -571.4
+    - -439.4
+    - -317.0
+    - -209.1
+    - -123.6
+    - -0.0
+    - -0.0
+    - -0.0
+    mx:
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    - -0.0
+    twist:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    apply:
+      d_w0:
+      - -0.5
+      - 0.1
+  max_225:
+    z:
+    - 0
+    - 2
+    - 4
+    - 6
+    - 8
+    - 10
+    - 12
+    - 14
+    - 16
+    - 18
+    - 20
+    - 22
+    - 24
+    - 26
+    - 28
+    - 30
+    - 32
+    - 34
+    - 36
+    - 38
+    - 40
+    - 42
+    - 44
+    - 46
+    - 48
+    - 50
+    - 52
+    - 54
+    - 56
+    - 58
+    - 60
+    - 62
+    - 64
+    - 66
+    - 68
+    - 70
+    - 72
+    - 74
+    - 76
+    - 78
+    - 80
+    - 82
+    - 84
+    - 86
+    - 88
+    - 90
+    - 92
+    - 94
+    - 96
+    - 98
+    - 100
+    - 102
+    - 104
+    - 106
+    - 108
+    - 110
+    - 112
+    - 114
+    - 116
+    - 118
+    - 120
+    - 122
+    my:
+    - -39018.152
+    - -37413.02
+    - -35843.243
+    - -34294.679
+    - -32802.684
+    - -31346.044
+    - -29896.475
+    - -28482.261
+    - -27131.687
+    - -25830.611
+    - -24579.032
+    - -23384.021
+    - -22245.579
+    - -21128.351
+    - -20039.406
+    - -19007.03
+    - -17988.797
+    - -17005.918
+    - -16058.395
+    - -15153.298
+    - -14297.699
+    - -13449.171
+    - -12643.069
+    - -11886.465
+    - -11165.216
+    - -10465.18
+    - -9800.5
+    - -9157.033
+    - -8541.85
+    - -7954.951
+    - -7382.195
+    - -6844.794
+    - -6333.555
+    - -5839.995
+    - -5375.426
+    - -4936.312
+    - -4517.705
+    - -4122.433
+    - -3749.787
+    - -3397.648
+    - -3067.429
+    - -2759.838
+    - -2469.217
+    - -2195.567
+    - -1939.594
+    - -1698.47
+    - -1474.318
+    - -1267.135
+    - -1076.217
+    - -902.975
+    - -745.291
+    - -602.809
+    - -476.944
+    - -377.171
+    - -296.348
+    - -222.385
+    - -157.402
+    - -102.743
+    - -60.691
+    - -0.0
+    - -0.0
+    - -0.0
+    mx:
+    - -39018.152
+    - -37413.02
+    - -35843.243
+    - -34294.679
+    - -32802.684
+    - -31346.044
+    - -29896.475
+    - -28482.261
+    - -27131.687
+    - -25830.611
+    - -24579.032
+    - -23384.021
+    - -22245.579
+    - -21128.351
+    - -20039.406
+    - -19007.03
+    - -17988.797
+    - -17005.918
+    - -16058.395
+    - -15153.298
+    - -14297.699
+    - -13449.171
+    - -12643.069
+    - -11886.465
+    - -11165.216
+    - -10465.18
+    - -9800.5
+    - -9157.033
+    - -8541.85
+    - -7954.951
+    - -7382.195
+    - -6844.794
+    - -6333.555
+    - -5839.995
+    - -5375.426
+    - -4936.312
+    - -4517.705
+    - -4122.433
+    - -3749.787
+    - -3397.648
+    - -3067.429
+    - -2759.838
+    - -2469.217
+    - -2195.567
+    - -1939.594
+    - -1698.47
+    - -1474.318
+    - -1267.135
+    - -1076.217
+    - -902.975
+    - -745.291
+    - -602.809
+    - -476.944
+    - -377.171
+    - -296.348
+    - -222.385
+    - -157.402
+    - -102.743
+    - -60.691
+    - -0.0
+    - -0.0
+    - -0.0
+    twist:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    apply:
+      d_w0:
+      - -0.5
+      - 0.1
+  max_270:
+    z:
+    - 0
+    - 2
+    - 4
+    - 6
+    - 8
+    - 10
+    - 12
+    - 14
+    - 16
+    - 18
+    - 20
+    - 22
+    - 24
+    - 26
+    - 28
+    - 30
+    - 32
+    - 34
+    - 36
+    - 38
+    - 40
+    - 42
+    - 44
+    - 46
+    - 48
+    - 50
+    - 52
+    - 54
+    - 56
+    - 58
+    - 60
+    - 62
+    - 64
+    - 66
+    - 68
+    - 70
+    - 72
+    - 74
+    - 76
+    - 78
+    - 80
+    - 82
+    - 84
+    - 86
+    - 88
+    - 90
+    - 92
+    - 94
+    - 96
+    - 98
+    - 100
+    - 102
+    - 104
+    - 106
+    - 108
+    - 110
+    - 112
+    - 114
+    - 116
+    - 118
+    - 120
+    - 122
+    my:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    mx:
+    - -42850.0
+    - -40930.0
+    - -39170.0
+    - -37550.0
+    - -35960.0
+    - -34430.0
+    - -33030.0
+    - -31690.0
+    - -30420.0
+    - -29210.0
+    - -27970.0
+    - -26800.0
+    - -25680.0
+    - -24570.0
+    - -23450.0
+    - -22380.0
+    - -21360.0
+    - -20340.0
+    - -19360.0
+    - -18420.0
+    - -17470.0
+    - -16580.0
+    - -15700.0
+    - -14850.0
+    - -14040.0
+    - -13250.0
+    - -12490.0
+    - -11760.0
+    - -11020.0
+    - -10310.0
+    - -9621.0
+    - -8960.0
+    - -8323.0
+    - -7714.0
+    - -7135.0
+    - -6589.0
+    - -6075.0
+    - -5580.0
+    - -5103.0
+    - -4648.0
+    - -4216.0
+    - -3800.0
+    - -3412.0
+    - -3044.0
+    - -2691.0
+    - -2365.0
+    - -2054.0
+    - -1762.0
+    - -1495.0
+    - -1246.0
+    - -1020.0
+    - -840.9
+    - -677.0
+    - -530.3
+    - -401.2
+    - -287.8
+    - -193.8
+    - -122.3
+    - -70.33
+    - -0.0
+    - -0.0
+    - -0.0
+    twist:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    apply:
+      d_w0:
+      - -0.5
+      - 0.1
+  max_315:
+    z:
+    - 0
+    - 2
+    - 4
+    - 6
+    - 8
+    - 10
+    - 12
+    - 14
+    - 16
+    - 18
+    - 20
+    - 22
+    - 24
+    - 26
+    - 28
+    - 30
+    - 32
+    - 34
+    - 36
+    - 38
+    - 40
+    - 42
+    - 44
+    - 46
+    - 48
+    - 50
+    - 52
+    - 54
+    - 56
+    - 58
+    - 60
+    - 62
+    - 64
+    - 66
+    - 68
+    - 70
+    - 72
+    - 74
+    - 76
+    - 78
+    - 80
+    - 82
+    - 84
+    - 86
+    - 88
+    - 90
+    - 92
+    - 94
+    - 96
+    - 98
+    - 100
+    - 102
+    - 104
+    - 106
+    - 108
+    - 110
+    - 112
+    - 114
+    - 116
+    - 118
+    - 120
+    - 122
+    my:
+    - 57084.73
+    - 54991.694
+    - 52976.44
+    - 51074.323
+    - 49172.206
+    - 47298.373
+    - 45481.108
+    - 43685.057
+    - 41938.503
+    - 40255.589
+    - 38551.462
+    - 36868.548
+    - 35291.699
+    - 33693.638
+    - 32067.293
+    - 30568.226
+    - 29055.018
+    - 27541.809
+    - 26127.596
+    - 24741.666
+    - 23369.879
+    - 22068.803
+    - 20796.01
+    - 19551.502
+    - 18398.918
+    - 17246.334
+    - 16129.106
+    - 15096.73
+    - 14057.283
+    - 13039.049
+    - 12091.526
+    - 11179.358
+    - 10323.759
+    - 9531.799
+    - 8761.053
+    - 8025.662
+    - 7360.982
+    - 6705.494
+    - 6078.997
+    - 5511.19
+    - 4982.274
+    - 4478.107
+    - 4019.195
+    - 3570.889
+    - 3148.039
+    - 2771.859
+    - 2411.234
+    - 2073.944
+    - 1776.959
+    - 1501.188
+    - 1245.215
+    - 1021.062
+    - 818.123
+    - 637.386
+    - 484.792
+    - 354.26
+    - 245.507
+    - 157.048
+    - 88.883
+    - 0.0
+    - 0.0
+    - 0.0
+    mx:
+    - -57084.73
+    - -54991.694
+    - -52976.44
+    - -51074.323
+    - -49172.206
+    - -47298.373
+    - -45481.108
+    - -43685.057
+    - -41938.503
+    - -40255.589
+    - -38551.462
+    - -36868.548
+    - -35291.699
+    - -33693.638
+    - -32067.293
+    - -30568.226
+    - -29055.018
+    - -27541.809
+    - -26127.596
+    - -24741.666
+    - -23369.879
+    - -22068.803
+    - -20796.01
+    - -19551.502
+    - -18398.918
+    - -17246.334
+    - -16129.106
+    - -15096.73
+    - -14057.283
+    - -13039.049
+    - -12091.526
+    - -11179.358
+    - -10323.759
+    - -9531.799
+    - -8761.053
+    - -8025.662
+    - -7360.982
+    - -6705.494
+    - -6078.997
+    - -5511.19
+    - -4982.274
+    - -4478.107
+    - -4019.195
+    - -3570.889
+    - -3148.039
+    - -2771.859
+    - -2411.234
+    - -2073.944
+    - -1776.959
+    - -1501.188
+    - -1245.215
+    - -1021.062
+    - -818.123
+    - -637.386
+    - -484.792
+    - -354.26
+    - -245.507
+    - -157.048
+    - -88.883
+    - -0.0
+    - -0.0
+    - -0.0
+    twist:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    apply:
+      d_w0:
+      - -0.5
+      - 0.1
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to BladeAI’s documentation(sphinx)!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="installation.html" class="btn btn-neutral float-right" title="2. Installation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

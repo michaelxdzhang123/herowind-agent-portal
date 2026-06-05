@@ -1,0 +1,133 @@
+
+
+
+
+
+
+2. Installation
+=================
+
+now the system only can install on Linux, my labtop is Ubuntu24.04 but i test OK also on Ubuntu22.04. becasue i use Fenics which now only work on Linux system and also for prepare to Slurm cluster also. you have to be patient on python packeages installation also, but i left requirement.txt on base dir which is the all packages i installed.
+
+现在系统只能安装在 Linux 上，我的笔记本电脑是 Ubuntu24.04，但我在 Ubuntu22.04 上也测试成功。因为我使用 Fenics，它现在只能在 Linux 系统上运行，也为 Slurm 集群做准备。您还必须耐心等待 python 包的安装，但我将 requirement.txt 留在了基础目录中，这是我安装的所有包。
+
+
+2.1 Create Developing env
+--------------------------------------------------------------------------------------
+.. code-block:: bash
+
+    - conda create -n py3712 python=3.7      #which i run ther FEM sover 
+    - conda activate py3712
+    - pip install -r requirement.txt    # fix your pkgs conflict if that happened
+
+2.2 Install streamlit env 
+----------------------------------------------------------------------------------------------------
+
+   becasue of i used stpyvista for web 3D, so the new version is needed
+
+.. code-block:: bash
+
+    - conda create -n py312 python=3.12      #which i run for stpyvista and streamlit new version
+    - conda activate py312
+
+2.3 Get repo:
+------------------
+
+.. code-block:: bash
+
+        git clone git@gitee.com:michaelxdzhang/blade-ai.git && cd blade-ai
+
+2.4 Installation 
+-------------------------
+
+.. code-block:: bash
+
+    cd b3p && pip install-r .   #install opensource code which i did a significant changes
+    cd .. && pip install -r equirement_py312.txt
+
+    ./fl.sh                    #install scrit will start flask and streamlit , the user name is test, passwork is test
+
+2.5 how to run and script  
+--------------------------
+
+    ./fl.sh         #at base dir (blade-ai)
+
+
+.. program-output:: cat ../../../fl.sh
+
+
+
+2.5 web portal start 
+-------------------------
+
+.. code-block:: bash
+
+     http://localhost:8181      # the flask web page you could see 
+    
+
+
+2.6 Sphinx Documentation  
+---------------------------------------
+
+.. code-block:: bash
+     
+     cd blade-ai/docs/sphinx && ./make.sh
+
+
+
+2.7 开发状态 deplorment status 
+---------------------------------------
+
+.. code-block:: bash
+
+    - AI report now is menualy, so create report function has to be used by human, later will apply API Agent to replace.
+
+    - hawcstab2 running is manually, you could find the source code on my gitee which name is Casetoobox.
+
+    - converg env is a option if needed but i use shell script to activate different envs.
+
+    - more training data actually is needed but i am collecting now, if you have let me know.
+
+2.8 setup LLA module
+-----------------------
+
+一、Ollama install
+
+方式一：
+
+﻿﻿官网下载
+
+https://ollama.com/download
+
+﻿curl -fsSL https://ollama.com/install.sh | sh
+
+2.8 setup LLA module
+-----------------------
+
+2.8.1 Ollama install
+--------------------
+
+
+
+ .. code-block:: bash
+
+     cd blade-ai && 
+     curl -fsSL https://ollama.com/install.sh | sh
+
+2.8.2 Download Deepseek locally
+-----------------------------
+
+.. code-block:: bash
+        
+     # i run grok install but in China use deepseek instead
+     ollama run deepseek-r1:1.5b
+     test:  
+        http://localhost:11434/
+2.8.3 AnythingLLA installation
+
+.. code-block:: bash
+
+   docker pull mintplexlabs/anythingllm
+   blade-ai/Application/sys/setupAI.sh
+
+
