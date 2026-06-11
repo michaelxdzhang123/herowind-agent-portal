@@ -22,6 +22,8 @@ from ai_expert import ai_expert_bp
 from beginner import beginner_bp
 from advanced import advanced_bp
 from self_evolution import self_evolution_bp
+from goal_decomposition import goal_decomposition_bp
+from my_agent import my_agent_bp
 from rag_vector_store import rag_vector_store_bp
 from local_model_deploy import local_model_deploy_bp
 from available_models import available_models_bp
@@ -52,6 +54,8 @@ app.register_blueprint(ai_expert_bp)
 app.register_blueprint(beginner_bp)
 app.register_blueprint(advanced_bp)
 app.register_blueprint(self_evolution_bp)
+app.register_blueprint(goal_decomposition_bp)
+app.register_blueprint(my_agent_bp)
 app.register_blueprint(rag_vector_store_bp)
 app.register_blueprint(local_model_deploy_bp)
 app.register_blueprint(available_models_bp)
@@ -73,7 +77,7 @@ def index_route():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0', port=9999)
 # check
     """
     try:

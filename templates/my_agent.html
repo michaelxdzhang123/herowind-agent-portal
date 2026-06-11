@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ info_dict.title }}</title>
+    <link href="../static/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="../static/css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+    <link href="../static/css/style.css?v=4.1.0" rel="stylesheet">
+</head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="wrapper wrapper-content">
+
+        <!-- Subtitle -->
+        {% if info_dict.subtitle %}
+        <div class="row">
+            <div class="col-sm-12">
+                <h4 style="color: #1ab394; margin-bottom: 15px;">
+                    <i class="fa fa-user"></i> {{ info_dict.subtitle }}
+                </h4>
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- Header -->
+        {% if info_dict.header %}
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5><i class="fa fa-bullhorn"></i> {{ info_dict.title }}</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <h3 style="margin-top: 0;">{{ info_dict.header }}</h3>
+                        {% if info_dict.subheader %}
+                        <p style="font-size: 14px; color: #666;">{{ info_dict.subheader }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+        {% endif %}
+
+        <!-- Content list -->
+        {% if info_dict.content %}
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5><i class="fa fa-tasks"></i> 功能概览</h5>
+                    </div>
+                    <div class="ibox-content">
+                        {% for item in info_dict.content %}
+                        <p><i class="fa fa-check-circle" style="color: #1ab394;"></i> {{ item }}</p>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- Description list -->
+        {% if info_dict.description %}
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5><i class="fa fa-info-circle"></i> 核心功能</h5>
+                    </div>
+                    <div class="ibox-content">
+                        {% for desc in info_dict.description %}
+                        <p><i class="fa fa-star" style="color: #f8ac59;"></i> {{ desc }}</p>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- Footer -->
+        {% if info_dict.footer %}
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="alert alert-success">
+                    <i class="fa fa-smile-o"></i> {{ info_dict.footer }}
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- Image banner -->
+        <div class="row">
+            <div class="col-sm-12">
+                <div style="text-align: center; margin-top: 20px;">
+                    <img src="../static/my-agent-dialog.PNG" width="800" height="800" style="max-width: 100%;" alt="Agent Dialog">
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>

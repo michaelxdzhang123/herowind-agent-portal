@@ -3,10 +3,18 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RAG向量库</title>
+    <title>风机系统专家</title>
     <link href="../static/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
     <link href="../static/css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
     <link href="../static/css/style.css?v=4.1.0" rel="stylesheet">
+    <style>
+        .expert-iframe {
+            width: 100%;
+            height: 80vh;
+            border: 1px solid #e7eaec;
+            border-radius: 2px;
+        }
+    </style>
 </head>
 <body class="gray-bg">
 <div class="wrapper wrapper-content animated fadeInRight">
@@ -18,7 +26,24 @@
                         <h5>{{ info_dict.title }}</h5>
                     </div>
                     <div class="ibox-content">
-                        <p>{{ info_dict.description }}</p>
+                        <ol style="margin-bottom: 0; padding-left: 20px;">
+                            {% for desc in info_dict.descriptions %}
+                            <li style="margin-bottom: 6px;">{{ desc }}</li>
+                            {% endfor %}
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5><i class="fa fa-globe"></i> 专家系统</h5>
+                    </div>
+                    <div class="ibox-content" style="padding: 0;">
+                        <iframe src="{{ info_dict.expert_url }}" class="expert-iframe"
+                                frameborder="0" allowfullscreen></iframe>
                     </div>
                 </div>
             </div>
