@@ -18,7 +18,13 @@
                         <h5>{{ info_dict.title }}</h5>
                     </div>
                     <div class="ibox-content">
-                        <p>{{ info_dict.description }}</p>
+                        {% for line in info_dict.description %}
+                        {% if line %}
+                        <p>{{ line }}</p>
+                        {% else %}
+                        <br>
+                        {% endif %}
+                        {% endfor %}
                     </div>
                 </div>
             </div>

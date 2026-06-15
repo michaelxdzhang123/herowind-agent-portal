@@ -1,0 +1,1645 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step1</title>
+    <style>
+        
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        background: #fff; color: #1a1a1a; line-height: 1.7;
+    }
+    .container { max-width: 900px; margin: 0 auto; padding: 2rem; }
+    h1 { color: #1e40af; border-bottom: 2px solid #e2e8f0; padding-bottom: 0.5rem; margin: 1.5rem 0 1rem; }
+    h2 { color: #1d4ed8; margin: 1.2rem 0 0.8rem; }
+    h3 { color: #2563eb; margin: 1rem 0 0.5rem; }
+    code { background: #f1f5f9; color: #b45309; padding: 0.15em 0.4em; border-radius: 4px; }
+    pre { background: #f8fafc; border: 1px solid #e2e8f0; padding: 1rem; border-radius: 8px; overflow-x: auto; }
+    pre code { background: none; color: #334155; padding: 0; }
+    table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+    th, td { border: 1px solid #e2e8f0; padding: 0.5rem 0.75rem; }
+    th { background: #f1f5f9; color: #1e40af; }
+    tr:nth-child(even) { background: #f8fafc; }
+    a { color: #2563eb; }
+    blockquote { border-left: 4px solid #3b82f6; padding: 0.5rem 1rem; margin: 1rem 0; background: #f0f9ff; }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 id="vs-code-continue">入门篇使用手册：VS Code + Continue 新手安装和使用指南</h1>
+<p><strong>主题</strong>：快速掌握对话编程和测试，初步掌握智能体编程<br />
+<strong>主线</strong>：从 Chat 模式到 Agent 模式<br />
+<strong>适用前提</strong>：内部人员使用本地大模型和补全模型<br />
+<strong>更新时间</strong>：2026-06-14<br />
+<strong>建议读者</strong>：刚开始使用 VS Code + Continue 的研发、测试、算法、数据和工程同学</p>
+<hr />
+<h2 id="_1">文档定位</h2>
+<p>这是一份面向新手的 Continue 使用手册。它的目标不是一次性讲完所有高级能力，而是帮助你在 VS Code 中稳定完成下面几件事：</p>
+<ol>
+<li>正确安装 Continue，并使用内部 <code>config.yaml</code> 配置本地大模型和补全模型。</li>
+<li>会用 Chat 模式解释代码、分析报错、生成测试建议。</li>
+<li>会给模型提供正确上下文，例如文件、终端报错、Git Diff、选中代码。</li>
+<li>会用 Edit 模式安全修改小范围代码。</li>
+<li>会用 Autocomplete 提高编码速度，但不盲目接受补全。</li>
+<li>会用 Plan 模式让模型先读代码、先规划、暂时不修改。</li>
+<li>会用 Agent 模式完成小范围真实任务，并学会看 diff、跑测试、回滚改动。</li>
+<li>初步理解 Rules、Slash Prompts 和 MCP，为后续进阶智能体编程打基础。</li>
+</ol>
+<p>你可以把 Continue 理解成 VS Code 里的 <strong>AI 编程助手</strong>。它不是只能聊天，也可以读取选中的代码、读取指定文件、解释报错、生成测试、修改代码、查看 diff，甚至在 Agent 模式下调用工具去读文件、搜索项目、创建文件、修改文件、运行终端命令。</p>
+<hr />
+<h2 id="_2">目录</h2>
+<ul>
+<li><a href="#01-配置本地大模型和补全模型">01. 配置本地大模型和补全模型</a></li>
+<li><a href="#02-continue-的核心概念">02. Continue 的核心概念</a></li>
+<li><a href="#03-第一次打开-continue你应该认识哪些界面">03. 第一次打开 Continue：你应该认识哪些界面</a></li>
+<li><a href="#04-各种模式的区别chatplanagenteditautocomplete">04. 各种模式的区别：Chat、Plan、Agent、Edit、Autocomplete</a></li>
+<li><a href="#05-新手推荐学习路线">05. 新手推荐学习路线</a></li>
+<li><a href="#06-chat-模式入门先把它当代码问答助手">06. Chat 模式入门：先把它当代码问答助手</a></li>
+<li><a href="#07-chat-模式进阶如何给模型正确的上下文">07. Chat 模式进阶：如何给模型正确的上下文</a></li>
+<li><a href="#08-chat-模式常用场景和提示词模板">08. Chat 模式常用场景和提示词模板</a></li>
+<li><a href="#09-代码块的-apply--insert--copy-怎么用">09. 代码块的 Apply / Insert / Copy 怎么用</a></li>
+<li><a href="#10-edit-模式小范围定点修改代码">10. Edit 模式：小范围、定点修改代码</a></li>
+<li><a href="#11-autocomplete行内补全怎么用怎么用得稳">11. Autocomplete：行内补全怎么用，怎么用得稳</a></li>
+<li><a href="#12-plan-模式让模型先读代码先规划暂时不修改">12. Plan 模式：让模型先读代码、先规划、暂时不修改</a></li>
+<li><a href="#13-agent-模式让-continue-自动读文件改文件跑命令">13. Agent 模式：让 Continue 自动读文件、改文件、跑命令</a></li>
+<li><a href="#14-agent-模式的安全工作流">14. Agent 模式的安全工作流</a></li>
+<li><a href="#15-agent-模式提示词模板和完整案例">15. Agent 模式提示词模板和完整案例</a></li>
+<li><a href="#16-rules给-continue-长期记住项目规范">16. Rules：给 Continue 长期记住项目规范</a></li>
+<li><a href="#17-slash-prompts把常用任务做成可复用命令">17. Slash Prompts：把常用任务做成可复用命令</a></li>
+<li><a href="#18-mcp-和外部工具新手只需要先知道什么">18. MCP 和外部工具：新手只需要先知道什么</a></li>
+<li><a href="#19-从零练习7-天上手计划">19. 从零练习：7 天上手计划</a></li>
+<li><a href="#20-常见问题排查">20. 常见问题排查</a></li>
+<li><a href="#21-新手最佳实践清单">21. 新手最佳实践清单</a></li>
+<li><a href="#22-官方资料来源">22. 官方资料来源</a></li>
+</ul>
+<hr />
+<h2 id="01">01. 配置本地大模型和补全模型</h2>
+<h3 id="11-vs-code">1.1 安装 VS Code</h3>
+<p>Windows 用户请先下载并安装 VS Code：</p>
+<pre class="highlight"><code class="language-text">https://code.visualstudio.com/
+</code></pre>
+
+<p>建议安装完成后确认 VS Code 可以正常打开项目目录。</p>
+<h3 id="12-continue">1.2 安装 Continue 插件</h3>
+<p>在 VS Code 中打开扩展市场，搜索并安装：</p>
+<pre class="highlight"><code class="language-text">Continue
+</code></pre>
+
+<p>安装后，VS Code 左侧活动栏会出现 Continue 图标。不同版本的图标样式可能略有差异，通常是一个机器人或 Continue 标识。</p>
+<h3 id="13-configyaml">1.3 下载内部 config.yaml</h3>
+<p>安装 Continue 后，新手不需要自己手动选择大模型，也不需要自己编写模型配置。直接下载内部提供的 <code>config.yaml</code>，并复制到 Continue 配置目录即可。</p>
+<p>内部配置文件下载地址：</p>
+<pre class="highlight"><code class="language-text">http://172.28.21.141:3004/s/ADN/p/config-yaml-k6D8KdyR6n
+</code></pre>
+
+<p>Windows 默认目录：</p>
+<pre class="highlight"><code class="language-text">C:\Users\&lt;yourname&gt;\.continue\config.yaml
+</code></pre>
+
+<p>macOS / Linux 默认目录：</p>
+<pre class="highlight"><code class="language-text">~/.continue/config.yaml
+</code></pre>
+
+<blockquote>
+<p>注意：请把 <code>&lt;yourname&gt;</code> 替换成你的系统用户名。<br />
+如果 <code>.continue</code> 目录不存在，可以手动新建。</p>
+</blockquote>
+<h3 id="14-agentsmd">1.4 下载并放置 AGENTS.md</h3>
+<p>在 VS Code 中打开你的项目文件夹，并确认项目根目录中有且只有一个内部规范文件：</p>
+<pre class="highlight"><code class="language-text">AGENTS.md
+</code></pre>
+
+<p>内部 <code>AGENTS.md</code> 下载地址：</p>
+<pre class="highlight"><code class="language-text">http://172.28.21.141:3004/s/ADN/p/AGENTS-md-k6D8KdyR6n
+</code></pre>
+
+<p>推荐放置位置：</p>
+<pre class="highlight"><code class="language-text">your-project/
+├── AGENTS.md
+├── package.json
+├── src/
+└── ...
+</code></pre>
+
+<p><code>AGENTS.md</code> 的作用是告诉 Continue 和智能体：这个项目的背景、编码规范、测试命令、禁止事项、目录说明、提交要求等。新手不建议在同一个项目里放多个互相冲突的规则文件。</p>
+<h3 id="15-continue">1.5 打开项目并启动 Continue</h3>
+<ol>
+<li>在 VS Code 中打开你的项目文件夹。</li>
+<li>点击左侧或左下角的 Continue 图标。</li>
+<li>选择 <strong>Start a new session</strong>。</li>
+<li>确认当前模型是内部配置的 <code>Qwen3</code> 或团队要求的模型。</li>
+<li>确认模式选择为 <strong>Chat</strong>。</li>
+<li>点击 <strong>Start</strong> 开始会话。</li>
+<li>在输入框里试着问：</li>
+</ol>
+<pre class="highlight"><code class="language-text">请用中文说明你现在能帮我做哪些 VS Code 编程辅助工作。
+</code></pre>
+
+<p>如果模型可以正常回复，说明基础配置已经成功。</p>
+<h3 id="16">1.6 配置完成后的检查项</h3>
+<p>你应该确认下面几件事：</p>
+<ul>
+<li>Continue 面板可以打开。</li>
+<li>Chat 模式可以正常回复。</li>
+<li>左下角或模型选择器中能看到内部大模型。</li>
+<li>Autocomplete 使用的是内部补全模型。</li>
+<li>项目根目录中存在 <code>AGENTS.md</code>。</li>
+<li><code>config.yaml</code> 已经放到正确目录。</li>
+<li>本地网络可以访问内部模型服务或网关服务。</li>
+</ul>
+<h3 id="17">1.7 本手册重点</h3>
+<p>后续内容重点讲：</p>
+<ul>
+<li>Continue 在 VS Code 里面应该怎么用。</li>
+<li>Chat 模式适合做什么。</li>
+<li>什么时候用 Edit，什么时候用 Agent。</li>
+<li>怎么给模型上下文。</li>
+<li>怎么写提示词。</li>
+<li>怎么避免 Agent 把项目改乱。</li>
+<li>新手应该按什么顺序练习。</li>
+</ul>
+<hr />
+<h2 id="02-continue">02. Continue 的核心概念</h2>
+<h3 id="21-continue">2.1 Continue 不是一个单一功能，而是一组能力</h3>
+<p>Continue 里面常见的能力包括：</p>
+<table>
+<thead>
+<tr>
+<th>能力</th>
+<th>作用</th>
+<th>新手优先级</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Chat</td>
+<td>对话、解释代码、问问题、让模型给建议</td>
+<td>最高</td>
+</tr>
+<tr>
+<td>Edit</td>
+<td>选中一段代码，让模型直接做小范围修改</td>
+<td>高</td>
+</tr>
+<tr>
+<td>Autocomplete</td>
+<td>写代码时给行内补全建议</td>
+<td>高</td>
+</tr>
+<tr>
+<td>Plan</td>
+<td>只读模式，让模型先看代码、搜索文件、制定方案，但不改文件</td>
+<td>中高</td>
+</tr>
+<tr>
+<td>Agent</td>
+<td>工具模式，让模型读取文件、搜索代码、修改文件、运行命令</td>
+<td>中高</td>
+</tr>
+<tr>
+<td>Rules</td>
+<td>项目规则，让模型长期遵守某些规范</td>
+<td>中</td>
+</tr>
+<tr>
+<td>Prompts</td>
+<td>可复用提示词，把常用任务做成 <code>/</code> 命令</td>
+<td>中</td>
+</tr>
+<tr>
+<td>MCP</td>
+<td>外部工具协议，把数据库、文档、GitHub、浏览器等能力接入 Continue</td>
+<td>进阶</td>
+</tr>
+</tbody>
+</table>
+<p>新手最容易混淆的是 Chat、Edit、Agent：</p>
+<ul>
+<li><strong>Chat</strong> 主要是“问”和“讨论”。</li>
+<li><strong>Edit</strong> 主要是“改选中的一小段”。</li>
+<li><strong>Agent</strong> 主要是“让模型自己找上下文并完成一个任务”。</li>
+</ul>
+<h3 id="22-continue-4">2.2 Continue 效果好不好，主要取决于 4 件事</h3>
+<h4 id="_3">第一，模型能力</h4>
+<p>不同模型能力差异很大。Chat 正常不代表 Agent 一定稳定。<br />
+本地模型、补全模型、网关配置、上下文长度都会影响体验。</p>
+<h4 id="_4">第二，上下文质量</h4>
+<p>模型只能基于它“看到”的内容回答。你给它的文件、选中的代码、终端报错、Git Diff、项目规则都会影响结果质量。</p>
+<h4 id="_5">第三，任务边界是否清楚</h4>
+<p>不清楚的任务容易导致模型乱改。清楚的任务通常包含：</p>
+<ul>
+<li>要改什么。</li>
+<li>不要改什么。</li>
+<li>涉及哪些文件。</li>
+<li>输出什么结果。</li>
+<li>如何验证。</li>
+<li>有哪些限制。</li>
+</ul>
+<h4 id="_6">第四，你是否审查结果</h4>
+<p>Continue 能提高效率，但不能替代代码审查。<br />
+尤其是 Agent 模式下，必须看 diff、跑测试、确认没有误改。</p>
+<hr />
+<h2 id="03-continue">03. 第一次打开 Continue：你应该认识哪些界面</h2>
+<h3 id="31-continue">3.1 Continue 侧边栏</h3>
+<p>打开 Continue 后，你需要认识这些区域：</p>
+<ol>
+<li><strong>模型选择器</strong>：选择当前使用哪个模型。</li>
+<li><strong>模式选择器</strong>：在 Chat、Plan、Agent、Edit 等模式之间切换。</li>
+<li><strong>输入框</strong>：输入自然语言任务。</li>
+<li><strong>上下文区域</strong>：添加 <code>@Files</code>、<code>@Terminal</code>、<code>@Git Diff</code> 等上下文。</li>
+<li><strong>工具调用与权限提示</strong>：Agent 模式下经常出现，需要你确认。</li>
+<li><strong>代码 diff 区域</strong>：查看模型准备修改的内容，不要盲目接受。</li>
+<li><strong>会话历史</strong>：查看前面提出的问题和模型的回答。</li>
+</ol>
+<h3 id="32">3.2 常用快捷键</h3>
+<p>不同操作系统、VS Code 版本、Continue 版本可能略有差异。下面是常见快捷键：</p>
+<table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>常见作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Cmd/Ctrl + L</code></td>
+<td>将选中代码发送到 Chat</td>
+</tr>
+<tr>
+<td><code>Cmd/Ctrl + I</code></td>
+<td>对选中代码进行 Edit</td>
+</tr>
+<tr>
+<td><code>Cmd/Ctrl + .</code></td>
+<td>切换模式或打开相关操作</td>
+</tr>
+<tr>
+<td><code>Tab</code></td>
+<td>接受 Autocomplete 建议</td>
+</tr>
+<tr>
+<td><code>Esc</code></td>
+<td>拒绝 Autocomplete 建议</td>
+</tr>
+</tbody>
+</table>
+<p>如果快捷键冲突，请在 VS Code 中打开：</p>
+<pre class="highlight"><code class="language-text">File / Preferences / Keyboard Shortcuts
+</code></pre>
+
+<p>然后搜索：</p>
+<pre class="highlight"><code class="language-text">Continue
+</code></pre>
+
+<hr />
+<h2 id="04-chatplanagenteditautocomplete">04. 各种模式的区别：Chat、Plan、Agent、Edit、Autocomplete</h2>
+<h3 id="41-chat">4.1 Chat 模式：问答、解释、讨论</h3>
+<p>Chat 模式最适合新手入门。</p>
+<p>适合做：</p>
+<ul>
+<li>解释代码。</li>
+<li>分析报错。</li>
+<li>让模型给实现思路。</li>
+<li>让模型生成测试用例建议。</li>
+<li>做代码 Review。</li>
+<li>总结一个文件的职责。</li>
+<li>询问某个函数、类、接口、配置的作用。</li>
+</ul>
+<p>不适合做：</p>
+<ul>
+<li>大规模自动修改。</li>
+<li>跨很多文件的重构。</li>
+<li>让模型直接执行命令。</li>
+<li>让模型在没有上下文时猜测项目结构。</li>
+</ul>
+<h3 id="42-plan">4.2 Plan 模式：只读探索和规划</h3>
+<p>Plan 模式适合在你还不熟悉项目时使用。</p>
+<p>适合做：</p>
+<ul>
+<li>陌生项目探索。</li>
+<li>改造方案制定。</li>
+<li>让模型先找相关文件。</li>
+<li>让模型列出风险和验证步骤。</li>
+<li>在改代码前让模型输出计划。</li>
+</ul>
+<p>特点：</p>
+<ul>
+<li>通常只读，不直接修改文件。</li>
+<li>适合在 Agent 执行前作为准备阶段。</li>
+<li>新手做复杂任务前，建议先 Plan 再 Agent。</li>
+</ul>
+<h3 id="43-agent">4.3 Agent 模式：工具模式</h3>
+<p>Agent 模式允许模型调用工具，例如：</p>
+<ul>
+<li>读取文件。</li>
+<li>搜索项目。</li>
+<li>创建文件。</li>
+<li>修改文件。</li>
+<li>运行终端命令。</li>
+<li>查看测试结果。</li>
+<li>根据失败结果继续修复。</li>
+</ul>
+<p>适合做：</p>
+<ul>
+<li>修复一个小 Bug。</li>
+<li>新增一个小功能。</li>
+<li>为某个函数补测试。</li>
+<li>迁移一个小范围接口。</li>
+<li>对有限文件做重构。</li>
+<li>根据测试失败结果迭代修复。</li>
+</ul>
+<p>不适合新手直接做：</p>
+<ul>
+<li>“重构整个项目”。</li>
+<li>“优化所有代码”。</li>
+<li>“把整个系统换成新架构”。</li>
+<li>“不用问我，自动改完所有问题”。</li>
+<li>“删除无用文件并自动提交”。</li>
+</ul>
+<h3 id="44-edit">4.4 Edit 模式：小范围定点修改</h3>
+<p>Edit 模式适合你已经知道要改哪段代码时使用。</p>
+<p>适合做：</p>
+<ul>
+<li>补注释。</li>
+<li>改类型。</li>
+<li>加错误处理。</li>
+<li>把一段同步逻辑改成异步。</li>
+<li>优化一个函数的可读性。</li>
+<li>给一个函数补输入校验。</li>
+</ul>
+<p>不适合做：</p>
+<ul>
+<li>跨文件修改。</li>
+<li>大范围搜索。</li>
+<li>需要理解整个项目的任务。</li>
+</ul>
+<h3 id="45-autocomplete">4.5 Autocomplete：边写边补全</h3>
+<p>Autocomplete 是行内补全能力。我们使用一个本地专门做代码补全的模型。</p>
+<p>适合做：</p>
+<ul>
+<li>补全函数体。</li>
+<li>补全重复样板代码。</li>
+<li>根据上下文补全参数。</li>
+<li>补全测试断言。</li>
+<li>补全常见 if / try / catch / return 结构。</li>
+</ul>
+<p>不适合做：</p>
+<ul>
+<li>替代设计思考。</li>
+<li>盲目接受所有建议。</li>
+<li>自动完成安全敏感逻辑。</li>
+<li>自动生成你看不懂的核心代码。</li>
+</ul>
+<hr />
+<h2 id="05">05. 新手推荐学习路线</h2>
+<p>建议按下面顺序学习，不要一上来就直接用 Agent 改大项目。</p>
+<h3 id="chat">第一阶段：只用 Chat</h3>
+<p>目标：知道怎么问、怎么让模型解释代码。</p>
+<p>练习：</p>
+<pre class="highlight"><code class="language-text">请解释这个函数的作用。
+</code></pre>
+
+<pre class="highlight"><code class="language-text">请说明这段代码可能有哪些边界情况。
+</code></pre>
+
+<h3 id="chat_1">第二阶段：选中代码 + Chat</h3>
+<p>目标：学会把具体代码发给模型，而不是让模型凭空猜。</p>
+<p>练习：</p>
+<ol>
+<li>选中一段函数。</li>
+<li>按 <code>Cmd/Ctrl + L</code>。</li>
+<li>提问：</li>
+</ol>
+<pre class="highlight"><code class="language-text">请按输入、输出、核心逻辑、潜在问题四部分解释这段代码。
+</code></pre>
+
+<h3 id="_7">第三阶段：学会添加上下文</h3>
+<p>目标：会用 <code>@Files</code>、<code>@Terminal</code>、<code>@Git Diff</code>。</p>
+<p>练习：</p>
+<pre class="highlight"><code class="language-text">@Terminal 请分析这段测试失败日志，告诉我最可能的原因和最小修复方案。
+</code></pre>
+
+<pre class="highlight"><code class="language-text">@Git Diff 请 review 我这次改动，重点看是否有逻辑问题、兼容性问题和测试遗漏。
+</code></pre>
+
+<h3 id="edit">第四阶段：学 Edit</h3>
+<p>目标：小范围安全修改。</p>
+<p>练习：</p>
+<ol>
+<li>选中一个函数。</li>
+<li>按 <code>Cmd/Ctrl + I</code>。</li>
+<li>输入：</li>
+</ol>
+<pre class="highlight"><code class="language-text">请只修改这段代码，增加空值检查，不要改函数签名。
+</code></pre>
+
+<h3 id="autocomplete">第五阶段：学 Autocomplete</h3>
+<p>目标：提高编码速度，但不盲目按 Tab。</p>
+<p>练习：</p>
+<ul>
+<li>写函数名和注释，让补全模型生成函数体。</li>
+<li>接受前先读一遍。</li>
+<li>不合适就按 <code>Esc</code> 拒绝。</li>
+</ul>
+<h3 id="plan">第六阶段：学 Plan</h3>
+<p>目标：在改代码前先探索。</p>
+<p>练习：</p>
+<pre class="highlight"><code class="language-text">请进入 Plan 模式，先阅读项目结构和相关文件，告诉我如果要给登录接口增加参数校验，需要改哪些文件。暂时不要修改任何文件。
+</code></pre>
+
+<h3 id="agent">第七阶段：学 Agent</h3>
+<p>目标：让模型完成一个小范围真实任务。</p>
+<p>练习：</p>
+<pre class="highlight"><code class="language-text">请在 Agent 模式下，为 src/utils/validate.ts 中的 validateEmail 函数补充单元测试。只允许新增或修改测试文件，不要修改生产代码。完成后运行对应测试，并给出 diff 摘要。
+</code></pre>
+
+<h3 id="rules-prompts">第八阶段：学 Rules 和 Prompts</h3>
+<p>目标：把团队规范长期沉淀下来，把常用任务做成可复用命令。</p>
+<p>练习：</p>
+<ul>
+<li>写一条项目规则：所有回答默认中文。</li>
+<li>写一条项目规则：修改代码后必须说明验证命令。</li>
+<li>写一个 <code>/review</code> Prompt：用于提交前 Review。</li>
+</ul>
+<hr />
+<h2 id="06-chat">06. Chat 模式入门：先把它当代码问答助手</h2>
+<h3 id="61">6.1 打开一个适合练习的项目</h3>
+<p>新手不要一开始就拿几十万行的大项目练习。建议选择：</p>
+<ul>
+<li>一个小型前端项目。</li>
+<li>一个 Node.js 工具项目。</li>
+<li>一个 Python 脚本项目。</li>
+<li>一个你熟悉业务背景的项目。</li>
+<li>一个测试能跑起来的项目。</li>
+</ul>
+<h3 id="62">6.2 第一个问题</h3>
+<p>在 Continue Chat 模式中输入：</p>
+<pre class="highlight"><code class="language-text">请用中文说明你现在能帮我做哪些 VS Code 编程辅助工作。
+</code></pre>
+
+<p>你应该能看到模型介绍它可以做代码解释、报错分析、测试生成、重构建议等。</p>
+<h3 id="63">6.3 让它解释当前文件</h3>
+<p>打开一个代码文件，选中一段函数，然后按 <code>Cmd/Ctrl + L</code>，输入：</p>
+<pre class="highlight"><code class="language-text">请解释这段代码。请按照：
+1. 总体作用
+2. 输入输出
+3. 核心逻辑
+4. 依赖关系
+5. 潜在问题
+这五部分说明。
+</code></pre>
+
+<h3 id="64">6.4 让它分析报错</h3>
+<p>运行项目测试或启动命令，如果出现报错，把完整报错加入上下文。</p>
+<p>推荐提问：</p>
+<pre class="highlight"><code class="language-text">@Terminal 请分析这个报错。请告诉我：
+1. 最可能原因
+2. 出错文件和行号
+3. 最小修复方案
+4. 修复后应该运行什么命令验证
+</code></pre>
+
+<h3 id="65">6.5 报错信息要完整</h3>
+<p>不要只发一句“报错了”。应该包含：</p>
+<ul>
+<li>你运行的命令。</li>
+<li>完整错误堆栈。</li>
+<li>出错文件路径。</li>
+<li>最近修改过什么。</li>
+<li>期望结果是什么。</li>
+<li>实际结果是什么。</li>
+</ul>
+<p>示例：</p>
+<pre class="highlight"><code class="language-text">我运行 npm test 后失败。下面是完整终端输出。请不要直接改代码，先分析原因，并给出最小修复方案。
+
+@Terminal
+</code></pre>
+
+<hr />
+<h2 id="07-chat">07. Chat 模式进阶：如何给模型正确的上下文</h2>
+<h3 id="71">7.1 什么是上下文</h3>
+<p>上下文就是你让模型“看见”的材料，包括：</p>
+<ul>
+<li>自然语言说明。</li>
+<li>选中的代码。</li>
+<li>当前文件。</li>
+<li>指定文件。</li>
+<li>终端输出。</li>
+<li>Git Diff。</li>
+<li>项目规则。</li>
+<li>报错堆栈。</li>
+<li>相关配置。</li>
+<li>API 文档片段。</li>
+</ul>
+<p>模型回答好不好，很多时候不是因为模型“聪不聪明”，而是因为你给的上下文是否准确。</p>
+<h3 id="72">7.2 最常用的上下文方式</h3>
+<table>
+<thead>
+<tr>
+<th>上下文方式</th>
+<th>适合场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>选中代码 + <code>Cmd/Ctrl + L</code></td>
+<td>解释局部代码、找局部 bug</td>
+</tr>
+<tr>
+<td><code>@Files</code></td>
+<td>指定某些文件让模型阅读</td>
+</tr>
+<tr>
+<td><code>@Terminal</code></td>
+<td>分析命令输出、测试失败、构建失败</td>
+</tr>
+<tr>
+<td><code>@Git Diff</code></td>
+<td>提交前 review、检查改动风险</td>
+</tr>
+<tr>
+<td>当前文件</td>
+<td>解释当前打开文件</td>
+</tr>
+<tr>
+<td>AGENTS.md</td>
+<td>提供项目规则和团队规范</td>
+</tr>
+</tbody>
+</table>
+<h3 id="73">7.3 给上下文的原则</h3>
+<h4 id="_8">原则一：只给相关文件</h4>
+<p>不要一次把整个项目都塞给模型。上下文越乱，回答越容易跑偏。</p>
+<h4 id="_9">原则二：报错要完整</h4>
+<p>错误堆栈、命令、路径、版本信息都可能很重要。</p>
+<h4 id="_10">原则三：让模型先确认理解</h4>
+<p>对于复杂任务，可以先问：</p>
+<pre class="highlight"><code class="language-text">请先复述你对问题的理解，不要修改代码。如果你认为缺少上下文，请列出需要我补充的文件。
+</code></pre>
+
+<h4 id="_11">原则四：每次只推进一个目标</h4>
+<p>不要把“修 bug、重构、补测试、优化性能、写文档”全部放在一个任务里。新手最好一次只做一件事。</p>
+<h3 id="74">7.4 好问题和差问题对比</h3>
+<p>差问题：</p>
+<pre class="highlight"><code class="language-text">这个项目有问题，帮我看看。
+</code></pre>
+
+<p>好问题：</p>
+<pre class="highlight"><code class="language-text">我运行 npm test 时，user.service.test.ts 中的 should create user 测试失败。请结合 @Terminal 和 @Files 中的 user.service.ts 分析失败原因。先不要修改代码，只给出最小修复方案。
+</code></pre>
+
+<hr />
+<h2 id="08-chat">08. Chat 模式常用场景和提示词模板</h2>
+<h3 id="81">8.1 解释代码</h3>
+<pre class="highlight"><code class="language-text">请解释这段代码。请按以下结构输出：
+1. 总体作用
+2. 输入参数
+3. 返回值
+4. 核心逻辑
+5. 关键依赖
+6. 边界情况
+7. 潜在 bug
+8. 新手需要注意的点
+</code></pre>
+
+<h3 id="82">8.2 分析报错</h3>
+<pre class="highlight"><code class="language-text">@Terminal 请分析这个报错。请按以下结构输出：
+1. 报错摘要
+2. 最可能原因
+3. 相关文件和行号
+4. 最小修复方案
+5. 可能影响范围
+6. 修复后验证命令
+</code></pre>
+
+<h3 id="83-review">8.3 代码 Review</h3>
+<pre class="highlight"><code class="language-text">@Git Diff 请 review 我这次改动。请重点检查：
+1. 逻辑是否正确
+2. 是否有兼容性问题
+3. 是否有边界情况遗漏
+4. 是否需要补测试
+5. 是否有命名或可读性问题
+6. 是否存在安全风险
+
+请按“必须修改 / 建议修改 / 可以不改”分类输出。
+</code></pre>
+
+<h3 id="84">8.4 生成测试用例</h3>
+<pre class="highlight"><code class="language-text">请为这个函数设计单元测试。请输出：
+1. 正常输入场景
+2. 边界输入场景
+3. 异常输入场景
+4. Mock 依赖说明
+5. 推荐测试代码
+6. 运行测试命令
+</code></pre>
+
+<h3 id="85">8.5 理解陌生文件</h3>
+<pre class="highlight"><code class="language-text">@Files 请阅读这个文件，输出：
+1. 文件职责
+2. 对外暴露的函数/类
+3. 依赖了哪些模块
+4. 被哪些模块可能调用
+5. 修改这个文件的风险
+6. 新手阅读顺序建议
+</code></pre>
+
+<h3 id="86">8.6 让模型先问问题</h3>
+<pre class="highlight"><code class="language-text">我要实现一个小功能。请先根据当前上下文判断需求是否清楚。
+如果不清楚，请最多问 3 个关键问题。
+如果清楚，请给出实现方案，不要直接修改代码。
+</code></pre>
+
+<h3 id="87">8.7 让模型给最小修改方案</h3>
+<pre class="highlight"><code class="language-text">请给出最小修改方案。要求：
+1. 尽量少改文件
+2. 不改变公共 API
+3. 不引入新依赖
+4. 保持原有代码风格
+5. 说明修改风险和验证方式
+</code></pre>
+
+<hr />
+<h2 id="09-apply-insert-copy">09. 代码块的 Apply / Insert / Copy 怎么用</h2>
+<p>Continue 回答中经常会给出代码块。不同操作适合不同场景。</p>
+<h3 id="91-copy">9.1 Copy</h3>
+<p><strong>作用</strong>：复制代码块。</p>
+<p>适合：</p>
+<ul>
+<li>你只想手动粘贴。</li>
+<li>你还不确定是否要应用。</li>
+<li>你想先放到临时文件里比较。</li>
+</ul>
+<p>建议：</p>
+<ul>
+<li>新手优先用 Copy。</li>
+<li>粘贴后自己检查格式和上下文。</li>
+</ul>
+<h3 id="92-insert">9.2 Insert</h3>
+<p><strong>作用</strong>：把代码插入到当前光标位置。</p>
+<p>适合：</p>
+<ul>
+<li>插入一个新函数。</li>
+<li>插入一段注释。</li>
+<li>插入一段测试代码。</li>
+<li>插入配置片段。</li>
+</ul>
+<p>风险：</p>
+<ul>
+<li>插错位置。</li>
+<li>缺少 import。</li>
+<li>与现有代码重复。</li>
+</ul>
+<h3 id="93-apply">9.3 Apply</h3>
+<p><strong>作用</strong>：让 Continue 尝试把代码块应用到文件中。</p>
+<p>适合：</p>
+<ul>
+<li>模型已经明确知道要改哪个文件。</li>
+<li>改动比较小。</li>
+<li>你可以清楚看 diff。</li>
+<li>你知道如何回滚。</li>
+</ul>
+<p>使用建议：</p>
+<ol>
+<li>Apply 前先读代码块。</li>
+<li>Apply 后必须看 diff。</li>
+<li>不确定时不要直接接受。</li>
+<li>接受后运行测试或构建命令。</li>
+</ol>
+<h3 id="94">9.4 新手推荐顺序</h3>
+<p>对于新手，建议优先级：</p>
+<pre class="highlight"><code class="language-text">Copy &gt; Insert &gt; Apply
+</code></pre>
+
+<p>等你熟悉 diff 和回滚之后，再更多使用 Apply。</p>
+<hr />
+<h2 id="10-edit">10. Edit 模式：小范围、定点修改代码</h2>
+<h3 id="101-edit">10.1 Edit 模式适合什么</h3>
+<p>Edit 模式适合“我已经知道要改哪一段”的情况。</p>
+<p>适合任务：</p>
+<ul>
+<li>给函数补注释。</li>
+<li>增加参数校验。</li>
+<li>改进错误提示。</li>
+<li>优化一段 if/else。</li>
+<li>把重复逻辑提取成局部函数。</li>
+<li>给一段代码增加日志。</li>
+<li>修改小范围类型定义。</li>
+</ul>
+<h3 id="102">10.2 使用步骤</h3>
+<ol>
+<li>打开目标文件。</li>
+<li>选中要修改的代码。</li>
+<li>按 <code>Cmd/Ctrl + I</code>。</li>
+<li>输入明确指令。</li>
+<li>查看生成结果。</li>
+<li>接受或拒绝。</li>
+<li>保存文件。</li>
+<li>运行测试。</li>
+</ol>
+<h3 id="103-edit">10.3 好的 Edit 指令</h3>
+<pre class="highlight"><code class="language-text">请只修改选中的代码，增加空值检查和更清晰的错误提示。不要修改函数签名，不要引入新依赖。
+</code></pre>
+
+<pre class="highlight"><code class="language-text">请把这段代码改得更易读，保持行为完全一致。不要改变量含义，不要修改外部接口。
+</code></pre>
+
+<pre class="highlight"><code class="language-text">请为这段函数增加中文注释，解释关键分支逻辑。不要修改任何可执行代码。
+</code></pre>
+
+<h3 id="104-edit">10.4 不好的 Edit 指令</h3>
+<pre class="highlight"><code class="language-text">优化一下。
+</code></pre>
+
+<pre class="highlight"><code class="language-text">帮我改好。
+</code></pre>
+
+<pre class="highlight"><code class="language-text">把这个项目所有问题都修了。
+</code></pre>
+
+<h3 id="105-edit">10.5 Edit 模式检查清单</h3>
+<p>使用 Edit 后检查：</p>
+<ul>
+<li>函数签名是否被误改。</li>
+<li>import 是否正确。</li>
+<li>业务逻辑是否保持一致。</li>
+<li>格式化是否符合项目规范。</li>
+<li>是否需要补测试。</li>
+<li>是否引入了不必要依赖。</li>
+</ul>
+<hr />
+<h2 id="11-autocomplete">11. Autocomplete：行内补全怎么用，怎么用得稳</h2>
+<h3 id="111-autocomplete">11.1 Autocomplete 的作用</h3>
+<p>Autocomplete 会根据当前文件和附近代码，自动给出后续代码建议。它像一个“边写边补”的助手。</p>
+<h3 id="112">11.2 基本操作</h3>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Tab</code></td>
+<td>接受建议</td>
+</tr>
+<tr>
+<td><code>Esc</code></td>
+<td>拒绝建议</td>
+</tr>
+<tr>
+<td>继续输入</td>
+<td>让模型重新根据你的输入补全</td>
+</tr>
+<tr>
+<td>删除部分内容</td>
+<td>重新触发上下文理解</td>
+</tr>
+</tbody>
+</table>
+<h3 id="113">11.3 适合接受的补全</h3>
+<p>可以考虑接受：</p>
+<ul>
+<li>明显重复的样板代码。</li>
+<li>简单 getter/setter。</li>
+<li>测试中的类似断言。</li>
+<li>和上文风格完全一致的分支。</li>
+<li>类型定义中规律明显的字段。</li>
+</ul>
+<h3 id="114">11.4 不建议直接接受的补全</h3>
+<p>需要谨慎：</p>
+<ul>
+<li>权限判断。</li>
+<li>金额计算。</li>
+<li>数据删除。</li>
+<li>安全校验。</li>
+<li>加密、签名、鉴权。</li>
+<li>数据库迁移。</li>
+<li>复杂异步逻辑。</li>
+<li>多线程/并发逻辑。</li>
+</ul>
+<h3 id="115">11.5 用得稳的技巧</h3>
+<ol>
+<li>先写清楚函数名和注释。</li>
+<li>先写输入输出类型。</li>
+<li>让上下文附近有类似代码。</li>
+<li>每次只接受一小段。</li>
+<li>接受后马上读一遍。</li>
+<li>对核心逻辑写测试。</li>
+<li>不要因为补全“看起来很完整”就直接信任。</li>
+</ol>
+<h3 id="116">11.6 示例</h3>
+<p>你写：</p>
+<pre class="highlight"><code class="language-ts">/**
+ * Validate whether an email address is valid.
+ * Return true only for non-empty strings containing a single @ and a valid domain.
+ */
+export function validateEmail(email: string): boolean {
+</code></pre>
+
+<p>Autocomplete 可能会补全函数体。接受前要检查：</p>
+<ul>
+<li>是否处理空字符串。</li>
+<li>是否处理多个 <code>@</code>。</li>
+<li>是否处理空格。</li>
+<li>是否处理大小写。</li>
+<li>是否符合项目要求。</li>
+<li>是否需要更严格的正则。</li>
+</ul>
+<hr />
+<h2 id="12-plan">12. Plan 模式：让模型先读代码、先规划、暂时不修改</h2>
+<h3 id="121-plan">12.1 为什么需要 Plan 模式</h3>
+<p>新手常见错误是：还没搞清楚项目结构，就让 Agent 直接改。<br />
+Plan 模式的价值是让模型先探索、先理解、先列方案，降低误改风险。</p>
+<h3 id="122-plan">12.2 Plan 模式适合场景</h3>
+<ul>
+<li>陌生项目阅读。</li>
+<li>找功能入口。</li>
+<li>找接口调用链。</li>
+<li>找测试位置。</li>
+<li>评估改动影响范围。</li>
+<li>制定重构方案。</li>
+<li>在 Agent 执行前确认范围。</li>
+</ul>
+<h3 id="123">12.3 推荐提示词</h3>
+<pre class="highlight"><code class="language-text">请进入 Plan 模式。请先阅读项目结构和相关文件，找出实现登录功能的主要入口、服务层、测试文件和配置文件。暂时不要修改任何文件。最后输出：
+1. 相关文件列表
+2. 当前流程说明
+3. 如果要增加参数校验，需要改哪些文件
+4. 风险点
+5. 推荐执行步骤
+</code></pre>
+
+<h3 id="124-plan">12.4 让 Plan 输出可执行任务</h3>
+<pre class="highlight"><code class="language-text">请把上面的方案拆成 3 个小任务，每个任务都包含：
+1. 修改目标
+2. 影响文件
+3. 验证命令
+4. 回滚方式
+</code></pre>
+
+<h3 id="125-plan">12.5 Plan 结果如何使用</h3>
+<p>拿到 Plan 后，不要直接照单全收。你需要检查：</p>
+<ul>
+<li>是否遗漏关键文件。</li>
+<li>是否改动范围过大。</li>
+<li>是否违反项目规范。</li>
+<li>是否存在更小的实现路径。</li>
+<li>测试命令是否正确。</li>
+<li>是否需要先问团队同学确认。</li>
+</ul>
+<hr />
+<h2 id="13-agent-continue">13. Agent 模式：让 Continue 自动读文件、改文件、跑命令</h2>
+<h3 id="131-agent">13.1 Agent 模式是什么</h3>
+<p>Agent 模式下，Continue 不只是聊天。它可以根据任务调用工具，自动完成一系列步骤，例如：</p>
+<ol>
+<li>搜索项目。</li>
+<li>阅读相关文件。</li>
+<li>制定修改方案。</li>
+<li>修改文件。</li>
+<li>运行测试。</li>
+<li>根据测试失败继续修复。</li>
+<li>输出结果总结。</li>
+</ol>
+<h3 id="132-agent">13.2 Agent 适合的任务</h3>
+<p>适合：</p>
+<ul>
+<li>给一个函数补测试。</li>
+<li>修复一个明确的 bug。</li>
+<li>改一个小接口。</li>
+<li>给一个页面补一个小交互。</li>
+<li>修改一个配置项。</li>
+<li>根据 lint 报错做小范围修复。</li>
+<li>给一个模块生成 README 初稿。</li>
+</ul>
+<h3 id="133-agent">13.3 Agent 不适合的任务</h3>
+<p>不适合新手直接做：</p>
+<ul>
+<li>大范围重构。</li>
+<li>跨业务线改动。</li>
+<li>修改权限系统。</li>
+<li>修改支付、金额、结算逻辑。</li>
+<li>删除大量文件。</li>
+<li>自动提交代码。</li>
+<li>自动发布。</li>
+<li>修改生产配置。</li>
+<li>修改安全策略。</li>
+<li>不看 diff 就接受所有改动。</li>
+</ul>
+<h3 id="134-agent">13.4 Agent 模式的好提示词格式</h3>
+<p>推荐结构：</p>
+<pre class="highlight"><code class="language-text">任务：
+[一句话说明目标]
+
+范围：
+[允许修改哪些文件/目录]
+[禁止修改哪些文件/目录]
+
+约束：
+[不要引入新依赖]
+[不要改公共 API]
+[保持原有代码风格]
+[回答用中文]
+
+验证：
+[运行什么命令]
+[如果命令失败，先报告原因，不要无限循环修改]
+
+输出：
+[列出改动文件]
+[说明验证结果]
+[说明风险和后续建议]
+</code></pre>
+
+<h3 id="135">13.5 一个完整例子</h3>
+<pre class="highlight"><code class="language-text">请在 Agent 模式下完成下面任务。
+
+任务：
+为 src/utils/validate.ts 中的 validateEmail 函数补充单元测试。
+
+范围：
+只允许新增或修改测试文件。
+不要修改 src/utils/validate.ts 的生产代码。
+不要修改 package.json。
+不要引入新依赖。
+
+约束：
+保持现有测试风格。
+测试名称使用英文。
+回答总结使用中文。
+
+验证：
+完成后运行 npm test -- validate。
+如果测试失败，请先说明失败原因和你准备怎么修，再继续。
+
+输出：
+1. 修改了哪些文件
+2. 增加了哪些测试场景
+3. 测试命令和结果
+4. 仍然存在的风险
+</code></pre>
+
+<hr />
+<h2 id="14-agent">14. Agent 模式的安全工作流</h2>
+<h3 id="141-git">14.1 新建 Git 分支</h3>
+<p>不要直接在主分支上让 Agent 工作。</p>
+<pre class="highlight"><code class="language-bash">git checkout -b continue-agent-demo
+</code></pre>
+
+<h3 id="142">14.2 确认工作区干净</h3>
+<p>开始前运行：</p>
+<pre class="highlight"><code class="language-bash">git status
+</code></pre>
+
+<p>如果已经有你自己的未提交改动，要先提交、stash，或者明确告诉 Agent 不要碰哪些文件。</p>
+<h3 id="143-plan-agent">14.3 先 Plan，再 Agent</h3>
+<p>复杂任务推荐：</p>
+<ol>
+<li>Plan：让模型先读代码、列方案。</li>
+<li>你审查方案。</li>
+<li>Agent：只执行方案中的第一个小任务。</li>
+<li>看 diff。</li>
+<li>跑测试。</li>
+<li>再进入下一个任务。</li>
+</ol>
+<h3 id="144">14.4 不自动批准所有操作</h3>
+<p>Agent 可能会申请读取文件、修改文件、运行命令。新手不要自动批准所有操作。</p>
+<p>你应该看清楚：</p>
+<ul>
+<li>它要读哪个文件。</li>
+<li>它要改哪个文件。</li>
+<li>它要运行什么命令。</li>
+<li>命令是否安全。</li>
+<li>是否会删除文件。</li>
+<li>是否会访问外部网络。</li>
+<li>是否会提交、推送或发布。</li>
+</ul>
+<h3 id="145-diff">14.5 每次都看 diff</h3>
+<p>Agent 改完后必须查看：</p>
+<pre class="highlight"><code class="language-bash">git diff
+</code></pre>
+
+<p>重点看：</p>
+<ul>
+<li>是否改了不该改的文件。</li>
+<li>是否引入无关格式化。</li>
+<li>是否删除了重要逻辑。</li>
+<li>是否引入临时代码。</li>
+<li>是否把密钥、Token、内部地址写进代码。</li>
+<li>是否误改配置。</li>
+</ul>
+<h3 id="146">14.6 跑测试验证</h3>
+<p>根据项目类型运行对应命令：</p>
+<pre class="highlight"><code class="language-bash">npm test
+npm run test
+npm run lint
+npm run build
+pytest
+go test ./...
+mvn test
+</code></pre>
+
+<p>不要只相信 Agent 说“应该可以”。以实际命令结果为准。</p>
+<h3 id="147">14.7 回滚方式</h3>
+<p>如果 Agent 改乱了，可以使用：</p>
+<pre class="highlight"><code class="language-bash">git diff
+</code></pre>
+
+<p>查看改动。</p>
+<pre class="highlight"><code class="language-bash">git checkout -- path/to/file
+</code></pre>
+
+<p>回滚某个文件。</p>
+<pre class="highlight"><code class="language-bash">git reset --hard
+</code></pre>
+
+<p>回滚全部未提交改动。<br />
+注意：这个命令会丢弃所有未提交修改，执行前必须确认没有重要内容。</p>
+<hr />
+<h2 id="15-agent">15. Agent 模式提示词模板和完整案例</h2>
+<h3 id="151-bug">15.1 修复 Bug 模板</h3>
+<pre class="highlight"><code class="language-text">请在 Agent 模式下修复下面 bug。
+
+问题：
+[描述现象]
+
+上下文：
+@Terminal
+@Files
+
+范围：
+优先只修改 [目录/文件]。
+不要修改公共 API。
+不要引入新依赖。
+
+要求：
+1. 先定位原因
+2. 给出最小修改
+3. 修改后运行测试
+4. 如果测试失败，说明原因再继续
+5. 最后输出 diff 摘要和验证结果
+</code></pre>
+
+<h3 id="152">15.2 补测试模板</h3>
+<pre class="highlight"><code class="language-text">请在 Agent 模式下为 [函数/模块] 补充测试。
+
+范围：
+只允许修改测试文件。
+不要修改生产代码。
+不要引入新依赖。
+
+测试场景：
+1. 正常输入
+2. 边界输入
+3. 异常输入
+4. 回归场景
+
+验证：
+运行 [测试命令]。
+
+输出：
+1. 修改文件
+2. 新增测试场景
+3. 测试结果
+4. 需要人工确认的点
+</code></pre>
+
+<h3 id="153">15.3 小功能模板</h3>
+<pre class="highlight"><code class="language-text">请在 Agent 模式下实现一个小功能。
+
+功能：
+[功能描述]
+
+范围：
+允许修改：
+- [文件/目录]
+
+禁止修改：
+- [文件/目录]
+
+约束：
+1. 不引入新依赖
+2. 不修改已有接口返回结构
+3. 保持现有代码风格
+4. 必须补测试或说明为什么不需要
+
+验证：
+运行 [命令]。
+
+完成后输出：
+1. 实现思路
+2. 修改文件
+3. 测试结果
+4. 风险点
+</code></pre>
+
+<h3 id="154-review">15.4 代码 Review 模板</h3>
+<pre class="highlight"><code class="language-text">请在 Agent 或 Chat 模式下 review 当前改动。
+
+上下文：
+@Git Diff
+
+重点检查：
+1. 逻辑错误
+2. 边界情况
+3. 测试遗漏
+4. 安全风险
+5. 性能问题
+6. 是否有无关改动
+
+输出格式：
+- 必须修改
+- 建议修改
+- 可以不改
+- 需要人工确认
+</code></pre>
+
+<hr />
+<h2 id="16-rules-continue">16. Rules：给 Continue 长期记住项目规范</h2>
+<h3 id="161-rules">16.1 Rules 是什么</h3>
+<p>Rules 是让 Continue 长期遵守的项目规范。对于内部项目，本手册优先使用项目根目录的 <code>AGENTS.md</code> 来沉淀规则。</p>
+<p>常见规则包括：</p>
+<ul>
+<li>回答默认使用中文。</li>
+<li>修改代码前先说明计划。</li>
+<li>修改代码后必须说明验证命令。</li>
+<li>不允许引入新依赖，除非明确要求。</li>
+<li>不允许修改公共 API，除非明确要求。</li>
+<li>不允许读取或输出敏感文件。</li>
+<li>代码风格要和现有项目保持一致。</li>
+<li>测试失败不能假装成功。</li>
+</ul>
+<h3 id="162-agentsmd">16.2 AGENTS.md 示例</h3>
+<p>可以在项目根目录维护：</p>
+<pre class="highlight"><code class="language-md"># AGENTS.md
+
+## 项目说明
+
+这是一个内部示例项目，主要用于演示 Continue 的 Chat、Plan、Edit 和 Agent 工作流。
+
+## 通用规则
+
+- 默认使用中文回答。
+- 修改代码前先简要说明计划。
+- 修改代码后说明改动文件和验证命令。
+- 不要引入新依赖，除非用户明确要求。
+- 不要修改公共 API，除非用户明确要求。
+- 不要读取、打印或提交任何密钥、Token、证书、私钥文件。
+- 遇到测试失败时，需要说明失败原因，不要直接声称完成。
+
+## 常用命令
+
+- 安装依赖：npm install
+- 运行测试：npm test
+- 运行 lint：npm run lint
+- 构建：npm run build
+
+## 代码规范
+
+- TypeScript 项目优先保留现有类型风格。
+- 函数命名使用 camelCase。
+- 测试文件命名遵循 *.test.ts。
+</code></pre>
+
+<h3 id="163-rules">16.3 Rules 不应该写什么</h3>
+<p>不要把下面内容写入规则文件：</p>
+<ul>
+<li>API Key。</li>
+<li>数据库密码。</li>
+<li>GitHub Token。</li>
+<li>私有证书。</li>
+<li>生产环境地址和凭证。</li>
+<li>个人账号密码。</li>
+<li>不希望模型长期看到的敏感业务信息。</li>
+</ul>
+<hr />
+<h2 id="17-slash-prompts">17. Slash Prompts：把常用任务做成可复用命令</h2>
+<h3 id="171-slash-prompts">17.1 Slash Prompts 是什么</h3>
+<p>Slash Prompts 可以把常用提示词保存成命令，例如：</p>
+<pre class="highlight"><code class="language-text">/review
+/explain
+/test
+/fix-error
+</code></pre>
+
+<p>这样每次不用重复写长提示词。</p>
+<h3 id="172-slash-prompt">17.2 适合做成 Slash Prompt 的任务</h3>
+<ul>
+<li>代码 Review。</li>
+<li>解释当前文件。</li>
+<li>分析终端报错。</li>
+<li>生成单元测试。</li>
+<li>总结 Git Diff。</li>
+<li>输出发布检查清单。</li>
+<li>根据模板生成 README。</li>
+</ul>
+<h3 id="173-review">17.3 <code>/review</code> 示例</h3>
+<pre class="highlight"><code class="language-text">请 review 当前 Git Diff。
+
+要求：
+1. 检查逻辑错误
+2. 检查兼容性问题
+3. 检查边界情况
+4. 检查测试遗漏
+5. 检查安全风险
+6. 检查是否有无关格式化
+
+请按以下格式输出：
+- 必须修改
+- 建议修改
+- 可以不改
+- 需要人工确认
+</code></pre>
+
+<h3 id="174-fix-error">17.4 <code>/fix-error</code> 示例</h3>
+<pre class="highlight"><code class="language-text">请分析终端报错并给出最小修复方案。
+
+要求：
+1. 先总结报错
+2. 定位最可能原因
+3. 指出相关文件和行号
+4. 给出最小修改方案
+5. 说明验证命令
+6. 在我确认前不要直接修改代码
+</code></pre>
+
+<hr />
+<h2 id="18-mcp">18. MCP 和外部工具：新手只需要先知道什么</h2>
+<h3 id="181-mcp">18.1 MCP 是什么</h3>
+<p>MCP 可以理解为一种把外部工具接入 AI 编程助手的协议。通过 MCP，Continue 可能连接：</p>
+<ul>
+<li>数据库。</li>
+<li>文档系统。</li>
+<li>GitHub / GitLab。</li>
+<li>浏览器。</li>
+<li>内部知识库。</li>
+<li>任务系统。</li>
+<li>日志平台。</li>
+<li>API 调试工具。</li>
+</ul>
+<h3 id="182-mcp">18.2 新手阶段不需要深入配置 MCP</h3>
+<p>新手先掌握：</p>
+<ol>
+<li>Chat 能问清楚问题。</li>
+<li>Edit 能安全改小段代码。</li>
+<li>Plan 能先探索再规划。</li>
+<li>Agent 能小范围执行任务。</li>
+<li>Git diff 和测试能看懂。</li>
+</ol>
+<p>MCP 属于进阶能力，等你能够稳定使用 Agent 后再学习更合适。</p>
+<h3 id="183-mcp">18.3 MCP 使用风险</h3>
+<p>连接外部工具意味着模型可能看到更多信息，也可能执行更多操作。需要注意：</p>
+<ul>
+<li>权限最小化。</li>
+<li>不暴露敏感数据。</li>
+<li>不允许模型随意写生产系统。</li>
+<li>对写操作和删除操作要人工确认。</li>
+<li>外部系统操作需要审计。</li>
+</ul>
+<hr />
+<h2 id="19-7">19. 从零练习：7 天上手计划</h2>
+<h3 id="day-1">Day 1：安装、配置、选模型</h3>
+<p>目标：</p>
+<ul>
+<li>安装 VS Code。</li>
+<li>安装 Continue。</li>
+<li>放置 <code>config.yaml</code>。</li>
+<li>放置 <code>AGENTS.md</code>。</li>
+<li>确保 Chat 能正常回复。</li>
+</ul>
+<p>练习：</p>
+<pre class="highlight"><code class="language-text">请用中文说明你能在这个项目中帮我做什么。
+</code></pre>
+
+<h3 id="day-2">Day 2：选中代码聊天</h3>
+<p>目标：</p>
+<ul>
+<li>会选中代码。</li>
+<li>会发送到 Chat。</li>
+<li>会让模型解释函数。</li>
+<li>会让模型找潜在 bug。</li>
+</ul>
+<p>练习：</p>
+<pre class="highlight"><code class="language-text">请解释这段代码，并指出它有哪些边界情况。
+</code></pre>
+
+<h3 id="day-3">Day 3：使用上下文</h3>
+<p>目标：</p>
+<ul>
+<li>会使用 <code>@Files</code>。</li>
+<li>会使用 <code>@Terminal</code>。</li>
+<li>会使用 <code>@Git Diff</code>。</li>
+</ul>
+<p>练习：</p>
+<pre class="highlight"><code class="language-text">@Terminal 请分析这个测试失败原因，并给出最小修复方案。
+</code></pre>
+
+<h3 id="day-4edit">Day 4：Edit 模式</h3>
+<p>目标：</p>
+<ul>
+<li>会选中代码定点修改。</li>
+<li>会限制模型不要越界修改。</li>
+<li>会检查修改结果。</li>
+</ul>
+<p>练习：</p>
+<pre class="highlight"><code class="language-text">请只修改选中的代码，为它增加输入校验。不要修改函数签名。
+</code></pre>
+
+<h3 id="day-5autocomplete">Day 5：Autocomplete</h3>
+<p>目标：</p>
+<ul>
+<li>会接受和拒绝补全。</li>
+<li>会判断补全是否安全。</li>
+<li>会用注释引导补全。</li>
+</ul>
+<p>练习：</p>
+<ul>
+<li>写一个函数注释。</li>
+<li>观察补全建议。</li>
+<li>接受一小段。</li>
+<li>读懂后再继续。</li>
+</ul>
+<h3 id="day-6plan">Day 6：Plan 模式</h3>
+<p>目标：</p>
+<ul>
+<li>会让模型先读项目。</li>
+<li>会让模型输出实施计划。</li>
+<li>会识别计划中的风险。</li>
+</ul>
+<p>练习：</p>
+<pre class="highlight"><code class="language-text">请进入 Plan 模式，分析如果要给用户注册流程增加邮箱格式校验，需要改哪些文件。暂时不要修改代码。
+</code></pre>
+
+<h3 id="day-7agent">Day 7：Agent 模式</h3>
+<p>目标：</p>
+<ul>
+<li>在分支上让 Agent 完成一个真实小任务。</li>
+<li>会看 diff。</li>
+<li>会跑测试。</li>
+<li>会回滚。</li>
+</ul>
+<p>练习：</p>
+<pre class="highlight"><code class="language-text">请在 Agent 模式下，为一个已有工具函数补充测试。只允许修改测试文件，完成后运行测试，并给出结果摘要。
+</code></pre>
+
+<hr />
+<h2 id="20">20. 常见问题排查</h2>
+<h3 id="q1">Q1：模型不回复怎么办？</h3>
+<p>检查：</p>
+<ul>
+<li><code>config.yaml</code> 是否放在正确目录。</li>
+<li>API Key 或内部网关配置是否正确。</li>
+<li>当前网络是否能访问内部模型服务。</li>
+<li>VS Code 是否需要重启。</li>
+<li>Continue 插件是否启用。</li>
+<li>模型选择器是否选中了可用模型。</li>
+</ul>
+<h3 id="q2continue">Q2：Continue 面板看不到模型怎么办？</h3>
+<p>检查：</p>
+<ul>
+<li><code>config.yaml</code> 文件名是否正确，不要写成 <code>config.yaml.txt</code>。</li>
+<li>YAML 缩进是否正确。</li>
+<li>配置目录是否正确。</li>
+<li>VS Code 是否打开了正确用户目录。</li>
+<li>Continue 是否读取到了最新配置。</li>
+<li>是否需要 Reload Window。</li>
+</ul>
+<p>VS Code 可执行：</p>
+<pre class="highlight"><code class="language-text">Developer: Reload Window
+</code></pre>
+
+<h3 id="q3">Q3：回复质量差怎么办？</h3>
+<p>常见原因：</p>
+<ul>
+<li>上下文太少。</li>
+<li>上下文太乱。</li>
+<li>问题太宽泛。</li>
+<li>没有给具体文件。</li>
+<li>没有给完整报错。</li>
+<li>任务边界不清楚。</li>
+<li>让模型一次做太多事。</li>
+</ul>
+<p>改进方式：</p>
+<pre class="highlight"><code class="language-text">请先基于我提供的上下文说明你理解到的信息。如果缺少关键文件，请列出来。不要直接猜。
+</code></pre>
+
+<h3 id="q4agent">Q4：Agent 把代码改乱了怎么办？</h3>
+<p>先不要继续让 Agent 修。执行：</p>
+<pre class="highlight"><code class="language-bash">git diff
+</code></pre>
+
+<p>查看改动。</p>
+<p>只回滚某个文件：</p>
+<pre class="highlight"><code class="language-bash">git checkout -- path/to/file
+</code></pre>
+
+<p>全部回滚未提交改动：</p>
+<pre class="highlight"><code class="language-bash">git reset --hard
+</code></pre>
+
+<p>注意：<code>git reset --hard</code> 会删除所有未提交改动。</p>
+<h3 id="q5">Q5：快捷键冲突怎么办？</h3>
+<p>打开 VS Code Keyboard Shortcuts，搜索：</p>
+<pre class="highlight"><code class="language-text">Continue
+</code></pre>
+
+<p>重新设置快捷键即可。</p>
+<h3 id="q6autocomplete">Q6：Autocomplete 不显示怎么办？</h3>
+<p>检查：</p>
+<ul>
+<li>Continue 是否启用 Autocomplete。</li>
+<li>补全模型是否配置成功。</li>
+<li>当前文件类型是否被支持。</li>
+<li>光标附近是否有足够上下文。</li>
+<li>是否被其他补全插件覆盖。</li>
+<li>VS Code 是否需要重启。</li>
+<li>网络或本地模型服务是否正常。</li>
+</ul>
+<h3 id="q7agent">Q7：Agent 一直跑、一直改怎么办？</h3>
+<p>处理方式：</p>
+<ol>
+<li>停止当前 Agent。</li>
+<li>查看 diff。</li>
+<li>回滚无关改动。</li>
+<li>把任务拆小。</li>
+<li>明确限制允许修改的文件。</li>
+<li>先用 Plan 模式重新规划。</li>
+</ol>
+<p>更好的提示词：</p>
+<pre class="highlight"><code class="language-text">请只完成第一步：定位问题并输出原因。不要修改任何文件。
+</code></pre>
+
+<h3 id="q8">Q8：模型输出的代码我看不懂怎么办？</h3>
+<p>不要直接应用。可以继续问：</p>
+<pre class="highlight"><code class="language-text">请逐行解释你刚才给出的代码，并说明为什么这样写。请指出我需要重点检查的地方。
+</code></pre>
+
+<h3 id="q9">Q9：模型建议引入新依赖怎么办？</h3>
+<p>先确认是否真的需要。可以问：</p>
+<pre class="highlight"><code class="language-text">请给出不引入新依赖的方案，并比较两种方案的优缺点。
+</code></pre>
+
+<h3 id="q10">Q10：模型误用了项目不存在的命令怎么办？</h3>
+<p>让它读取项目脚本：</p>
+<pre class="highlight"><code class="language-text">@Files package.json 请根据 scripts 字段告诉我应该运行哪些测试、lint 和构建命令。
+</code></pre>
+
+<hr />
+<h2 id="21">21. 新手最佳实践清单</h2>
+<h3 id="211">21.1 每次提问前</h3>
+<ul>
+<li>明确目标。</li>
+<li>准备相关文件。</li>
+<li>准备完整报错。</li>
+<li>确认不让模型做超范围任务。</li>
+<li>对复杂任务先要求模型复述理解。</li>
+</ul>
+<h3 id="212-chat">21.2 使用 Chat 时</h3>
+<ul>
+<li>一次问一个问题。</li>
+<li>尽量给出文件和报错。</li>
+<li>要求结构化输出。</li>
+<li>不满意时让模型重新基于具体上下文回答。</li>
+<li>不要让模型凭空猜项目情况。</li>
+</ul>
+<h3 id="213-edit">21.3 使用 Edit 时</h3>
+<ul>
+<li>只选中需要修改的代码。</li>
+<li>明确“只修改选中代码”。</li>
+<li>明确“不要改函数签名”。</li>
+<li>明确“不要引入新依赖”。</li>
+<li>修改后运行测试。</li>
+</ul>
+<h3 id="214-autocomplete">21.4 使用 Autocomplete 时</h3>
+<ul>
+<li>小段接受。</li>
+<li>接受前先读。</li>
+<li>关键逻辑不要盲目 Tab。</li>
+<li>核心业务逻辑要补测试。</li>
+<li>对安全、权限、金额相关代码特别谨慎。</li>
+</ul>
+<h3 id="215-plan">21.5 使用 Plan 时</h3>
+<ul>
+<li>让模型先读文件。</li>
+<li>明确“暂时不要修改”。</li>
+<li>要求输出文件列表、风险点和验证命令。</li>
+<li>审查方案后再执行。</li>
+</ul>
+<h3 id="216-agent">21.6 使用 Agent 时</h3>
+<ul>
+<li>新建分支。</li>
+<li>确认工作区干净。</li>
+<li>限制修改范围。</li>
+<li>禁止自动提交。</li>
+<li>不自动批准所有操作。</li>
+<li>每次看 diff。</li>
+<li>每次跑测试。</li>
+<li>失败就停下来分析，不要无限循环。</li>
+<li>必要时回滚。</li>
+</ul>
+<h3 id="217">21.7 安全红线</h3>
+<p>不要让模型读取、输出、修改、提交以下内容：</p>
+<ul>
+<li>API Key。</li>
+<li>密码。</li>
+<li>私钥。</li>
+<li>证书。</li>
+<li>生产数据库连接串。</li>
+<li>GitHub Token。</li>
+<li>内部敏感文档。</li>
+<li>用户隐私数据。</li>
+<li>生产环境配置。</li>
+<li>发布脚本中的敏感参数。</li>
+</ul>
+<hr />
+<h2 id="22">22. 官方资料来源</h2>
+<p>以下资料适合在完成本手册练习后继续阅读：</p>
+<h3 id="continue">Continue</h3>
+<pre class="highlight"><code class="language-text">https://docs.continue.dev/
+</code></pre>
+
+<p>推荐阅读方向：</p>
+<ul>
+<li>Continue 基础使用。</li>
+<li>Chat / Edit / Autocomplete。</li>
+<li>Rules。</li>
+<li>Prompt Files。</li>
+<li>MCP。</li>
+<li>Model configuration。</li>
+</ul>
+<h3 id="vs-code">VS Code</h3>
+<pre class="highlight"><code class="language-text">https://code.visualstudio.com/docs
+</code></pre>
+
+<p>推荐阅读方向：</p>
+<ul>
+<li>VS Code 基础操作。</li>
+<li>Extensions。</li>
+<li>Keyboard Shortcuts。</li>
+<li>Integrated Terminal。</li>
+<li>Source Control。</li>
+</ul>
+<h3 id="git">Git</h3>
+<pre class="highlight"><code class="language-text">https://git-scm.com/doc
+</code></pre>
+
+<p>推荐阅读方向：</p>
+<ul>
+<li><code>git status</code></li>
+<li><code>git diff</code></li>
+<li><code>git checkout</code></li>
+<li><code>git reset</code></li>
+<li>branch 工作流</li>
+</ul>
+<hr />
+<h2 id="a">附录 A：新手第一次成功标准</h2>
+<p>完成下面任务，说明你已经完成入门：</p>
+<ol>
+<li>能打开 Continue Chat。</li>
+<li>能确认模型是内部配置模型。</li>
+<li>能用 Chat 解释一段代码。</li>
+<li>能用 <code>@Terminal</code> 分析一次报错。</li>
+<li>能用 <code>@Git Diff</code> 做一次 Review。</li>
+<li>能用 Edit 修改一小段代码。</li>
+<li>能使用 Autocomplete，但不会盲目接受。</li>
+<li>能用 Plan 输出一个修改方案。</li>
+<li>能在新分支上用 Agent 完成一个小任务。</li>
+<li>能看懂 diff，并能回滚改动。</li>
+</ol>
+<hr />
+<h2 id="b">附录 B：推荐的第一次真实练习任务</h2>
+<p>选择一个你熟悉的小项目，完成下面流程：</p>
+<pre class="highlight"><code class="language-bash">git checkout -b continue-first-practice
+git status
+</code></pre>
+
+<p>然后在 Continue Chat 中提问：</p>
+<pre class="highlight"><code class="language-text">请阅读这个项目的 AGENTS.md 和 package.json，告诉我：
+1. 这个项目可能是什么类型
+2. 常用测试、构建、lint 命令是什么
+3. 新手应该先读哪些文件
+4. 使用 Agent 时需要注意哪些限制
+
+暂时不要修改任何文件。
+</code></pre>
+
+<p>接着选择一个小函数，使用 Edit 模式：</p>
+<pre class="highlight"><code class="language-text">请只修改选中的代码，增加必要的空值检查。不要修改函数签名，不要引入新依赖。
+</code></pre>
+
+<p>最后查看 diff：</p>
+<pre class="highlight"><code class="language-bash">git diff
+</code></pre>
+
+<p>运行测试：</p>
+<pre class="highlight"><code class="language-bash">npm test
+</code></pre>
+
+<p>如果结果正常，说明你已经完成了一次完整的 Continue 入门实践。</p>
+    </div>
+</body>
+</html>

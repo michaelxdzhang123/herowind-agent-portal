@@ -11,6 +11,7 @@
 <body class="gray-bg">
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="wrapper wrapper-content">
+
         <div class="row">
             <div class="col-sm-12">
                 <div class="ibox float-e-margins">
@@ -18,11 +19,32 @@
                         <h5>{{ info_dict.title }}</h5>
                     </div>
                     <div class="ibox-content">
-                        <p>{{ info_dict.description }}</p>
+                        {% for line in info_dict.descriptions %}
+                        <p><i class="fa fa-cube" style="color: #1ab394;"></i> {{ line }}</p>
+                        {% endfor %}
                     </div>
                 </div>
             </div>
         </div>
+
+        {% if info_dict.code_repo %}
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5><i class="fa fa-code"></i> 代码仓库</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <p>{{ info_dict.code_repo }}</p>
+                        {% if info_dict.code_repo_url %}
+                        <p><i class="fa fa-git"></i> <a href="{{ info_dict.code_repo_url }}" target="_blank">{{ info_dict.code_repo_url }}</a></p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
     </div>
 </div>
 </body>
