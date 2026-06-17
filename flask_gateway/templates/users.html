@@ -7,9 +7,22 @@
     <link rel="stylesheet" href="{{ url_for('key_management_bp.static', filename='css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ url_for('key_management_bp.static', filename='css/font-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ url_for('key_management_bp.static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('key_management_bp.static', filename='css/video-background.css') }}">
+    <style>
+        body.gray-bg { background: transparent !important; }
+        .ibox { background: rgba(255,255,255,0.88); border-radius: 4px; }
+        .ibox-title { background: rgba(255,255,255,0.92); border-radius: 4px 4px 0 0; }
+    </style>
 </head>
 <body class="gray-bg">
-<div class="wrapper wrapper-content animated fadeInRight">
+
+    <!-- Background video -->
+    <video autoplay muted loop playsinline id="bg-video">
+        <source src="{{ url_for('key_management_bp.static', filename='video/turbine_seedance.mp4') }}" type="video/mp4">
+    </video>
+    <div class="video-overlay"></div>
+
+<div class="wrapper wrapper-content animated fadeInRight video-bg-page">
     <div class="wrapper wrapper-content">
         <div class="row">
             <div class="col-sm-12">

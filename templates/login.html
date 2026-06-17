@@ -4,19 +4,54 @@
     <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>登录</title>
+    <title>Herowind Agents Portal - 登录</title>
     <link rel="stylesheet" type="text/css" href="/static/css/normalize.css"/>
     <link rel="stylesheet" type="text/css" href="/static/css/demo.css"/>
-    <!--必要样式-->
     <link rel="stylesheet" type="text/css" href="/static/css/component.css"/>
-    <!--图片背景动态变换-->
-    <!--[if IE]>
-    <script>
-
-    </script>
-    <![endif]-->
+    <style>
+        /* Fullscreen background video */
+        #bg-video {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -100;
+            object-fit: cover;
+        }
+        .video-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -99;
+            background: rgba(0, 0, 0, 0.4);
+            pointer-events: none;
+        }
+        /* Make large-header transparent to show video */
+        .large-header {
+            background: transparent !important;
+        }
+        .demo-1 .large-header {
+            background-image: none !important;
+        }
+        /* Keep canvas subtle behind form */
+        #demo-canvas {
+            opacity: 0.3;
+        }
+    </style>
 </head>
 <body>
+
+    <!-- Background video -->
+    <video autoplay muted loop playsinline id="bg-video">
+        <source src="/static/video/turbine_seedance.mp4" type="video/mp4">
+    </video>
+    <div class="video-overlay"></div>
+
 <div class="container demo-1">
     <div class="content">
         <div id="large-header" class="large-header">
@@ -24,8 +59,6 @@
             <div class="logo_box">
                 <h1 align="left" style="color: black;font-family: 微软雅黑"> Herowind Agents Portal </h1>
                 <form action="" method="post">
-{#                    {{ uf.as_p }}#}
-{#                    <input type="submit" value="login">#}
                     <div class="input_outer">
                         <span class="u_user"></span>
                         <input name="username" class="text" style="color: #FFFFFF !important" type="text"
@@ -37,7 +70,6 @@
                                style="color: #FFFFFF !important; position:absolute; z-index:100;" value=""
                                type="password" placeholder="请输入密码">
                     </div>
-                    <!--设置按钮样式与响应-->
                     <form id="act-but submit"><button type="submit" style="width:330px;height:50px;border:none;color: #ffffff;text-align: center" class="act-but submit" align="middle">登录</button></form>
                 </form>
 

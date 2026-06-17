@@ -19,14 +19,13 @@ def auth_login():
     try:
         username = request.cookies.get('username')
         tokenid = request.cookies.get('tokenid')
-        
-        token = Token.query.filter_by(tokenid=tokenid).first()
-        print('token.user', token.username)
-        # TODO: 对于过期的方法修正
-        if token.username == username:
-            return True
-        else:
+        if not username or not tokenid:
             return False
+
+        token = Token.query.filter_by(tokenid=tokenid).first()
+        if token is None:
+            return False
+        return token.username == username
     except Exception as e:
         print(e)
         return False
