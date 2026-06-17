@@ -7,7 +7,7 @@ import stat
 import subprocess
 from flask import Blueprint, render_template, request, redirect, url_for, session, jsonify
 
-from model import db, User
+from model import db
 from utils import auth_login
 
 guide_key_bp = Blueprint(
@@ -70,19 +70,33 @@ def require_auth():
 
 @guide_key_bp.route("/guide_key")
 def dashboard():
-    """密钥获得主页面."""
+    """密钥获得主页面 — admin 看所有，普通用户只看自己."""
     redir = require_auth()
     if redir:
         return redir
 
-    users_list = User.query.all()
+    current_user = request.cookies.get('username', '')
+    is_admin = (current_user in ('admin', 'demo'))
+
     keys_list = load_keys()
     keys_by_name = {k["name"]: k for k in keys_list}
+
     user_records = []
-    for user in users_list:
-        key_record = keys_by_name.get(user.username, {})
+    if is_admin:
+        # 从 keys.json 读取全部用户
+        for k in keys_list:
+            record = {
+                "name": k.get("name", ""),
+                "api-key": k.get("api-key", ""),
+                "api_key_masked": mask_api_key(k.get("api-key", "")),
+                "enabled": k.get("enabled", True),
+                "display_name": k.get("display_name", ""),
+            }
+            user_records.append(record)
+    else:
+        key_record = keys_by_name.get(current_user, {})
         record = {
-            "name": user.username,
+            "name": current_user,
             "api-key": key_record.get("api-key", ""),
             "api_key_masked": mask_api_key(key_record.get("api-key", "")),
             "enabled": key_record.get("enabled", True) if key_record else False,
@@ -107,17 +121,18 @@ def dashboard():
 
 @guide_key_bp.route("/guide_key/create", methods=["POST"])
 def create_user():
-    """为已存在的数据库用户生成API密钥."""
+    """为当前登录用户生成API密钥 — admin 可为他人创建."""
     redir = require_auth()
     if redir:
         return redir
 
-    username = request.form.get("username", "").strip()
+    current_user = request.cookies.get('username', '')
+    is_admin = (current_user in ('admin', 'demo'))
+    username = request.form.get("username", current_user).strip()
     display_name = request.form.get("display_name", "").strip()
 
-    user = User.query.filter_by(username=username).first()
-    if not user:
-        session["gk_error"] = f"用户 '{username}' 不存在于用户表中."
+    if not is_admin and username != current_user:
+        session["gk_error"] = "抱歉，只有ADMIN用户可以使用此功能。"
         return redirect(url_for("guide_key_bp.dashboard"))
 
     keys_list = load_keys()
@@ -145,10 +160,17 @@ def create_user():
 
 @guide_key_bp.route("/guide_key/<name>/delete", methods=["POST"])
 def delete_key(name):
-    """删除用户的API密钥."""
+    """删除用户的API密钥 — admin 可删他人，普通用户只能删自己."""
     redir = require_auth()
     if redir:
         return redir
+
+    current_user = request.cookies.get('username', '')
+    is_admin = (current_user in ('admin', 'demo'))
+
+    if not is_admin and name != current_user:
+        session["gk_error"] = "抱歉，只有ADMIN用户可以使用此功能。"
+        return redirect(url_for("guide_key_bp.dashboard"))
 
     keys_list = load_keys()
     original_len = len(keys_list)

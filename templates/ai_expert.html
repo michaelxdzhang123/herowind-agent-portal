@@ -18,20 +18,35 @@
                         <h5>{{ info_dict.title }}</h5>
                     </div>
                     <div class="ibox-content">
-                        <p>{{ info_dict.description }}</p>
+                        {% if info_dict.content %}
+                        <h4>智能体独立和协同工作流说明</h4>
+                        <ul>
+                            {% for item in info_dict.content %}
+                            <li>{{ item }}</li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
+                        {% if info_dict.description %}
+                        <h4>工作流描述</h4>
+                        <ol>
+                            {% for item in info_dict.description %}
+                            <li>{{ item }}</li>
+                            {% endfor %}
+                        </ol>
+                        {% endif %}
                     </div>
                 </div>
             </div>
         </div>
     </div>
         <li style="padding: 5px 15px;">
-            <img src="../static/ppt00.PNG"  width=1200" height = "600" />
+            <img src="../static/ppt00.PNG"  width=900" height = "500" />
         </li>
         <li style="padding: 5px 15px;">
-            <img src="../static/ppt01.PNG"  width=1200" height = "600" />
+            <img src="../static/ppt01.PNG"  width=900" height = "500" />
         </li>
         <li style="padding: 5px 15px;">
-            <img src="../static/ppt02.PNG"  width=1200" height = "600" />
+            <img src="../static/ppt02.PNG"  width=900" height = "500" />
         </li>
 </div>
 </body>

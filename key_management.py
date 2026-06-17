@@ -7,7 +7,7 @@ import stat
 import subprocess
 from flask import Blueprint, render_template, request, redirect, url_for, session, jsonify
 
-from model import db, User
+from model import db
 from utils import auth_login
 
 key_management_bp = Blueprint(
@@ -73,30 +73,40 @@ def require_auth():
 
 @key_management_bp.route("")
 def dashboard():
-    """密钥管理主页面 - 用户列表和API密钥管理."""
+    """密钥管理主页面 - 仅显示当前登录用户的API密钥."""
     redir = require_auth()
     if redir:
         return redir
 
-    # Get users from main database
-    users_list = User.query.all()
+    # 获取当前登录用户
+    current_user = request.cookies.get('username', '')
+    is_admin = (current_user in ('admin', 'demo'))
 
-    # Get API keys from keys.json
     keys_list = load_keys()
-
-    # Build a combined view: match db users with their API keys
     keys_by_name = {k["name"]: k for k in keys_list}
+
     user_records = []
-    for user in users_list:
-        key_record = keys_by_name.get(user.username, {})
+    if is_admin:
+        for k in keys_list:
+            record = {
+                "name": k.get("name", ""),
+                "api-key": k.get("api-key", ""),
+                "api_key_masked": mask_api_key(k.get("api-key", "")),
+                "enabled": k.get("enabled", True),
+                "display_name": k.get("display_name", ""),
+            }
+            user_records.append(record)
+    else:
+        key_record = keys_by_name.get(current_user, {})
         record = {
-            "name": user.username,
+            "name": current_user,
             "api-key": key_record.get("api-key", ""),
             "api_key_masked": mask_api_key(key_record.get("api-key", "")),
             "enabled": key_record.get("enabled", True) if key_record else False,
             "display_name": key_record.get("display_name", ""),
         }
         user_records.append(record)
+        keys_list = [key_record] if key_record.get("api-key") else []
 
     new_key = session.pop("km_new_key", None)
     new_user = session.pop("km_new_user", None)
@@ -116,18 +126,19 @@ def dashboard():
 
 @key_management_bp.route("/create", methods=["POST"])
 def create_user():
-    """为已存在的数据库用户生成API密钥."""
+    """为当前登录用户生成API密钥."""
     redir = require_auth()
     if redir:
         return redir
 
-    username = request.form.get("username", "").strip()
+    current_user = request.cookies.get('username', '')
+    is_admin = (current_user in ('admin', 'demo'))
+    username = request.form.get("username", current_user).strip()
     display_name = request.form.get("display_name", "").strip()
 
-    # Verify user exists in main database
-    user = User.query.filter_by(username=username).first()
-    if not user:
-        session["km_error"] = f"用户 '{username}' 不存在于用户表中."
+    # 非 admin/demo 不能操作他人密钥
+    if not is_admin and username != current_user:
+        session["km_error"] = "抱歉，只有ADMIN用户可以使用此功能。"
         return redirect(url_for("key_management_bp.dashboard"))
 
     keys_list = load_keys()
@@ -157,10 +168,17 @@ def create_user():
 
 @key_management_bp.route("/<name>/delete", methods=["POST"])
 def delete_key(name):
-    """删除用户的API密钥."""
+    """删除当前用户的API密钥."""
     redir = require_auth()
     if redir:
         return redir
+
+    current_user = request.cookies.get('username', '')
+    is_admin = (current_user in ('admin', 'demo'))
+    # 非 admin/demo 不能操作他人密钥
+    if not is_admin and name != current_user:
+        session["km_error"] = "抱歉，只有ADMIN用户可以使用此功能。"
+        return redirect(url_for("key_management_bp.dashboard"))
 
     keys_list = load_keys()
     original_len = len(keys_list)

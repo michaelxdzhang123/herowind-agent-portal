@@ -33,5 +33,20 @@
     "name": "ying",
     "api-key": "hero_x8Lwlo782ozvS-10clqX-05PvFQjy3ErzeVObUAfXGQ",
     "enabled": true
+  },
+  {
+    "name": "test2",
+    "api-key": "hero__4-VEe9NmG6vp63Jrgij2jwdMz5Yvw3CLc8jBu7zfhg",
+    "enabled": true
+  },
+  {
+    "name": "admin",
+    "api-key": "hero_iL2WSLTenU66nlweCRKA01Ik219C1WMtnemD1iWrO5A",
+    "enabled": true
+  },
+  {
+    "name": "test1",
+    "api-key": "hero_Ul9WSGPYntPngJJl1k-c-opRPY88QZho8C6npFGWsmU",
+    "enabled": true
   }
 ]
