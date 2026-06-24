@@ -37,98 +37,95 @@ def typeof(variate):
     elif isinstance(variate,set):
          type = "set"
     return type
-@login_bp.route('/login', methods=['POST', 'GET']) # 需要填写method
+
+@login_bp.route('/login', methods=['POST', 'GET'])
 def login_route():
     """
-    在此处填写login的相关代码
+    登录路由
 
-    浏览器中输入: localhost:5000/login
+    浏览器中输入: localhost:9999/login
     """
     if request.method == 'GET':
         if auth_login():
-            #已经登陆了,mkdirs
-
             return render_template('index.html')
         else:
             return render_template('login.html')
 
     else:
         if not request.is_json:
+            username = request.form['username']
+            password = request.form['password']
+            try:
+                user = User.query.filter_by(username=username).first()
+            except Exception as e:
+                print('DB query error:', e)
+                return '<h1>没有这个ID或密码错误，请回到登录页面</h1>'
 
-                username = request.form['username']
-                password = request.form['password']
-                try:
-                    user = User.query.filter_by(username=username).first()
-                except Exception as e:
-                    print('----------------------------not in sqlmysql',e)
-                    return '<h1>没有这个ID或密码错误，请回到登录页面</h1>'
-                print('-----------------user = ',user)
-                if user.password == password:
-                    #resp = make_response('<h1>登录成功</h1>')
-                    my_user = username
-                    # print('username==', my_user)
-                    dirname, filename = os.path.split(os.path.abspath(sys.argv[0]))
-                    # check my_user dir and create if no
-                    my_working_dir = os.path.join(dirname, 'templates/users', my_user)
-                    if not os.path.isdir(my_working_dir):
-                        os.system("./create_user.sh %s" % (my_user))
-                        print('-----------------run create_user.sh------------------------------')
-                    temp = render_template('index.html')
-                    resp = make_response(temp)
-                    print('line----------------------------43')
-                    # delete server token , if empty create one, otherwise delete than create one
-                    token = Token.query.filter_by(username=username).first()
-                    token_type = typeof(token)
-                    print('----------------------exception happed',type(token),token_type)
-                    try:
-                        db.session.delete(token)
-                        db.session.commit()
-                    except:
-                        print('deleted old cookie on server')
-                    # save token
-                    tokenid = generateToken()
-                    token = Token(tokenid, username)
-                    db.session.add(token)
-                    db.session.commit()
-                    resp.set_cookie('username', username)
-                    resp.set_cookie('tokenid', tokenid)
-                    #返回 client object below
-                    return resp
-                    #return render_template('index.html')
-                else:
-                    return '<h1>凭证错误</h1>'
+            if user is None or user.password != password:
                 return '<h1>ID或密码错误，请回到登录页面</h1>'
+
+            # 登录成功
+            my_user = username
+            dirname, filename = os.path.split(os.path.abspath(sys.argv[0]))
+            # check my_user dir and create if no
+            my_working_dir = os.path.join(dirname, 'templates/users', my_user)
+            if not os.path.isdir(my_working_dir):
+                os.system("./create_user.sh %s" % (my_user))
+                print('-----------------run create_user.sh------------------------------')
+
+            temp = render_template('index.html')
+            resp = make_response(temp)
+
+            # delete old token if exists, then create new one
+            old_token = Token.query.filter_by(username=username).first()
+            if old_token is not None:
+                try:
+                    db.session.delete(old_token)
+                    db.session.commit()
+                except:
+                    print('deleted old cookie on server')
+
+            # save new token
+            tokenid = generateToken()
+            token = Token(tokenid, username)
+            db.session.add(token)
+            db.session.commit()
+            resp.set_cookie('username', username)
+            resp.set_cookie('tokenid', tokenid)
+            return resp
 
         else:
             try:
                 info = request.get_json(silent=True)
                 user = User.query.filter_by(username=info['username']).first()
-                if user.password == info['password']:
-                    tokenid = generateToken()
-                    token = Token(tokenid, user.username)
-                    db.session.add(token)
-                    db.session.commit()
-                    return jsonify({'status': 'success', 'token': tokenid})
-                else:
+                if user is None or user.password != info['password']:
                     return jsonify({'status': 'failed'}), 401
+                tokenid = generateToken()
+                token = Token(tokenid, user.username)
+                db.session.add(token)
+                db.session.commit()
+                return jsonify({'status': 'success', 'token': tokenid})
             except Exception as e:
                 print(e)
                 return jsonify({'status': 'failed'}), 400
-        
+
 
 @login_bp.route('/logout', methods=['POST', 'GET'])
 def logout_route():
-
     """
-    在此处填写logout相关代码
-    pass 可以删除
+    登出路由
     """
     if request.method == 'GET':
         try:
             username = request.cookies.get('username')
             tokenid = request.cookies.get('tokenid')
-            
+            if not username or not tokenid:
+                return '<h1>未登录</h1>'
+
             token = Token.query.filter_by(username=username).first()
+            if token is None:
+                return '<h1>未登录</h1>'
+
             if token.tokenid == tokenid:
                 db.session.delete(token)
                 db.session.commit()
@@ -137,15 +134,16 @@ def logout_route():
                 return '<h1>凭据错误</h1>'
         except Exception as e:
             return '<h1>未登录</h1>'
-        
+
     else:
         if not request.is_json:
             abort(400)
-        
         else:
             info = request.get_json(silent=True)
             try:
                 token = Token.query.filter_by(username=info['username']).first()
+                if token is None:
+                    return jsonify({'status': 'failed'}), 401
                 if token.tokenid == info['tokenid']:
                     db.session.delete(token)
                     db.session.commit()
