@@ -1,9 +1,0 @@
-load ./airfoils/NickBarlow-057.dat
-oper
-visc
-1000000.0
-pacc
-./outputs/this_polar/NickBarlow-057.dat
-./log/2025Sep1604:04:05.dump
-a 0
-HARD

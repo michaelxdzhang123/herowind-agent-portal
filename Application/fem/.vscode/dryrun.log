@@ -1,5 +1,0 @@
-make --dry-run --always-make --keep-going --print-directory
-make: Entering directory '/home/mich/apps/BladeAI/Application/fem'
-egrep -h '\s##\s' makefile | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-20s\033[0m %s\n", $1, $2}'
-make: Leaving directory '/home/mich/apps/BladeAI/Application/fem'
- 

@@ -1,6 +1,6 @@
-# BladeAI
+# Herowind-agent-portal
 
-BladeAI is an open-source tool for wind turbine blade design. It covers the full workflow from airfoil and geometry definition, laminate plan generation, stiffness matrix calculation, and stability analysis (HAWCStab2), to automated engineering report generation with AI assistance.
+Herowind-agent-portal is an open-source tool for wind turbine blade design. It covers the full workflow from airfoil and geometry definition, laminate plan generation, stiffness matrix calculation, and stability analysis (HAWCStab2), to automated engineering report generation with AI assistance.
 
 ## Features
 
@@ -31,7 +31,7 @@ BladeAI is an open-source tool for wind turbine blade design. It covers the full
 
 ```bash
 git clone <repository-url>
-cd blade-ai
+cd Herowind-agent-portal
 ```
 
 ### 2. Create a virtual environment
@@ -44,14 +44,12 @@ source .venv/bin/activate  # On Windows: .venv\Scripts\activate
 ### 3. Install Python dependencies
 
 ```bash
-pip install -r requirements.txt
+uv venv --python 3.13
+uv sync
 ```
-
 Or install the package directly:
 
-```bash
-pip install -e .
-```
+uv pip -r requirements.txt
 
 If you need development/testing dependencies:
 
@@ -61,55 +59,31 @@ pip install -e ".[dev]"
 
 ### 4. Initialize the database
 
-The application uses SQLite (`data/data.sqlite`). The tables are created automatically on first use via Flask-SQLAlchemy.
+no databased install maully,  The tables are created automatically on first use via Flask-SQLAlchemy.
 
-## Running the Application
 
 ### Start the Flask server
 
 The main web portal runs on Flask using `flask_script`.
 
 ```bash
-python app.py runserver -h 0.0.0.0 -p 8181
+uv run main.py
 ```
 
-Then open your browser at: [http://localhost:8181](http://localhost:8181)
+Then open your browser at: [http://localhost:9999]
 
 The default landing page redirects to `/login`.
 
-### Start the Streamlit module (optional)
 
-If you want to run the aerodynamics/shape Streamlit app (`Application/aero_shape/bbs.py`):
 
-```bash
-cd Application/aero_shape
-streamlit run bbs.py --server.enableXsrfProtection=false --server.port 8551
-```
-
-Then open your browser at: [http://localhost:8551](http://localhost:8551)
-
-### Run using the provided shell script
-
-You can also start both services in the background using:
+tubine specialist link to hermes by gateway flask
 
 ```bash
-bash run_flask.sh
-```
+cd turbine-portal
+uv run app.py
 
-Or the combined startup script:
 
-```bash
-bash fl.sh
-```
-
-## Running Tests
-
-```bash
-pytest
-```
-
-Or with verbose output:
-
+run testing manully (not nessissary hermes already did)
 ```bash
 pytest -v
 ```
@@ -117,7 +91,7 @@ pytest -v
 ## Project Structure
 
 ```
-blade-ai/
+Herowind-agent-portal/
 ├── app.py                  # Flask application entry point
 ├── config.py               # Flask configuration
 ├── model.py                # SQLAlchemy models (User, Token)
@@ -127,14 +101,6 @@ blade-ai/
 ├── static/                 # Static assets (CSS, JS, images)
 ├── templates/              # Jinja2 HTML templates
 ├── tests/                  # pytest test suite
-├── Application/
-│   ├── Airfoils/           # Airfoil data
-│   ├── aero_shape/         # Streamlit aerodynamics app
-│   ├── b3p/                # Blade geometry/meshing tools
-│   ├── fem/                # FEM pipeline (makefile)
-│   ├── stab2/              # Stability analysis
-│   └── sys/                # System configuration files
-└── docs/                   # Documentation and videos
 ```
 
 ## License
@@ -143,4 +109,4 @@ MIT License
 
 ## Contact
 
-Michael Zhang - mich@mich.com
+Michael Zhang - mich@aiagent.com

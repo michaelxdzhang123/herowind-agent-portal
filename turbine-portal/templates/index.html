@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🌬️ 风力发电机仿真专家</title>
+<style>
+  :root {
+    --bg: #0f172a; --surface: #1e293b; --text: #e2e8f0;
+    --text2: #94a3b8; --accent: #38bdf8; --user-bg: #1e40af;
+    --assistant-bg: #1e293b; --border: #334155; --code-bg: #0f172a;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family: "Segoe UI", "Noto Sans SC", sans-serif; background:var(--bg); color:var(--text); height:100vh; display:flex; flex-direction:column; }
+  .header { background:var(--surface); border-bottom:1px solid var(--border); padding:12px 20px; display:flex; align-items:center; gap:10px; flex-shrink:0; }
+  .header h1 { font-size:1.1rem; font-weight:600; }
+  .header .sub { font-size:0.8rem; color:var(--text2); }
+  #chat { flex:1; overflow-y:auto; padding:16px; display:flex; flex-direction:column; gap:12px; }
+  .msg { max-width:85%; padding:12px 16px; border-radius:12px; line-height:1.7; font-size:0.95rem; white-space:pre-wrap; word-break:break-word; }
+  .msg.user { align-self:flex-end; background:var(--user-bg); border-bottom-right-radius:4px; }
+  .msg.assistant { align-self:flex-start; background:var(--assistant-bg); border:1px solid var(--border); border-bottom-left-radius:4px; }
+  .msg.status { align-self:center; font-size:0.8rem; color:var(--text2); background:var(--surface); padding:6px 14px; border-radius:20px; }
+  .msg.error { border-color:#ef4444 !important; color:#fca5a5 !important; }
+  .msg code { background:var(--code-bg); padding:2px 6px; border-radius:4px; font-size:0.85rem; }
+  .msg pre { background:var(--code-bg); padding:10px; border-radius:8px; overflow-x:auto; margin:6px 0; font-size:0.85rem; }
+  .msg pre code { background:none; padding:0; }
+  .msg strong { font-weight:700; color:#f1f5f9; }
+  .input-area { padding:12px 16px; background:var(--surface); border-top:1px solid var(--border); display:flex; gap:8px; flex-shrink:0; }
+  #input { flex:1; background:var(--bg); color:var(--text); border:1px solid var(--border); border-radius:8px; padding:10px 14px; font-size:0.95rem; resize:none; min-height:44px; max-height:150px; font-family:inherit; outline:none; }
+  #input:focus { border-color:var(--accent); }
+  button { background:#0ea5e9; color:#fff; border:none; border-radius:8px; padding:0 20px; font-size:0.95rem; font-weight:600; cursor:pointer; white-space:nowrap; }
+  button:disabled { opacity:0.5; cursor:not-allowed; }
+  @keyframes spin { to { transform:rotate(360deg); } }
+  .spinner { display:inline-block; width:14px; height:14px; border:2px solid var(--text2); border-top-color:var(--accent); border-radius:50%; animation:spin 0.8s linear infinite; margin-right:6px; vertical-align:middle; }
+</style>
+</head>
+<body>
+<div class="header">
+  <span style="font-size:1.5rem">🌬️</span>
+  <div><h1>风力发电机仿真专家</h1><div class="sub">OpenFAST · AeroDyn · BEM</div></div>
+</div>
+<div id="chat">
+  <div class="msg assistant">👋 你好！我是<b>风力发电机仿真专家</b>。<br>直接提问，例如：BEM 中 Glauert 修正什么时候触发？</div>
+</div>
+<div class="input-area">
+  <textarea id="input" placeholder="输入问题，Enter 发送" rows="1"
+    onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();send()}"></textarea>
+  <button id="btn" onclick="send()">发送</button>
+</div>
+
+<script>
+var chat=document.getElementById('chat'), inp=document.getElementById('input'), btn=document.getElementById('btn');
+var sending=false, sid=Math.random().toString(36).slice(2,10);
+
+inp.addEventListener('input',function(){inp.style.height='auto';inp.style.height=Math.min(inp.scrollHeight,150)+'px'});
+
+function add(role,html,cls){
+  var d=document.createElement('div'); d.className='msg '+role+(cls?' '+cls:'');
+  d.innerHTML=html; chat.appendChild(d); chat.scrollTop=chat.scrollHeight; return d;
+}
+
+function md(s){
+  // 简易 Markdown → HTML
+  s=s.replace(/```(\w*)\n([\s\S]*?)```/g,function(_,l,c){return'<pre><code>'+esc(c.trim())+'</code></pre>'});
+  s=s.replace(/`([^`]+)`/g,'<code>$1</code>');
+  s=s.replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>');
+  s=s.replace(/\*(.+?)\*/g,'<em>$1</em>');
+  s=s.replace(/^### (.+)$/gm,'<h3>$1</h3>');
+  s=s.replace(/^## (.+)$/gm,'<h2>$1</h2>');
+  s=s.replace(/^# (.+)$/gm,'<h1>$1</h1>');
+  s=s.replace(/^- (.+)$/gm,'<li>$1</li>'); s=s.replace(/(<li>.*<\/li>\n?)+/g,'<ul>$&</ul>');
+  s=s.replace(/^&gt; (.+)$/gm,'<blockquote>$1</blockquote>');
+  s=s.replace(/\n\n/g,'</p><p>'); s='<p>'+s+'</p>';
+  s=s.replace(/<p>\s*<\/p>/g,''); s=s.replace(/\n/g,'<br>');
+  return s;
+}
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+
+async function send(){
+  var t=inp.value.trim(); if(!t||sending) return;
+  inp.value=''; inp.style.height='auto'; sending=true; btn.disabled=true;
+
+  add('user',esc(t));
+  var stat=add('status','<span class="spinner"></span> 正在思考...');
+
+  try{
+    var r=await fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:t,session_id:sid})});
+    if(!r.ok){stat.innerHTML='❌ HTTP '+r.status+' '+r.statusText; stat.classList.add('error'); return;}
+
+    var text=await r.text();
+    // 解析 SSE 响应
+    var answer='';
+    text.split('\n').forEach(function(line){
+      if(!line.startsWith('data: ')) return;
+      try{var d=JSON.parse(line.slice(6)); if(d.text) answer+=d.text;}catch(e){}
+    });
+
+    stat.remove();
+    if(answer){
+      add('assistant',md(answer));
+    }else{
+      add('status','⚠️ 空响应 — 原始数据: <code>'+esc(text.slice(0,200))+'</code>','error');
+    }
+  }catch(e){
+    stat.innerHTML='❌ 网络错误: '+esc(e.message); stat.classList.add('error');
+    console.error(e);
+  }finally{
+    sending=false; btn.disabled=false; inp.focus();
+  }
+}
+</script>
+</body>
+</html>
